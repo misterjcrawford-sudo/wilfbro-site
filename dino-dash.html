@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dino Dash</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:black; display:flex; justify-content:center; align-items:center; height:100vh; font-family:"Space Grotesk", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; color:#00ffcc; }
+  .game-wrap { width:800px; max-width:100%; }
+  .home-nav { display:flex; justify-content:flex-end; margin-bottom:8px; }
+  .home-btn { display:inline-block; text-decoration:none; color:#111111; background:#ffffff; border:1px solid #000000; padding:6px 10px; font-family:"Space Grotesk", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; font-size:0.76rem; letter-spacing:0.02em; line-height:1; transition:background-color 140ms ease, color 140ms ease; }
+  .home-btn:hover { background:#ff4fb4; color:#000000; }
+  canvas { border:4px solid #00ffcc; image-rendering:pixelated; }
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black flex flex-col items-center justify-center h-screen">
+<div class="game-wrap">
+  <div class="home-nav">
+    <a class="home-btn" href="index.html">Back to wilfbro</a>
+  </div>
+  <h1 class="text-5xl text-cyan-300 mb-4" style="font-family:'Pixelify Sans', monospace; letter-spacing:4px;">DINO DASH</h1>
+  <canvas id="game" width="800" height="400"></canvas>
+</div>
+<script>
+const canvas=document.getElementById('game');
+const ctx=canvas.getContext('2d');
+
+let gravity=0.8;
+let jumpPower=-17;
+let speed=2.6;
+const BASE_SPEED=2.6;
+const MAX_SPEED=8.8;
+const DINO_BASE_X=80;
+const JUMP_FORWARD_SPEED=1.6;
+const GROUND_RETURN_SPEED=1.2;
+const MAX_JUMP_FORWARD=18;
+const GROUND_LINE_Y=360;
+
+// BACKGROUNDS (unlock every 1000 pts)
+const backgrounds=[
+  {name:'Space',draw:()=>{ctx.fillStyle='#050505';ctx.fillRect(0,0,800,400);}},
+  {name:'Sunset',draw:()=>{let g=ctx.createLinearGradient(0,0,0,400);g.addColorStop(0,'#ff9966');g.addColorStop(1,'#330033');ctx.fillStyle=g;ctx.fillRect(0,0,800,400);}},
+  {name:'Ice',draw:()=>{ctx.fillStyle='#001f3f';ctx.fillRect(0,0,800,400);}},
+  {name:'Matrix',draw:()=>{ctx.fillStyle='#001100';ctx.fillRect(0,0,800,400);}}
+];
+
+// PIXEL DINOS (change every 1000 pts)
+const dinoSkins=[
+  [
+    '0000001111000000',
+    '0000111111110000',
+    '0001111111111100',
+    '0011111111111110',
+    '0011111111111000',
+    '0111111111110000',
+    '0011111110000000',
+    '0001111111000000',
+    '0000110111100000',
+    '0001100000110000'
+  ],
+  [
+    '0000001111000000',
+    '0000111111110000',
+    '0001111111111000',
+    '0011111111111110',
+    '0011111111111100',
+    '0111111111110000',
+    '0011111111000000',
+    '0001111110000000',
+    '0000111011100000',
+    '0001100000110000'
+  ],
+  [
+    '0000001111000000',
+    '0000111111111000',
+    '0001111111111100',
+    '0011111111111110',
+    '0011111111111000',
+    '0111111111100000',
+    '0011111111000000',
+    '0001111110000000',
+    '0000110111100000',
+    '0001100000110000'
+  ],
+  [
+    '0000001111000000',
+    '0000111111110000',
+    '0001111111111100',
+    '0011111111111110',
+    '0011111111111100',
+    '0111111111110000',
+    '0011111110000000',
+    '0001111111000000',
+    '0000111011100000',
+    '0001100000110000'
+  ]
+];
+const DINO_PIXEL_SIZE=3.8;
+const DINO_WIDTH=dinoSkins[0][0].length*DINO_PIXEL_SIZE;
+const DINO_HEIGHT=dinoSkins[0].length*DINO_PIXEL_SIZE;
+let ground=GROUND_LINE_Y-DINO_HEIGHT;
+
+let dino={x:DINO_BASE_X,y:ground,vy:0,jumping:false};
+let asteroids=[];
+let spawnTimer=0;
+let score=0;
+let highScore=localStorage.getItem('dinoHighScore')||0;
+let gameOver=false;
+let unlockText='';
+
+function spawnAsteroid(){
+  const last=asteroids[asteroids.length-1];
+  if(last&&last.x>620) return false;
+  asteroids.push({
+    x:800,
+    y:ground+10,
+    size:16+Math.random()*18,
+    speed:speed
+  });
+  return true;
+}
+
+function drawPixelDino(){
+  const skinIndex=Math.floor(score/1000)%dinoSkins.length;
+  const skin=dinoSkins[skinIndex];
+  const size=DINO_PIXEL_SIZE;
+  ctx.fillStyle='#00ffcc';
+  skin.forEach((row,y)=>{
+    [...row].forEach((p,x)=>{
+      if(p==='1') ctx.fillRect(dino.x+x*size,dino.y+y*size,size,size);
+    });
+  });
+  // Eye pixel so the sprite reads clearly as a dinosaur.
+  ctx.fillStyle='#050505';
+  ctx.fillRect(dino.x+(11*size),dino.y+(2*size),size,size);
+}
+
+function drawAsteroids(){
+  ctx.fillStyle='#ff5555';
+  asteroids.forEach(a=>{ctx.beginPath();ctx.arc(a.x,a.y,a.size/2,0,Math.PI*2);ctx.fill();});
+}
+
+function updateDino(){
+  dino.vy+=gravity;
+  dino.y+=dino.vy;
+  if(dino.jumping){
+    dino.x=Math.min(DINO_BASE_X+MAX_JUMP_FORWARD,dino.x+JUMP_FORWARD_SPEED);
+  }else{
+    dino.x=Math.max(DINO_BASE_X,dino.x-GROUND_RETURN_SPEED);
+  }
+  if(dino.y>=ground){dino.y=ground;dino.vy=0;dino.jumping=false;}
+}
+
+function updateAsteroids(){
+  asteroids.forEach(a=>a.x-=a.speed);
+  asteroids=asteroids.filter(a=>a.x+a.size>0);
+}
+
+function detectCollision(){
+  const hitboxPaddingX=8;
+  const hitboxPaddingTop=6;
+  const hitboxPaddingBottom=4;
+  const hitboxX=dino.x+hitboxPaddingX;
+  const hitboxY=dino.y+hitboxPaddingTop;
+  const hitboxW=DINO_WIDTH-(hitboxPaddingX*2);
+  const hitboxH=DINO_HEIGHT-hitboxPaddingTop-hitboxPaddingBottom;
+
+  for(let a of asteroids){
+    if(hitboxX<a.x+a.size&&hitboxX+hitboxW>a.x&&hitboxY<a.y+a.size&&hitboxY+hitboxH>a.y){
+      gameOver=true;
+      if(score>highScore){highScore=score;localStorage.setItem('dinoHighScore',highScore);}    
+    }
+  }
+}
+
+function drawGround(){
+  ctx.strokeStyle='#00ffcc';
+  ctx.beginPath();
+  ctx.moveTo(0,GROUND_LINE_Y);
+  ctx.lineTo(800,GROUND_LINE_Y);
+  ctx.stroke();
+}
+
+
+function drawScore(){
+  ctx.fillStyle='#00ffcc';
+  ctx.textAlign='left';
+  ctx.font='20px "Space Grotesk", sans-serif';
+  ctx.fillText('Score: '+score,20,30);
+  ctx.fillText('High: '+highScore,20,55);
+}
+
+function drawUnlock(){
+  if(unlockText){
+    ctx.fillStyle='#ffff00';
+    ctx.font='22px "Space Grotesk", sans-serif';
+    ctx.fillText(unlockText,260,80);
+  }
+}
+
+function gameLoop(){
+  const bgIndex=Math.min(Math.floor(score/1000),backgrounds.length-1);
+  backgrounds[bgIndex].draw();
+
+  if(!gameOver){
+    spawnTimer++;
+    const spawnInterval=Math.max(54,92-Math.floor(score/520));
+    if(spawnTimer>spawnInterval&&spawnAsteroid()){spawnTimer=0;}
+    updateDino();
+    updateAsteroids();
+    detectCollision();
+    score++;
+    speed=Math.min(MAX_SPEED,BASE_SPEED+(score*0.00105));
+
+    if(score%1000===0){unlockText='Unlocked '+backgrounds[bgIndex].name+' & New Dino!';setTimeout(()=>unlockText='',1500);}  
+  }
+
+  
+  drawGround();
+  drawPixelDino();
+  drawAsteroids();
+  drawScore();
+  drawUnlock();
+
+  if(gameOver){
+    ctx.fillStyle='#ff5555';
+    ctx.font='40px "Space Grotesk", sans-serif';
+    ctx.fillText('GAME OVER',260,180);
+    ctx.font='20px "Space Grotesk", sans-serif';
+    ctx.fillText('Press R to Restart',285,220);
+  }
+
+  requestAnimationFrame(gameLoop);
+}
+
+window.addEventListener('keydown',e=>{
+  if(e.code==='Space'&&!dino.jumping&&!gameOver){dino.vy=jumpPower;dino.jumping=true;}
+  if(e.code==='KeyR'&&gameOver){asteroids=[];score=0;speed=BASE_SPEED;gameOver=false;dino.x=DINO_BASE_X;dino.y=ground;dino.vy=0;}
+});
+
+gameLoop();
+</script>
+</body>
+</html>
