@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>wilfbro.com</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=VT323&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --text: #111111;
+      --line: #000000;
+      --muted: #5f5f5f;
+      --hover: #ff2ea6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: #ffffff;
+      font-family: "Space Grotesk", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .site {
+      width: 100%;
+      margin: 0;
+      padding: 20px 22px 28px;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: baseline;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.86rem;
+      letter-spacing: 0.01em;
+    }
+
+    .topbar div:nth-child(2) {
+      text-align: center;
+    }
+
+    .topbar div:nth-child(3) {
+      text-align: right;
+    }
+
+    .topbar div:first-child {
+      color: #ff2ea6;
+    }
+
+    main {
+      padding-top: 54px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .section-divider {
+      margin-top: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .list-head,
+    .game-row {
+      display: grid;
+      grid-template-columns: 72px minmax(190px, 1fr) 80px;
+      align-items: center;
+      column-gap: 14px;
+      padding: 7px 4px;
+    }
+
+    .list-head {
+      color: var(--muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--line);
+      margin-top: 18px;
+    }
+
+    .game-row {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      transition: background-color 140ms ease;
+      font-size: 0.72rem;
+    }
+
+    .game-row:hover {
+      background: var(--hover);
+      cursor: pointer;
+    }
+
+    .title {
+      font-family: "VT323", monospace;
+      font-size: 1.14rem;
+      letter-spacing: 0.01em;
+      padding-left: 0;
+      transition: transform 160ms ease;
+    }
+
+    .game-row:hover .title {
+      transform: translateX(2px);
+    }
+
+    .game-row > :last-child,
+    .list-head > :last-child {
+      text-align: right;
+    }
+
+    footer {
+      margin-top: 36px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 760px) {
+      .site {
+        padding: 16px;
+      }
+
+      .topbar {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .topbar div:nth-child(2),
+      .topbar div:nth-child(3) {
+        text-align: left;
+      }
+
+      .list-head,
+      .game-row {
+        grid-template-columns: 52px minmax(130px, 1fr) 64px;
+        column-gap: 8px;
+        padding: 6px 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header class="topbar" aria-label="Site header">
+      <div>Woody CC</div>
+      <div>Designer</div>
+      <div>Currently Orbiting Earth</div>
+    </header>
+
+    <main>
+      <h1>Selected Games</h1>
+      <div class="section-divider" aria-hidden="true"></div>
+
+      <div class="list-head" aria-hidden="true">
+        <div>No.</div>
+        <div>Game</div>
+        <div>Year</div>
+      </div>
+
+      <!-- Duplicate this block to add new games -->
+      <a class="game-row" href="piratePlank.html">
+        <div>001</div>
+        <div class="title">Pirate Plank</div>
+        <div>2026</div>
+      </a>
+
+      <a class="game-row" href="dino-dash.html">
+        <div>002</div>
+        <div class="title">Dino Dash</div>
+        <div>2026</div>
+      </a>
+
+      <a class="game-row" href="space-letters.html">
+        <div>003</div>
+        <div class="title">Space Letters</div>
+        <div>2026</div>
+      </a>
+
+      <a class="game-row" href="hangman-deluxe.html">
+        <div>004</div>
+        <div class="title">Hangman Deluxe</div>
+        <div>2026</div>
+      </a>
+    </main>
+
+    <footer>Built for fun. Built by Wilf.</footer>
+  </div>
+</body>
+</html>
