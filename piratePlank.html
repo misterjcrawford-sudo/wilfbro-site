@@ -116,6 +116,36 @@
       font-size: 1.12rem;
     }
 
+    .difficulty-select {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin: 0 0 10px;
+    }
+
+    .tier-btn {
+      border: 2px solid #d0c09a;
+      background: var(--sand);
+      color: #4a3a1f;
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 0.95rem;
+      font-weight: 300;
+      cursor: pointer;
+      transition: filter 0.15s ease, transform 0.1s ease;
+    }
+
+    .tier-btn:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    .tier-btn.active {
+      border-color: #c49133;
+      background: #ffd680;
+      color: #4d2f00;
+    }
+
     .scene-wrap {
       position: relative;
       border-radius: 14px;
@@ -155,6 +185,24 @@
       animation: fall 1.05s ease-in forwards;
     }
 
+    #pirate.dancing {
+      animation: dance 0.55s ease-in-out infinite;
+    }
+
+    #pirate .arm-left,
+    #pirate .arm-right {
+      transform-origin: 435px 172px;
+      transition: transform 180ms ease;
+    }
+
+    #pirate.dancing .arm-left {
+      animation: dabLeftArm 0.55s ease-in-out infinite;
+    }
+
+    #pirate.dancing .arm-right {
+      animation: dabRightArm 0.55s ease-in-out infinite;
+    }
+
     #pirate.eaten {
       opacity: 0;
       transition: opacity 0.12s linear;
@@ -163,6 +211,28 @@
     @keyframes fall {
       0% { transform: translateX(var(--pirate-shift)) translateY(var(--pirate-rise)) rotate(0deg); }
       100% { transform: translateX(var(--pirate-shift)) translateY(calc(var(--pirate-rise) + 230px)) rotate(28deg); }
+    }
+
+    @keyframes dance {
+      0% { transform: translateX(var(--pirate-shift)) translateY(var(--pirate-rise)) rotate(-4deg); }
+      25% { transform: translateX(calc(var(--pirate-shift) - 3px)) translateY(calc(var(--pirate-rise) - 2px)) rotate(4deg); }
+      50% { transform: translateX(var(--pirate-shift)) translateY(var(--pirate-rise)) rotate(-3deg); }
+      75% { transform: translateX(calc(var(--pirate-shift) + 3px)) translateY(calc(var(--pirate-rise) - 2px)) rotate(4deg); }
+      100% { transform: translateX(var(--pirate-shift)) translateY(var(--pirate-rise)) rotate(-4deg); }
+    }
+
+    @keyframes dabLeftArm {
+      0% { transform: rotate(10deg); }
+      35% { transform: rotate(-64deg); }
+      60% { transform: rotate(-74deg); }
+      100% { transform: rotate(10deg); }
+    }
+
+    @keyframes dabRightArm {
+      0% { transform: rotate(-8deg); }
+      35% { transform: rotate(58deg); }
+      60% { transform: rotate(72deg); }
+      100% { transform: rotate(-8deg); }
     }
 
     .shark {
@@ -364,13 +434,20 @@
 
     <div class="top-header">
       <div class="brand">
-        <div class="flag" aria-hidden="true">🏴</div>
+        <div class="flag" aria-hidden="true">🏴‍☠️</div>
         <h1>Pirate Plank</h1>
       </div>
       <div class="status-row">
+        <div class="chip" id="tierDisplay">Difficulty: Easy</div>
         <div class="chip" id="wrongCount">Wrong Guesses: 0 / 6</div>
         <div class="chip" id="scoreCount">Score: 0</div>
       </div>
+    </div>
+
+    <div class="difficulty-select" role="group" aria-label="Select difficulty">
+      <button class="tier-btn active" type="button" data-tier="easy">Easy</button>
+      <button class="tier-btn" type="button" data-tier="medium">Medium</button>
+      <button class="tier-btn" type="button" data-tier="hard">Hard</button>
     </div>
 
     <div class="scene-wrap">
@@ -444,8 +521,12 @@
           <circle cx="447" cy="141" r="2" fill="#111" />
 
           <line x1="435" y1="158" x2="435" y2="203" stroke="#2a2a2a" stroke-width="5" stroke-linecap="round" />
-          <line x1="435" y1="172" x2="418" y2="190" stroke="#2a2a2a" stroke-width="5" stroke-linecap="round" />
-          <line x1="435" y1="172" x2="454" y2="188" stroke="#2a2a2a" stroke-width="5" stroke-linecap="round" />
+          <g class="arm-left">
+            <line x1="435" y1="172" x2="418" y2="190" stroke="#2a2a2a" stroke-width="5" stroke-linecap="round" />
+          </g>
+          <g class="arm-right">
+            <line x1="435" y1="172" x2="454" y2="188" stroke="#2a2a2a" stroke-width="5" stroke-linecap="round" />
+          </g>
           <line x1="435" y1="203" x2="420" y2="222" stroke="#2a2a2a" stroke-width="5" stroke-linecap="round" />
           <line x1="435" y1="203" x2="450" y2="222" stroke="#2a2a2a" stroke-width="5" stroke-linecap="round" />
         </g>
@@ -469,15 +550,85 @@
   </main>
 
   <script>
-    const WORDS = [
-      "TREASURE", "PARROT", "CANNON", "COMPASS", "ISLAND",
-      "ANCHOR", "CUTLASS", "MAP", "OCEAN", "CAPTAIN"
-    ];
+    const WORD_TIERS = {
+      easy: [
+        "RUM",
+        "MAP",
+        "GOLD",
+        "SHIP",
+        "CREW",
+        "SAIL",
+        "HOOK",
+        "DECK",
+        "TIDE",
+        "BOOTY",
+        "CHEST",
+        "MAST",
+        "PORT",
+        "STORM",
+        "WAVES",
+        "ROPE",
+        "SKULL",
+        "COVE",
+        "OAR",
+        "SAND"
+      ],
+      medium: [
+        "ANCHOR",
+        "PARROT",
+        "CANNON",
+        "ISLAND",
+        "CAPTAIN",
+        "COMPASS",
+        "VOYAGE",
+        "RIGGING",
+        "HARBOR",
+        "GALLEY",
+        "HARPOON",
+        "FLEET",
+        "BOUNTY",
+        "LEGEND",
+        "QUEST",
+        "MARINER",
+        "CORSAIR",
+        "SAILOR",
+        "MUTINY",
+        "SMUGGLER"
+      ],
+      hard: [
+        "TREASURE",
+        "CUTLASS",
+        "BUCCANEER",
+        "PRIVATEER",
+        "NAVIGATOR",
+        "CANNONADE",
+        "TREACHERY",
+        "WHIRLPOOL",
+        "BLACKBEARD",
+        "DISCOVERY",
+        "EXPEDITION",
+        "PARADISE",
+        "DOUBLOONS",
+        "SHIPWRECK",
+        "CONQUISTADOR",
+        "SEAFARING",
+        "BROADSIDES",
+        "ADVENTURER",
+        "SEAFOAMING",
+        "GALLEONSHIP"
+      ]
+    };
 
     const MAX_WRONG_GUESSES = 6;
     const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const TIER_MULTIPLIER = {
+      easy: 1,
+      medium: 2,
+      hard: 3
+    };
 
     let currentWord = "";
+    let currentTier = "easy";
     let guessedLetters = new Set();
     let wrongGuesses = 0;
     let score = 0;
@@ -486,12 +637,14 @@
     const wordDisplay = document.getElementById("wordDisplay");
     const message = document.getElementById("message");
     const keyboard = document.getElementById("keyboard");
+    const tierDisplay = document.getElementById("tierDisplay");
     const wrongCount = document.getElementById("wrongCount");
     const scoreCount = document.getElementById("scoreCount");
     const restartBtn = document.getElementById("restartBtn");
     const pirate = document.getElementById("pirate");
     const coinBurst = document.getElementById("coinBurst");
     const heroShark = document.getElementById("heroShark");
+    const tierButtons = document.querySelectorAll(".tier-btn");
 
     const sfxWrong = document.getElementById("sfxWrong");
     const sfxWin = document.getElementById("sfxWin");
@@ -610,13 +763,33 @@
       coinBurst.classList.add("active");
     }
 
+    function getRandomWordFromTier(tier) {
+      const words = WORD_TIERS[tier];
+      return words[Math.floor(Math.random() * words.length)];
+    }
+
+    function updateTierUI() {
+      const label = currentTier.charAt(0).toUpperCase() + currentTier.slice(1);
+      tierDisplay.textContent = `Difficulty: ${label}`;
+      tierButtons.forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.tier === currentTier);
+      });
+    }
+
+    function setTier(tier) {
+      currentTier = tier;
+      updateTierUI();
+      resetGame();
+    }
+
     function initGame() {
-      currentWord = WORDS[Math.floor(Math.random() * WORDS.length)];
+      currentWord = getRandomWordFromTier(currentTier);
       guessedLetters = new Set();
       wrongGuesses = 0;
       isRoundOver = false;
 
       pirate.classList.remove("falling");
+      pirate.classList.remove("dancing");
       pirate.classList.remove("eaten");
       heroShark.classList.remove("attack");
       coinBurst.classList.remove("active");
@@ -624,6 +797,7 @@
       message.className = "message";
 
       createKeyboard();
+      updateTierUI();
       updateWordDisplay();
       updatePlanks();
       updateStatus();
@@ -685,9 +859,10 @@
 
       if (hasWon) {
         isRoundOver = true;
-        score += 1;
+        score += TIER_MULTIPLIER[currentTier];
         message.textContent = "You Saved the Pirate!";
         message.className = "message win";
+        pirate.classList.add("dancing");
         triggerCoins();
         playSound(sfxWin);
         disableKeyboard();
@@ -719,6 +894,10 @@
     function resetGame() {
       initGame();
     }
+
+    tierButtons.forEach((btn) => {
+      btn.addEventListener("click", () => setTier(btn.dataset.tier));
+    });
 
     restartBtn.addEventListener("click", resetGame);
 
