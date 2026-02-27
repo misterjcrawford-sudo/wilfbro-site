@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pirate Plank</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Henny+Penny&family=Montserrat:wght@300&family=Space+Grotesk:wght@400;500&display=swap");
+
+    :root {
+      --sky: #b9e9ff;
+      --ocean: #1c77c3;
+      --ocean-dark: #11528a;
+      --wood: #8b5a2b;
+      --wood-dark: #6f451f;
+      --sand: #efd9a7;
+      --ink: #1f2a44;
+      --good: #1d8c57;
+      --bad: #c33d30;
+      --panel: #ffffffcc;
+      --max-planks: 6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Montserrat", "Verdana", sans-serif;
+      font-weight: 300;
+      color: var(--ink);
+      background: linear-gradient(180deg, var(--sky) 0%, #daf4ff 45%, #9fd8ff 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 16px;
+    }
+
+    .game {
+      width: min(920px, 100%);
+      background: var(--panel);
+      border: 3px solid #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 10px 22px #0b4b7a33;
+      padding: 16px;
+    }
+
+    .home-nav {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 8px;
+    }
+
+    .home-btn {
+      display: inline-block;
+      text-decoration: none;
+      color: #111111;
+      background: #ffffff;
+      border: 1px solid #000000;
+      padding: 6px 10px;
+      font-family: "Space Grotesk", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      transition: background-color 140ms ease, color 140ms ease;
+    }
+
+    .home-btn:hover {
+      background: #ff4fb4;
+      color: #000000;
+    }
+
+    .top-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .flag {
+      font-size: clamp(1.8rem, 3.8vw, 2.4rem);
+      line-height: 1;
+    }
+
+    h1 {
+      font-family: "Henny Penny", "Comic Sans MS", cursive;
+      font-weight: 400;
+      margin: 0;
+      font-size: clamp(2.1rem, 4.4vw, 2.8rem);
+    }
+
+    .status-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: nowrap;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .chip {
+      background: #fff;
+      border: 2px solid #d4ebff;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 300;
+      font-size: 1.12rem;
+    }
+
+    .scene-wrap {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 2px solid #7dc5f4;
+      background: linear-gradient(180deg, #b8ecff 0%, #9fdfff 58%, #2e95d4 58%, var(--ocean) 100%);
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16 / 8;
+    }
+
+    .plank {
+      fill: var(--wood);
+      stroke: var(--wood-dark);
+      stroke-width: 2;
+      transition: opacity 0.25s ease;
+    }
+
+    .plank.missing {
+      opacity: 0;
+    }
+
+    #pirate {
+      transform-origin: 435px 108px;
+      --pirate-shift: 0px;
+      --pirate-rise: -32px;
+      transform: translateX(var(--pirate-shift)) translateY(var(--pirate-rise));
+      transition: transform 0.3s ease;
+    }
+
+    #pirate.falling {
+      transition: none;
+      animation: fall 1.05s ease-in forwards;
+    }
+
+    #pirate.eaten {
+      opacity: 0;
+      transition: opacity 0.12s linear;
+    }
+
+    @keyframes fall {
+      0% { transform: translateX(var(--pirate-shift)) translateY(var(--pirate-rise)) rotate(0deg); }
+      100% { transform: translateX(var(--pirate-shift)) translateY(calc(var(--pirate-rise) + 230px)) rotate(28deg); }
+    }
+
+    .shark {
+      --lane-y: 330px;
+      --size: 1;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .shark-a {
+      --lane-y: 330px;
+      --size: 1;
+      animation-name: sharkSwimA;
+      animation-duration: 8.2s;
+    }
+
+    .shark-hero {
+      --lane-y: 305px;
+      --size: 1.06;
+      animation-name: sharkSwimHero;
+      animation-duration: 15.5s;
+      animation-delay: -5s;
+    }
+
+    .shark.shark-hero.attack {
+      animation: sharkAttack 1.15s ease-in forwards;
+    }
+
+    .shark-b {
+      --lane-y: 352px;
+      --size: 0.82;
+      animation-name: sharkSwimB;
+      animation-duration: 10.8s;
+      animation-delay: -3.4s;
+    }
+
+    .shark-c {
+      --lane-y: 376px;
+      --size: 0.66;
+      animation-name: sharkSwimC;
+      animation-duration: 12.6s;
+      animation-delay: -5.2s;
+    }
+
+    @keyframes sharkSwimA {
+      0% { transform: translate(-180px, var(--lane-y)) scale(var(--size)); }
+      100% { transform: translate(900px, var(--lane-y)) scale(var(--size)); }
+    }
+
+    @keyframes sharkSwimHero {
+      0% { transform: translate(-360px, var(--lane-y)) scale(var(--size)); }
+      25% { transform: translate(-20px, calc(var(--lane-y) - 6px)) scale(var(--size)); }
+      50% { transform: translate(340px, var(--lane-y)) scale(var(--size)); }
+      75% { transform: translate(680px, calc(var(--lane-y) - 8px)) scale(var(--size)); }
+      100% { transform: translate(980px, var(--lane-y)) scale(var(--size)); }
+    }
+
+    @keyframes sharkAttack {
+      0% { transform: translate(980px, 314px) scale(1.18) scaleX(-1); }
+      55% { transform: translate(300px, 286px) scale(1.18) scaleX(-1); }
+      100% { transform: translate(140px, 300px) scale(1.18) scaleX(-1); }
+    }
+
+    @keyframes sharkSwimB {
+      0% { transform: translate(-240px, var(--lane-y)) scale(var(--size)); }
+      100% { transform: translate(940px, var(--lane-y)) scale(var(--size)); }
+    }
+
+    @keyframes sharkSwimC {
+      0% { transform: translate(-300px, var(--lane-y)) scale(var(--size)); }
+      100% { transform: translate(960px, var(--lane-y)) scale(var(--size)); }
+    }
+
+    .word {
+      text-align: center;
+      font-size: clamp(1.35rem, 3.6vw, 2rem);
+      letter-spacing: 0.16em;
+      margin: 14px 0;
+      font-weight: 300;
+      min-height: 1.5em;
+    }
+
+    .message {
+      text-align: center;
+      font-size: clamp(1.1rem, 2.9vw, 1.4rem);
+      font-weight: 300;
+      min-height: 1.5em;
+      margin-bottom: 10px;
+    }
+
+    .message.win { color: var(--good); }
+    .message.lose { color: var(--bad); }
+
+    .keyboard {
+      display: grid;
+      grid-template-columns: repeat(13, minmax(36px, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .key {
+      border: 2px solid #d0c09a;
+      background: var(--sand);
+      color: #4a3a1f;
+      border-radius: 10px;
+      padding: 10px 0;
+      font-size: 1rem;
+      font-weight: 300;
+      cursor: pointer;
+      transition: transform 0.1s ease, filter 0.15s ease;
+    }
+
+    .key:hover:enabled {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    .key:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+      transform: none;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      margin-top: 12px;
+    }
+
+    .restart {
+      border: 0;
+      background: #ffcc66;
+      border-bottom: 4px solid #d89d2f;
+      color: #4d2f00;
+      font-weight: 300;
+      border-radius: 12px;
+      padding: 10px 18px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .restart:active {
+      transform: translateY(2px);
+      border-bottom-width: 2px;
+    }
+
+    .coin-burst {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .coin {
+      position: absolute;
+      left: 50%;
+      top: 52%;
+      width: 16px;
+      height: 16px;
+      margin-left: -8px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #fff8a6 0%, #ffd84b 42%, #e3a117 100%);
+      box-shadow: 0 0 0 2px #a87216 inset;
+      opacity: 0;
+    }
+
+    .coin-burst.active .coin {
+      animation: coinFly 0.9s ease-out forwards;
+      animation-delay: var(--d);
+    }
+
+    @keyframes coinFly {
+      0% { transform: translate(0, 0) scale(1); opacity: 1; }
+      100% { transform: translate(var(--dx), -140px) scale(0.4); opacity: 0; }
+    }
+
+    @media (max-width: 700px) {
+      .top-header {
+        grid-template-columns: 1fr;
+      }
+
+      .status-row {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .keyboard {
+        grid-template-columns: repeat(9, minmax(30px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="game" aria-live="polite">
+    <div class="home-nav">
+      <a class="home-btn" href="index.html">Back to wilfbro</a>
+    </div>
+
+    <div class="top-header">
+      <div class="brand">
+        <div class="flag" aria-hidden="true">🏴</div>
+        <h1>Pirate Plank</h1>
+      </div>
+      <div class="status-row">
+        <div class="chip" id="wrongCount">Wrong Guesses: 0 / 6</div>
+        <div class="chip" id="scoreCount">Score: 0</div>
+      </div>
+    </div>
+
+    <div class="scene-wrap">
+      <svg viewBox="0 0 800 400" role="img" aria-label="Pirate on bridge planks over ocean">
+        <defs>
+          <clipPath id="oceanClip">
+            <rect x="0" y="232" width="800" height="168" />
+          </clipPath>
+        </defs>
+        <rect x="0" y="232" width="800" height="168" fill="var(--ocean)" />
+        <rect x="0" y="274" width="800" height="126" fill="var(--ocean-dark)" opacity="0.32" />
+
+        <g clip-path="url(#oceanClip)">
+          <g class="shark shark-hero" id="heroShark">
+            <path d="M-60,10 C-15,-36 80,-40 190,-20 C240,-11 272,6 284,18 C272,30 242,46 193,55 C84,75 -18,62 -60,10 Z" fill="#2f495d" />
+            <path d="M2,30 C34,46 96,53 168,43 C152,60 108,72 50,68 C22,64 8,53 2,30 Z" fill="#d3e2ec" />
+            <polygon points="72,-10 98,-65 122,-12" fill="#2c4558" />
+            <polygon points="24,38 58,90 78,44" fill="#38566d" />
+            <polygon points="-60,10 -116,-36 -96,6 -118,54" fill="#274053" />
+            <path d="M170,17 C206,10 242,12 266,20 C245,28 212,33 172,30 Z" fill="#8d3b45" />
+            <polygon points="177,18 186,18 182,30" fill="#ffffff" />
+            <polygon points="190,15 200,16 195,29" fill="#ffffff" />
+            <polygon points="203,14 214,15 208,28" fill="#ffffff" />
+            <polygon points="216,15 227,16 220,28" fill="#ffffff" />
+            <polygon points="229,16 240,17 232,28" fill="#ffffff" />
+            <polygon points="242,18 252,19 246,28" fill="#ffffff" />
+            <circle cx="230" cy="-1" r="5.8" fill="#ffb347" />
+            <circle cx="230" cy="-1" r="2.9" fill="#10161f" />
+          </g>
+          <g class="shark shark-a">
+            <polygon points="-12,0 -30,-14 -22,0 -30,14" fill="#4f6576" />
+            <path d="M-12,0 C6,-13 44,-13 80,-7 C95,-5 104,-2 112,0 C104,2 95,5 80,7 C44,13 6,13 -12,0 Z" fill="#6e8395" />
+            <polygon points="42,-8 54,-25 63,-8" fill="#5b7385" />
+            <polygon points="48,7 57,18 64,7" fill="#4e6577" />
+            <circle cx="93" cy="-2" r="1.8" fill="#0d1720" />
+          </g>
+          <g class="shark shark-b">
+            <polygon points="-12,0 -30,-14 -22,0 -30,14" fill="#4f6576" />
+            <path d="M-12,0 C6,-13 44,-13 80,-7 C95,-5 104,-2 112,0 C104,2 95,5 80,7 C44,13 6,13 -12,0 Z" fill="#7a90a2" />
+            <polygon points="42,-8 54,-25 63,-8" fill="#627b8d" />
+            <polygon points="48,7 57,18 64,7" fill="#556d80" />
+            <circle cx="93" cy="-2" r="1.8" fill="#0d1720" />
+          </g>
+          <g class="shark shark-c">
+            <polygon points="-12,0 -30,-14 -22,0 -30,14" fill="#405464" />
+            <path d="M-12,0 C6,-13 44,-13 80,-7 C95,-5 104,-2 112,0 C104,2 95,5 80,7 C44,13 6,13 -12,0 Z" fill="#5c7385" />
+            <polygon points="42,-8 54,-25 63,-8" fill="#4e6577" />
+            <polygon points="48,7 57,18 64,7" fill="#455a6a" />
+            <circle cx="93" cy="-2" r="1.8" fill="#0d1720" />
+          </g>
+        </g>
+
+        <rect x="125" y="210" width="10" height="46" fill="#5a3a1e" />
+        <rect x="445" y="210" width="10" height="46" fill="#5a3a1e" />
+
+        <g id="planks">
+          <rect class="plank" id="plank-0" x="140" y="190" width="50" height="20" rx="3" />
+          <rect class="plank" id="plank-1" x="194" y="190" width="50" height="20" rx="3" />
+          <rect class="plank" id="plank-2" x="248" y="190" width="50" height="20" rx="3" />
+          <rect class="plank" id="plank-3" x="302" y="190" width="50" height="20" rx="3" />
+          <rect class="plank" id="plank-4" x="356" y="190" width="50" height="20" rx="3" />
+          <rect class="plank" id="plank-5" x="410" y="190" width="50" height="20" rx="3" />
+        </g>
+
+        <g id="pirate">
+          <circle cx="435" cy="140" r="18" fill="#ffd9b3" stroke="#3a2d23" stroke-width="2" />
+          <path d="M416 131 L454 131 L446 118 L424 118 Z" fill="#151515" />
+          <rect x="417" y="131" width="36" height="4" fill="#cf2c2c" />
+          <circle cx="430" cy="140" r="4" fill="#111" />
+          <line x1="434" y1="140" x2="443" y2="140" stroke="#111" stroke-width="2" />
+          <circle cx="447" cy="141" r="2" fill="#111" />
+
+          <line x1="435" y1="158" x2="435" y2="203" stroke="#2a2a2a" stroke-width="5" stroke-linecap="round" />
+          <line x1="435" y1="172" x2="418" y2="190" stroke="#2a2a2a" stroke-width="5" stroke-linecap="round" />
+          <line x1="435" y1="172" x2="454" y2="188" stroke="#2a2a2a" stroke-width="5" stroke-linecap="round" />
+          <line x1="435" y1="203" x2="420" y2="222" stroke="#2a2a2a" stroke-width="5" stroke-linecap="round" />
+          <line x1="435" y1="203" x2="450" y2="222" stroke="#2a2a2a" stroke-width="5" stroke-linecap="round" />
+        </g>
+      </svg>
+
+      <div class="coin-burst" id="coinBurst" aria-hidden="true"></div>
+    </div>
+
+    <div class="word" id="wordDisplay">_ _ _</div>
+    <div class="message" id="message"></div>
+
+    <div class="keyboard" id="keyboard"></div>
+
+    <div class="controls">
+      <button class="restart" id="restartBtn" type="button">Restart Round</button>
+    </div>
+
+    <audio id="sfxWrong" preload="auto"></audio>
+    <audio id="sfxWin" preload="auto"></audio>
+    <audio id="sfxLoss" preload="auto"></audio>
+  </main>
+
+  <script>
+    const WORDS = [
+      "TREASURE", "PARROT", "CANNON", "COMPASS", "ISLAND",
+      "ANCHOR", "CUTLASS", "MAP", "OCEAN", "CAPTAIN"
+    ];
+
+    const MAX_WRONG_GUESSES = 6;
+    const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    let currentWord = "";
+    let guessedLetters = new Set();
+    let wrongGuesses = 0;
+    let score = 0;
+    let isRoundOver = false;
+
+    const wordDisplay = document.getElementById("wordDisplay");
+    const message = document.getElementById("message");
+    const keyboard = document.getElementById("keyboard");
+    const wrongCount = document.getElementById("wrongCount");
+    const scoreCount = document.getElementById("scoreCount");
+    const restartBtn = document.getElementById("restartBtn");
+    const pirate = document.getElementById("pirate");
+    const coinBurst = document.getElementById("coinBurst");
+    const heroShark = document.getElementById("heroShark");
+
+    const sfxWrong = document.getElementById("sfxWrong");
+    const sfxWin = document.getElementById("sfxWin");
+    const sfxLoss = document.getElementById("sfxLoss");
+
+    function initAudio() {
+      sfxWrong.src = makeToneDataURI([190, 150], [0.12, 0.12], "triangle");
+      sfxWin.src = makeToneDataURI([660, 880, 990], [0.1, 0.1, 0.16], "sine");
+      sfxLoss.src = makeToneDataURI([240, 170, 120], [0.18, 0.2, 0.35], "sine");
+    }
+
+    function makeToneDataURI(freqs, durations, waveType) {
+      const sampleRate = 22050;
+      const totalSamples = durations.reduce((sum, d) => sum + Math.floor(d * sampleRate), 0);
+      const pcm = new Int16Array(totalSamples);
+
+      let offset = 0;
+      for (let i = 0; i < freqs.length; i++) {
+        const freq = freqs[i];
+        const samples = Math.floor(durations[i] * sampleRate);
+        for (let n = 0; n < samples; n++) {
+          const t = n / sampleRate;
+          let sample = 0;
+          if (waveType === "triangle") {
+            const phase = (t * freq) % 1;
+            sample = 1 - 4 * Math.abs(phase - 0.5);
+          } else {
+            sample = Math.sin(2 * Math.PI * freq * t);
+          }
+
+          const fadeIn = Math.min(1, n / 180);
+          const fadeOut = Math.min(1, (samples - n) / 220);
+          const env = Math.min(fadeIn, fadeOut);
+          pcm[offset + n] = Math.floor(sample * env * 9000);
+        }
+        offset += samples;
+      }
+
+      const wav = encodeWAV(pcm, sampleRate);
+      return "data:audio/wav;base64," + btoa(String.fromCharCode(...new Uint8Array(wav)));
+    }
+
+    function encodeWAV(pcmData, sampleRate) {
+      const numChannels = 1;
+      const bitsPerSample = 16;
+      const blockAlign = (numChannels * bitsPerSample) / 8;
+      const byteRate = sampleRate * blockAlign;
+      const dataSize = pcmData.length * 2;
+      const buffer = new ArrayBuffer(44 + dataSize);
+      const view = new DataView(buffer);
+
+      writeString(view, 0, "RIFF");
+      view.setUint32(4, 36 + dataSize, true);
+      writeString(view, 8, "WAVE");
+      writeString(view, 12, "fmt ");
+      view.setUint32(16, 16, true);
+      view.setUint16(20, 1, true);
+      view.setUint16(22, numChannels, true);
+      view.setUint32(24, sampleRate, true);
+      view.setUint32(28, byteRate, true);
+      view.setUint16(32, blockAlign, true);
+      view.setUint16(34, bitsPerSample, true);
+      writeString(view, 36, "data");
+      view.setUint32(40, dataSize, true);
+
+      let index = 44;
+      for (let i = 0; i < pcmData.length; i++) {
+        view.setInt16(index, pcmData[i], true);
+        index += 2;
+      }
+      return buffer;
+    }
+
+    function writeString(view, offset, text) {
+      for (let i = 0; i < text.length; i++) {
+        view.setUint8(offset + i, text.charCodeAt(i));
+      }
+    }
+
+    function playSound(soundEl) {
+      soundEl.currentTime = 0;
+      soundEl.play().catch(() => {});
+    }
+
+    function createKeyboard() {
+      keyboard.innerHTML = "";
+      for (const letter of ALPHABET) {
+        const btn = document.createElement("button");
+        btn.className = "key";
+        btn.textContent = letter;
+        btn.dataset.letter = letter;
+        btn.type = "button";
+        btn.addEventListener("click", () => handleGuess(letter));
+        keyboard.appendChild(btn);
+      }
+    }
+
+    function initCoins() {
+      coinBurst.innerHTML = "";
+      for (let i = 0; i < 14; i++) {
+        const coin = document.createElement("span");
+        coin.className = "coin";
+        coin.style.setProperty("--d", `${(i % 5) * 0.04}s`);
+        coinBurst.appendChild(coin);
+      }
+    }
+
+    function triggerCoins() {
+      const coins = coinBurst.querySelectorAll(".coin");
+      coins.forEach((coin) => {
+        const dx = Math.round((Math.random() * 2 - 1) * 180) + "px";
+        coin.style.setProperty("--dx", dx);
+      });
+      coinBurst.classList.remove("active");
+      void coinBurst.offsetWidth;
+      coinBurst.classList.add("active");
+    }
+
+    function initGame() {
+      currentWord = WORDS[Math.floor(Math.random() * WORDS.length)];
+      guessedLetters = new Set();
+      wrongGuesses = 0;
+      isRoundOver = false;
+
+      pirate.classList.remove("falling");
+      pirate.classList.remove("eaten");
+      heroShark.classList.remove("attack");
+      coinBurst.classList.remove("active");
+      message.textContent = "Choose letters to keep the pirate safe!";
+      message.className = "message";
+
+      createKeyboard();
+      updateWordDisplay();
+      updatePlanks();
+      updateStatus();
+    }
+
+    function handleGuess(letter) {
+      if (isRoundOver || guessedLetters.has(letter)) return;
+
+      guessedLetters.add(letter);
+      const button = keyboard.querySelector(`[data-letter="${letter}"]`);
+      if (button) button.disabled = true;
+
+      if (!currentWord.includes(letter)) {
+        wrongGuesses += 1;
+        playSound(sfxWrong);
+        updatePlanks();
+      }
+
+      updateWordDisplay();
+      updateStatus();
+      checkGameStatus();
+    }
+
+    function updateWordDisplay() {
+      const display = [...currentWord]
+        .map((char) => (guessedLetters.has(char) ? char : "_"))
+        .join(" ");
+      wordDisplay.textContent = display;
+    }
+
+    function updatePlanks() {
+      const plankEls = document.querySelectorAll(".plank");
+      const visiblePlanks = MAX_WRONG_GUESSES - wrongGuesses;
+
+      plankEls.forEach((plank, index) => {
+        if (index < visiblePlanks) {
+          plank.classList.remove("missing");
+        } else {
+          plank.classList.add("missing");
+        }
+      });
+
+      // Keep pirate feet over the last remaining plank center.
+      const lastSupportedPlank = Math.max(0, visiblePlanks - 1);
+      const targetX = 165 + (lastSupportedPlank * 54);
+      const shift = targetX - 435;
+      pirate.style.setProperty("--pirate-shift", `${shift}px`);
+    }
+
+    function disableKeyboard() {
+      keyboard.querySelectorAll(".key").forEach((btn) => {
+        btn.disabled = true;
+      });
+    }
+
+    function checkGameStatus() {
+      const hasWon = [...currentWord].every((char) => guessedLetters.has(char));
+      const hasLost = wrongGuesses >= MAX_WRONG_GUESSES;
+
+      if (hasWon) {
+        isRoundOver = true;
+        score += 1;
+        message.textContent = "You Saved the Pirate!";
+        message.className = "message win";
+        triggerCoins();
+        playSound(sfxWin);
+        disableKeyboard();
+        updateStatus();
+        return;
+      }
+
+      if (hasLost) {
+        isRoundOver = true;
+        score = 0;
+        message.textContent = `You Walked the Plank! The word was ${currentWord}.`;
+        message.className = "message lose";
+        pirate.classList.add("falling");
+        heroShark.classList.add("attack");
+        setTimeout(() => {
+          if (isRoundOver) pirate.classList.add("eaten");
+        }, 650);
+        playSound(sfxLoss);
+        disableKeyboard();
+        updateStatus();
+      }
+    }
+
+    function updateStatus() {
+      wrongCount.textContent = `Wrong Guesses: ${wrongGuesses} / ${MAX_WRONG_GUESSES}`;
+      scoreCount.textContent = `Score: ${score}`;
+    }
+
+    function resetGame() {
+      initGame();
+    }
+
+    restartBtn.addEventListener("click", resetGame);
+
+    initAudio();
+    initCoins();
+    initGame();
+  </script>
+</body>
+</html>
