@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Agents — SIGNAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #0a0a0a;
+      --white:      #ffffff;
+      --off-white:  #f5f3ee;
+      --gray-0:     #f0ede8;
+      --gray-1:     #e2ddd6;
+      --gray-2:     #b8b0a4;
+      --gray-3:     #7a7268;
+      --gray-4:     #3d3830;
+      --signal:     #E83A0C;
+      --signal-lt:  #F2763A;
+      --signal-bg:  #FFF0E8;
+      --teal:       #0D4238;
+      --teal-mid:   #1A6B5E;
+      --teal-lt:    #E6F4F1;
+      --teal-bg:    #F2F8F6;
+      --navy:       #2A4A7A;
+      --navy-lt:    #EEF2F8;
+      --border:     1px solid #e2ddd6;
+      --border-teal: 1px solid rgba(13,66,56,0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      padding: 22px 48px;
+      border-bottom: var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+
+    .nav-logo span {
+      display: inline-block;
+      width: 8px; height: 8px;
+      background: var(--signal);
+      border-radius: 50%;
+      margin-left: 6px;
+      vertical-align: middle;
+      position: relative; top: -1px;
+    }
+
+    .nav-center {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .nav-layer {
+      border: 1px solid var(--gray-1);
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gray-4);
+      transition: all 0.2s;
+    }
+
+    .nav-layer:hover {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    .nav-layer.active {
+      background: var(--teal);
+      color: var(--white);
+      border-color: var(--teal);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-back {
+      font-size: 13px;
+      color: var(--gray-3);
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--black); }
+
+    .nav-cta {
+      background: var(--teal);
+      color: var(--white);
+      padding: 9px 22px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--teal-mid); }
+
+    /* ── LAYER HEADER ── */
+    .layer-header {
+      padding: 72px 48px 60px;
+      border-bottom: var(--border);
+      background: var(--teal-bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .layer-header::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -60px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(13,66,56,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .layer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: rgba(13,66,56,0.1);
+      border: 1px solid rgba(13,66,56,0.2);
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 28px;
+    }
+
+    .layer-header h1 {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: clamp(44px, 6vw, 80px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      max-width: 860px;
+      margin-bottom: 24px;
+    }
+
+    .layer-header h1 em {
+      font-style: italic;
+      color: var(--teal-mid);
+    }
+
+    .layer-header h1 .dim { color: var(--gray-2); }
+
+    .layer-sub {
+      font-size: clamp(15px, 1.6vw, 18px);
+      color: var(--gray-4);
+      max-width: 600px;
+      line-height: 1.65;
+      margin-bottom: 36px;
+    }
+
+    .header-stats {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .header-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-num {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--teal);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+    }
+
+    /* ── REFRAME SECTION ── */
+    .reframe-section {
+      padding: 72px 48px;
+      border-bottom: var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .reframe-left {}
+
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 16px;
+    }
+
+    .section-h2 {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: clamp(28px, 3.5vw, 46px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+
+    .section-h2 em { font-style: italic; color: var(--teal-mid); }
+
+    .reframe-body {
+      font-size: 15px;
+      color: var(--gray-4);
+      line-height: 1.75;
+    }
+
+    .reframe-body p + p { margin-top: 16px; }
+
+    .reframe-callout {
+      background: var(--teal);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reframe-callout::before {
+      content: '"';
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 120px;
+      line-height: 1;
+      color: rgba(255,255,255,0.08);
+      position: absolute;
+      top: -10px; left: 20px;
+      pointer-events: none;
+    }
+
+    .callout-text {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 400;
+      line-height: 1.35;
+      color: var(--white);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .callout-text em {
+      font-style: italic;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .callout-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── PROOF STACK ── */
+    .proof-section {
+      padding: 72px 48px;
+      border-bottom: var(--border);
+    }
+
+    .proof-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 48px;
+    }
+
+    .proof-desc {
+      font-size: 15px;
+      color: var(--gray-3);
+      line-height: 1.65;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .proof-card {
+      border: var(--border-teal);
+      border-radius: 14px;
+      padding: 28px 24px;
+      background: var(--white);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .proof-card:hover {
+      box-shadow: 0 6px 24px rgba(13,66,56,0.1);
+      transform: translateY(-2px);
+    }
+
+    .proof-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--teal-mid);
+      margin-bottom: 14px;
+    }
+
+    .proof-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .proof-body {
+      font-size: 13px;
+      color: var(--gray-3);
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .proof-frame {
+      background: var(--teal-bg);
+      border-left: 3px solid var(--teal-mid);
+      border-radius: 0 8px 8px 0;
+      padding: 10px 14px;
+      font-size: 12px;
+      color: var(--teal);
+      font-style: italic;
+      line-height: 1.55;
+    }
+
+    .proof-frame-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal-mid);
+      margin-bottom: 4px;
+      font-style: normal;
+    }
+
+    /* ── ARCHETYPE TABS ── */
+    .archetype-section {
+      border-bottom: var(--border);
+    }
+
+    .archetype-intro {
+      padding: 56px 48px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      border-bottom: var(--border);
+    }
+
+    .arch-desc {
+      font-size: 15px;
+      color: var(--gray-3);
+      line-height: 1.65;
+    }
+
+    .arch-tabs {
+      display: flex;
+      overflow-x: auto;
+      border-bottom: var(--border);
+      padding: 0 48px;
+      gap: 0;
+      scrollbar-width: none;
+    }
+    .arch-tabs::-webkit-scrollbar { display: none; }
+
+    .arch-tab {
+      flex-shrink: 0;
+      padding: 18px 22px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray-3);
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .arch-tab:hover { color: var(--black); }
+
+    .arch-tab.active {
+      color: var(--teal);
+      border-bottom-color: var(--teal);
+      font-weight: 600;
+    }
+
+    .arch-panels {
+      position: relative;
+    }
+
+    .arch-panel {
+      display: none;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      padding: 48px 48px 56px;
+    }
+
+    .arch-panel.active { display: grid; }
+
+    .arch-panel-name {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+
+    .arch-panel-name em { font-style: italic; color: var(--teal-mid); }
+
+    .arch-panel-tagline {
+      font-size: 14px;
+      color: var(--gray-3);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .arch-block {
+      margin-bottom: 24px;
+    }
+
+    .arch-block-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal-mid);
+      margin-bottom: 10px;
+    }
+
+    .arch-block-body {
+      font-size: 14px;
+      color: var(--gray-4);
+      line-height: 1.7;
+    }
+
+    .arch-assets {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .arch-asset {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 13px;
+      color: var(--gray-4);
+      line-height: 1.55;
+    }
+
+    .arch-asset::before {
+      content: '→';
+      color: var(--teal-mid);
+      flex-shrink: 0;
+      font-size: 13px;
+      margin-top: 1px;
+    }
+
+    .arch-bias-block {
+      background: var(--teal-bg);
+      border: var(--border-teal);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 4px;
+    }
+
+    .arch-bias-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal-mid);
+      margin-bottom: 6px;
+    }
+
+    .arch-bias-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--teal);
+      margin-bottom: 6px;
+    }
+
+    .arch-bias-body {
+      font-size: 13px;
+      color: var(--gray-4);
+      line-height: 1.6;
+    }
+
+    .arch-never {
+      background: #fff5f2;
+      border: 1px solid rgba(232,58,12,0.15);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .arch-never-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--signal);
+      margin-bottom: 10px;
+    }
+
+    .arch-never ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .arch-never li {
+      font-size: 13px;
+      color: var(--gray-4);
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .arch-never li::before {
+      content: '✗';
+      position: absolute;
+      left: 0;
+      color: var(--signal);
+      font-style: normal;
+      font-size: 11px;
+    }
+
+    /* ── PRIORITY GUIDE ── */
+    .priority-section {
+      padding: 72px 48px;
+      border-bottom: var(--border);
+    }
+
+    .priority-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 48px;
+    }
+
+    .priority-desc {
+      font-size: 15px;
+      color: var(--gray-3);
+      line-height: 1.65;
+    }
+
+    .priority-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .priority-col-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .priority-col-label.go { color: var(--teal); }
+    .priority-col-label.caution { color: var(--gray-3); }
+
+    .priority-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .priority-dot.go { background: var(--teal); }
+    .priority-dot.caution { background: var(--gray-2); }
+
+    .priority-items {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .priority-item {
+      border-radius: 12px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .priority-item.go {
+      background: var(--teal-bg);
+      border: var(--border-teal);
+    }
+
+    .priority-item.caution {
+      background: var(--gray-0);
+      border: var(--border);
+    }
+
+    .priority-item.hard {
+      background: #fff5f2;
+      border: 1px solid rgba(232,58,12,0.15);
+    }
+
+    .priority-item-name {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .priority-item.go .priority-item-name { color: var(--teal); }
+    .priority-item.caution .priority-item-name { color: var(--gray-4); }
+    .priority-item.hard .priority-item-name { color: var(--signal); }
+
+    .priority-item-reason {
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .priority-item.go .priority-item-reason { color: var(--teal); opacity: 0.75; }
+    .priority-item.caution .priority-item-reason { color: var(--gray-3); }
+    .priority-item.hard .priority-item-reason { color: var(--signal); opacity: 0.75; }
+
+    /* ── 90-DAY MAP ── */
+    .map-section {
+      padding: 72px 48px;
+      border-bottom: var(--border);
+      background: var(--teal-bg);
+    }
+
+    .map-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 56px;
+    }
+
+    .map-desc {
+      font-size: 15px;
+      color: var(--gray-3);
+      line-height: 1.65;
+    }
+
+    .map-phases {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      border: var(--border-teal);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .map-phase {
+      background: var(--white);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: background 0.2s;
+    }
+
+    .map-phase:hover { background: #f5fbf9; }
+
+    .map-phase-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal-mid);
+    }
+
+    .map-phase-title {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--teal);
+    }
+
+    .map-phase-period {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-2);
+    }
+
+    .map-phase-desc {
+      font-size: 13px;
+      color: var(--gray-3);
+      line-height: 1.65;
+    }
+
+    .map-actions {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .map-actions li {
+      font-size: 12px;
+      color: var(--gray-4);
+      padding-left: 14px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .map-actions li::before {
+      content: '◆';
+      position: absolute;
+      left: 0;
+      color: var(--teal-mid);
+      font-size: 7px;
+      top: 5px;
+    }
+
+    .map-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--teal-mid);
+      font-size: 20px;
+      background: var(--teal-bg);
+      padding: 0 8px;
+      align-self: stretch;
+    }
+
+    /* ── CASE STUDY ── */
+    .case-section {
+      padding: 72px 48px;
+      border-bottom: var(--border);
+    }
+
+    .case-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 48px;
+    }
+
+    .case-desc {
+      font-size: 15px;
+      color: var(--gray-3);
+      line-height: 1.65;
+    }
+
+    .case-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      border: var(--border-teal);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .case-step {
+      background: var(--white);
+      padding: 28px 32px;
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 20px;
+      align-items: start;
+      border-top: var(--border);
+      transition: background 0.15s;
+    }
+
+    .case-step:first-child { border-top: none; }
+    .case-step:hover { background: var(--teal-bg); }
+
+    .case-step-num {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 36px;
+      font-weight: 400;
+      color: var(--gray-1);
+      line-height: 1;
+      padding-top: 2px;
+    }
+
+    .case-step-content {}
+
+    .case-step-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+
+    .case-step-desc {
+      font-size: 13px;
+      color: var(--gray-3);
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+
+    .case-step-example {
+      font-size: 12px;
+      color: var(--teal);
+      font-style: italic;
+      line-height: 1.55;
+      background: var(--teal-bg);
+      padding: 10px 14px;
+      border-radius: 8px;
+      border-left: 3px solid var(--teal-mid);
+    }
+
+    /* ── DOWNLOADS STRIP ── */
+    .na-downloads {
+      padding: 56px 48px;
+      background: var(--teal);
+    }
+
+    .na-dl-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .na-dl-text {}
+
+    .na-dl-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 10px;
+    }
+
+    .na-dl-heading {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: clamp(22px, 2.5vw, 32px);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .na-dl-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+    }
+
+    .na-dl-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .na-dl-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 14px 22px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: all 0.2s;
+      min-width: 260px;
+    }
+
+    .na-dl-btn.primary {
+      background: var(--white);
+      color: var(--teal);
+    }
+
+    .na-dl-btn.primary:hover { background: var(--teal-bg); }
+
+    .na-dl-btn.secondary {
+      background: rgba(255,255,255,0.12);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .na-dl-btn.secondary:hover { background: rgba(255,255,255,0.2); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 36px 48px;
+      border-top: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .footer-note {
+      font-size: 12px;
+      color: var(--gray-2);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1000px) {
+      .proof-grid { grid-template-columns: repeat(2, 1fr); }
+      .map-phases { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 18px 24px; }
+      .nav-center { display: none; }
+      .layer-header,
+      .reframe-section,
+      .proof-section,
+      .archetype-intro,
+      .arch-panel,
+      .priority-section,
+      .map-section,
+      .case-section,
+      .na-downloads,
+      footer { padding-left: 24px; padding-right: 24px; }
+      .reframe-section,
+      .proof-header,
+      .archetype-intro,
+      .arch-panel,
+      .priority-grid,
+      .map-header,
+      .case-header,
+      .na-dl-inner,
+      .priority-header { grid-template-columns: 1fr; gap: 32px; }
+      .proof-grid { grid-template-columns: 1fr; }
+      .arch-tabs { padding: 0 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="./index.html" class="nav-logo">SIGNAL<span></span></a>
+    <div class="nav-center">
+      <a href="./signal-layer-1.html" class="nav-layer">L1 — Seller Map</a>
+      <a href="./signal-layer-2.html" class="nav-layer">L2 — Agent Engine</a>
+      <a href="./signal-layer-3.html" class="nav-layer">L3 — Conditioning</a>
+      <a href="./signal-new-agents.html" class="nav-layer active">New Agents</a>
+      <a href="./signal-downloads.html" class="nav-layer">Prompt Packs</a>
+    </div>
+    <div class="nav-right">
+      <a href="./index.html" class="nav-back">← Overview</a>
+      <a href="./signal-downloads.html" class="nav-cta">Prompt Packs</a>
+    </div>
+  </nav>
+
+  <!-- LAYER HEADER -->
+  <header class="layer-header">
+    <div class="layer-badge">New Agent Edition</div>
+    <h1>The full system.<br><em>Without</em> the <span class="dim">track record.</span></h1>
+    <p class="layer-sub">The seller psychology framework applies from your first week. What changes is how you fill the proof gap — and there are six ways to do it before you have a single sale to your name.</p>
+    <div class="header-stats">
+      <div class="header-stat">
+        <span class="stat-num">6</span>
+        <span class="stat-label">Proof assets available day one</span>
+      </div>
+      <div class="header-stat">
+        <span class="stat-num">6</span>
+        <span class="stat-label">Archetypes — all covered</span>
+      </div>
+      <div class="header-stat">
+        <span class="stat-num">90</span>
+        <span class="stat-label">Days to owned authority</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- REFRAME -->
+  <section class="reframe-section">
+    <div class="reframe-left">
+      <p class="section-label">00 — The Reframe</p>
+      <h2 class="section-h2">Your competitor is <em>spread.</em><br>You are not.</h2>
+      <div class="reframe-body">
+        <p>Most new agents try to compete on the same terms as experienced agents — track record, volume, years in the industry — and lose on every measure they don't have yet. That's the wrong game.</p>
+        <p>Your experienced competitor has 25 active listings, 40 past clients to maintain, two junior agents to manage, and a principal watching their numbers. They are running — at least some of the time — on autopilot.</p>
+        <p>You have one thing they cannot offer: <strong>full attention.</strong></p>
+        <p>The seller in front of you isn't competing with 24 others for your time. They are genuinely your priority. That is not a gap to hide — it is a specific, defensible claim if you can articulate it clearly.</p>
+        <p>The goal of this system isn't to pretend you have proof you don't have. It's to show you exactly how to operate authentically from where you actually are — and how to build toward your first real claims as quickly as possible.</p>
+      </div>
+    </div>
+    <div class="reframe-callout">
+      <p class="callout-text">"I'm new, which means I've prepared for this appraisal more thoroughly than most agents prepare for their tenth. And it means you are <em>genuinely</em> my priority — not one of many."</p>
+      <p class="callout-note">This is a real claim. It is honest, specific, and verifiable — and no experienced agent can say it. For the right archetype, delivered with confidence, it wins listings.</p>
+    </div>
+  </section>
+
+  <!-- PROOF STACK -->
+  <section class="proof-section">
+    <div class="proof-header">
+      <div>
+        <p class="section-label">01 — Your Proof Stack</p>
+        <h2 class="section-h2">Six assets.<br><em>Available from day one.</em></h2>
+      </div>
+      <p class="proof-desc">You don't need personal results to have a proof stack. Every new agent has access to all six of these — most never think to use them deliberately. Used in combination, they replace a track record for the archetypes most accessible to you in Year 1.</p>
+    </div>
+
+    <div class="proof-grid">
+
+      <div class="proof-card">
+        <div class="proof-num">Asset 01</div>
+        <div class="proof-title">Agency Results</div>
+        <p class="proof-body">Your office's track record is legitimately yours to reference. Median days on market, clearance rates, suburb concentration — these are real numbers, and you are part of that team.</p>
+        <div class="proof-frame">
+          <div class="proof-frame-label">Frame it as</div>
+          "Our team sold 47 properties in this suburb last year at a median of 22 days on market."
+        </div>
+      </div>
+
+      <div class="proof-card">
+        <div class="proof-num">Asset 02</div>
+        <div class="proof-title">Process Precision</div>
+        <p class="proof-body">A written, step-by-step campaign plan impresses sellers more than most experienced agents realise — because most experienced agents don't provide one. Specificity is your proof.</p>
+        <div class="proof-frame">
+          <div class="proof-frame-label">Frame it as</div>
+          "You'll receive a written report within 24 hours of every open — attendance, buyer feedback, and my read on where the campaign is tracking."
+        </div>
+      </div>
+
+      <div class="proof-card">
+        <div class="proof-num">Asset 03</div>
+        <div class="proof-title">Local Knowledge Depth</div>
+        <p class="proof-body">If you've attended opens, studied comparable sales, and mapped buyer profiles in your suburb — that preparation is visible in the room. Specifics signal competence without requiring a track record.</p>
+        <div class="proof-frame">
+          <div class="proof-frame-label">Frame it as</div>
+          Speaking to comparable sales on neighbouring streets by address, price, and days — not by general impression.
+        </div>
+      </div>
+
+      <div class="proof-card">
+        <div class="proof-num">Asset 04</div>
+        <div class="proof-title">Principal Endorsement</div>
+        <p class="proof-body">Your principal's involvement is a legitimate proof asset. A seller who knows an experienced agent is reviewing your campaign has more confidence in the process — even if you're running it.</p>
+        <div class="proof-frame">
+          <div class="proof-frame-label">Frame it as</div>
+          "I work closely with [principal], who has 14 years and 200+ results in this area. Every campaign I run has their oversight."
+        </div>
+      </div>
+
+      <div class="proof-card">
+        <div class="proof-num">Asset 05</div>
+        <div class="proof-title">Radical Transparency</div>
+        <p class="proof-body">For the right archetypes, honesty about your newness — framed as an advantage, not an apology — is more disarming than any credential. Sellers can read inauthenticity faster than any other signal.</p>
+        <div class="proof-frame">
+          <div class="proof-frame-label">Frame it as</div>
+          "I'm in my first year. That means you have all of me — not a fraction of my attention competing with 20 other campaigns."
+        </div>
+      </div>
+
+      <div class="proof-card">
+        <div class="proof-num">Asset 06</div>
+        <div class="proof-title">Character References</div>
+        <p class="proof-body">People who know your work ethic, integrity, and follow-through — from any professional context — are valid references early on. Not past clients, but people who can speak to how you work.</p>
+        <div class="proof-frame">
+          <div class="proof-frame-label">Frame it as</div>
+          "Here's someone who can speak to how I work and what you can expect from me — not a past client, but someone who knows my standard."
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ARCHETYPE GUIDE -->
+  <section class="archetype-section">
+    <div class="archetype-intro">
+      <div>
+        <p class="section-label">02 — Archetype Guide</p>
+        <h2 class="section-h2">Every seller.<br><em>Adapted for you.</em></h2>
+      </div>
+      <p class="arch-desc">The six seller archetypes from Layer 1 apply regardless of your experience. What changes is which proof assets fill the gap for each type — and what to never say when you're new. Select a seller type below.</p>
+    </div>
+
+    <div class="arch-tabs">
+      <div class="arch-tab active" onclick="showArch(0)">Anxious Upgrader</div>
+      <div class="arch-tab" onclick="showArch(1)">Reluctant Downsizer</div>
+      <div class="arch-tab" onclick="showArch(2)">Cynical Veteran</div>
+      <div class="arch-tab" onclick="showArch(3)">Status Seller</div>
+      <div class="arch-tab" onclick="showArch(4)">Pressure Seller</div>
+      <div class="arch-tab" onclick="showArch(5)">Analytical Controller</div>
+    </div>
+
+    <div class="arch-panels">
+
+      <!-- Anxious Upgrader -->
+      <div class="arch-panel active" id="arch-0">
+        <div>
+          <h3 class="arch-panel-name">The Anxious <em>Upgrader</em></h3>
+          <p class="arch-panel-tagline">Stretched financially. Terrified of mistiming the market. Needs certainty and a plan they can see end-to-end.</p>
+          <div class="arch-block">
+            <div class="arch-block-label">What fills the proof gap</div>
+            <div class="arch-assets">
+              <div class="arch-asset">Process precision is your primary asset. Give them a written step-by-step plan that covers both sides of the move — sell-side timeline and how it coordinates with the purchase. Most agents talk about the plan. You show them the plan.</div>
+              <div class="arch-asset">Agency data fills the result gap. "Our team settled 14 upgrade moves in this suburb last year" is a real number even when none are yours.</div>
+              <div class="arch-asset">Acknowledge the complexity directly — don't minimise it. "This is a genuinely complicated transaction and I want you to feel clear on every step" is more credible than false optimism.</div>
+            </div>
+          </div>
+          <div class="arch-bias-block">
+            <div class="arch-bias-label">Lean into this bias</div>
+            <div class="arch-bias-name">Loss Aversion</div>
+            <div class="arch-bias-body">Help them see that the risk of staying — missing the upgrade window — is as real as the risk of moving. Process is how you make the move feel safer than inaction.</div>
+          </div>
+        </div>
+        <div>
+          <div class="arch-never">
+            <div class="arch-never-label">Never say to this archetype</div>
+            <ul>
+              <li>"Don't worry about the timing — it always works out"</li>
+              <li>"The market's moving fast, you need to act now"</li>
+              <li>"We'll figure out the buy side once this one sells"</li>
+            </ul>
+          </div>
+          <div class="arch-block" style="margin-top:20px;">
+            <div class="arch-block-label">Year 1 priority</div>
+            <div class="arch-block-body" style="background:var(--teal-bg);border:var(--border-teal);border-radius:10px;padding:16px;font-size:13px;color:var(--teal);">
+              <strong style="display:block;margin-bottom:4px;">High priority ✓</strong>
+              Process precision fills the proof gap well for this archetype. Your preparation and specificity in the appraisal meeting does the work that a track record would otherwise do.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reluctant Downsizer -->
+      <div class="arch-panel" id="arch-1">
+        <div>
+          <h3 class="arch-panel-name">The Reluctant <em>Downsizer</em></h3>
+          <p class="arch-panel-tagline">Emotionally attached. Selling feels like loss, not opportunity. Needs to feel understood, not processed. Moves slowly.</p>
+          <div class="arch-block">
+            <div class="arch-block-label">What fills the proof gap</div>
+            <div class="arch-assets">
+              <div class="arch-asset">Radical transparency works best with this archetype. Being new means you have more time and genuine curiosity about their story. Ask about the house. Ask what they love about it. This isn't a tactic — it's how you should approach this seller regardless.</div>
+              <div class="arch-asset">Process reassurance matters more than result claims here. They want to know they won't be rushed. A written timeline with a clear commitment to not pressure them is more powerful than any sold result.</div>
+              <div class="arch-asset">Principal endorsement: someone with experience available if needed removes the risk they feel from working with a newer agent.</div>
+            </div>
+          </div>
+          <div class="arch-bias-block">
+            <div class="arch-bias-label">Lean into this bias</div>
+            <div class="arch-bias-name">Endowment Effect</div>
+            <div class="arch-bias-body">Their overvaluation of the home is not a problem to overcome quickly — it's an emotion to acknowledge before any price conversation begins. They are right that the home is worth more to them than the market will reflect. Acknowledging this is what makes you safe to talk to.</div>
+          </div>
+        </div>
+        <div>
+          <div class="arch-never">
+            <div class="arch-never-label">Never say to this archetype</div>
+            <ul>
+              <li>"The buyers won't care about your renovations — it's about comparable sales"</li>
+              <li>"We just need to price it right and move it quickly"</li>
+              <li>"The market doesn't have much time for sentiment"</li>
+            </ul>
+          </div>
+          <div class="arch-block" style="margin-top:20px;">
+            <div class="arch-block-label">Year 1 priority</div>
+            <div class="arch-block-body" style="background:var(--teal-bg);border:var(--border-teal);border-radius:10px;padding:16px;font-size:13px;color:var(--teal);">
+              <strong style="display:block;margin-bottom:4px;">High priority ✓</strong>
+              Patience and genuine curiosity are your competitive edge here. The new agent advantage — unhurried attention — is exactly what this seller responds to. One of your most winnable archetypes in Year 1.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cynical Veteran -->
+      <div class="arch-panel" id="arch-2">
+        <div>
+          <h3 class="arch-panel-name">The Cynical <em>Veteran</em></h3>
+          <p class="arch-panel-tagline">Has sold before. Thinks all agents are the same. Responds only to proof — data, track record, specifics. Charm bounces off.</p>
+          <div class="arch-block">
+            <div class="arch-block-label">What fills the proof gap</div>
+            <div class="arch-assets">
+              <div class="arch-asset">Honesty is the only credible move. Acknowledge you don't have a personal track record yet — then have the agency data ready and be specific about what you do bring. Don't try to imply experience you don't have.</div>
+              <div class="arch-asset">Avoid any oversell. Quote conservatively — below what competitors might quote — and explain your methodology in full. A well-reasoned realistic price is more credible than a high one from an agent they've just met.</div>
+              <div class="arch-asset">Principal or mentor available to validate the appraisal. A second set of experienced credentials reduces the credibility gap significantly for this archetype.</div>
+            </div>
+          </div>
+          <div class="arch-bias-block">
+            <div class="arch-bias-label">Lean into this bias</div>
+            <div class="arch-bias-name">Consistency Heuristic</div>
+            <div class="arch-bias-body">Do exactly what you say you will do, when you say you will. Every small kept commitment builds the credibility that a track record would otherwise provide. For this archetype, follow-through is everything — because they're watching for the moment you fail to deliver.</div>
+          </div>
+        </div>
+        <div>
+          <div class="arch-never">
+            <div class="arch-never-label">Never say to this archetype</div>
+            <ul>
+              <li>"I think we could achieve significantly more than that"</li>
+              <li>"Trust me — I know this market inside out"</li>
+              <li>"We have a huge database of ready buyers"</li>
+            </ul>
+          </div>
+          <div class="arch-block" style="margin-top:20px;">
+            <div class="arch-block-label">Year 1 priority</div>
+            <div class="arch-block-body" style="background:#fff5f2;border:1px solid rgba(232,58,12,0.15);border-radius:10px;padding:16px;font-size:13px;color:var(--signal);">
+              <strong style="display:block;margin-bottom:4px;">Approach with caution ✗</strong>
+              Your hardest archetype in Year 1. They have a trained resistance to everything that sounds like a pitch — and "I'm new but enthusiastic" sounds exactly like a pitch. Prioritise other archetypes while you build your first 4–6 settled results.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status Seller -->
+      <div class="arch-panel" id="arch-3">
+        <div>
+          <h3 class="arch-panel-name">The <em>Status</em> Seller</h3>
+          <p class="arch-panel-tagline">The home is an identity object. Wants premium handling and an agent who understands aspiration. Price matters — but so does the story told.</p>
+          <div class="arch-block">
+            <div class="arch-block-label">What fills the proof gap</div>
+            <div class="arch-assets">
+              <div class="arch-asset">Presentation, preparation, and polish are your proof. The quality of your appraisal documentation, the care with which you've researched their property and suburb — these are signals of calibre before you have results to cite.</div>
+              <div class="arch-asset">Agency brand carries weight with this archetype more than any other. Being part of a respected, premium-positioned agency is a legitimate status signal even for a new agent.</div>
+              <div class="arch-asset">Be specific about the campaign story. Photography standard, copywriting approach, how the property will be positioned and featured. Status Sellers care about the narrative — and a new agent who thinks about the narrative is compelling.</div>
+            </div>
+          </div>
+          <div class="arch-bias-block">
+            <div class="arch-bias-label">Lean into this bias</div>
+            <div class="arch-bias-name">Halo Effect</div>
+            <div class="arch-bias-body">First impressions matter more here than with any other archetype. Show up with your best preparation, clearest documentation, and most considered perspective on their property. The halo from a strong first meeting carries further with this seller than any credential on paper.</div>
+          </div>
+        </div>
+        <div>
+          <div class="arch-never">
+            <div class="arch-never-label">Never say to this archetype</div>
+            <ul>
+              <li>"It's a great property but buyers are pretty price-sensitive right now"</li>
+              <li>"We'd market it the same way we do all our listings"</li>
+              <li>"The house down the street only got $X — let's be realistic"</li>
+            </ul>
+          </div>
+          <div class="arch-block" style="margin-top:20px;">
+            <div class="arch-block-label">Year 1 priority</div>
+            <div class="arch-block-body" style="background:var(--teal-bg);border:var(--border-teal);border-radius:10px;padding:16px;font-size:13px;color:var(--teal);">
+              <strong style="display:block;margin-bottom:4px;">High priority ✓</strong>
+              Don't apologise for being new. Own your preparation. For this archetype, the quality of your attention in the room matters as much as your résumé — and that's entirely within your control from day one.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pressure Seller -->
+      <div class="arch-panel" id="arch-4">
+        <div>
+          <h3 class="arch-panel-name">The <em>Pressure</em> Seller</h3>
+          <p class="arch-panel-tagline">Divorce, deceased estate, financial stress. Needs speed and discretion above all else. Highly vulnerable — and acutely aware of it.</p>
+          <div class="arch-block">
+            <div class="arch-block-label">What fills the proof gap</div>
+            <div class="arch-assets">
+              <div class="arch-asset">This archetype cares about your track record least of all. They need full attention, discretion, and a simple clear plan. Your newness is almost irrelevant here — your empathy and reliability are everything.</div>
+              <div class="arch-asset">Make everything as simple and clear as possible. One-page process. Plain language. No jargon. The complexity of the transaction should be invisible to them.</div>
+              <div class="arch-asset">State your discretion commitment explicitly — don't just imply it. "I will not discuss your circumstances with anyone. The campaign will be run professionally and privately." Most agents assume this is understood. Saying it out loud is more powerful.</div>
+            </div>
+          </div>
+          <div class="arch-bias-block">
+            <div class="arch-bias-label">Lean into this bias</div>
+            <div class="arch-bias-name">Trust Bias</div>
+            <div class="arch-bias-body">Your warmth, consistency, and clear communication are the proof they need. No track record required — just follow-through on every commitment, no matter how small. Trust is built in the first interaction and either confirmed or broken by everything that follows.</div>
+          </div>
+        </div>
+        <div>
+          <div class="arch-never">
+            <div class="arch-never-label">Never say to this archetype</div>
+            <ul>
+              <li>"Don't worry, these situations are totally normal — we see them all the time"</li>
+              <li>"What's the story here — divorce or something?"</li>
+              <li>"If you need to move fast, I can get a cash buyer in quickly"</li>
+            </ul>
+          </div>
+          <div class="arch-block" style="margin-top:20px;">
+            <div class="arch-block-label">Year 1 priority</div>
+            <div class="arch-block-body" style="background:var(--teal-bg);border:var(--border-teal);border-radius:10px;padding:16px;font-size:13px;color:var(--teal);">
+              <strong style="display:block;margin-bottom:4px;">Highest priority ✓</strong>
+              The most accessible archetype for a new agent. The bar is empathy and reliability — not history. Approach every Pressure Seller interaction as your most important listing, because to them, it genuinely is.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Analytical Controller -->
+      <div class="arch-panel" id="arch-5">
+        <div>
+          <h3 class="arch-panel-name">The Analytical <em>Controller</em></h3>
+          <p class="arch-panel-tagline">Spreadsheet-driven. Wants data, process, and logic. Has already researched comparable sales. Distrusts charm as a substitute for substance.</p>
+          <div class="arch-block">
+            <div class="arch-block-label">What fills the proof gap</div>
+            <div class="arch-assets">
+              <div class="arch-asset">Get ahead of it. Acknowledge early that you don't yet have a long personal record — and present the agency data and your research methodology in a way that shows rigour. They respect honesty backed by preparation.</div>
+              <div class="arch-asset">Bring more data than any other agent will. Comparable sales with specific analysis. Market trend data. A written pricing methodology. The volume of preparation signals competence even without personal results.</div>
+              <div class="arch-asset">Invite their questions. "I'd rather you push back on my analysis than accept it" disarms their scepticism and positions you as confident rather than defensive.</div>
+            </div>
+          </div>
+          <div class="arch-bias-block">
+            <div class="arch-bias-label">Lean into this bias</div>
+            <div class="arch-bias-name">Information Bias</div>
+            <div class="arch-bias-body">Give them more material to work with — well structured, well sourced — and their instinct to analyse will work in your favour rather than against it. A new agent who arrives with more data than any experienced agent they've met is genuinely impressive to this seller type.</div>
+          </div>
+        </div>
+        <div>
+          <div class="arch-never">
+            <div class="arch-never-label">Never say to this archetype</div>
+            <ul>
+              <li>"Look, at the end of the day you just have to trust your gut"</li>
+              <li>"I can't give you an exact figure — it depends on the buyer"</li>
+              <li>"You're overthinking it — the market will sort it out"</li>
+            </ul>
+          </div>
+          <div class="arch-block" style="margin-top:20px;">
+            <div class="arch-block-label">Year 1 priority</div>
+            <div class="arch-block-body" style="background:#fff8ee;border:1px solid rgba(196,146,42,0.2);border-radius:10px;padding:16px;font-size:13px;color:#7a5c1e;">
+              <strong style="display:block;margin-bottom:4px;">Manageable with preparation ⚠</strong>
+              They will research you and find limited results. Get ahead of it with agency data and principal support. Thorough preparation can close much of the gap — but be ready for the track record question and have a clear, honest answer prepared.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRIORITY GUIDE -->
+  <section class="priority-section">
+    <div class="priority-header">
+      <div>
+        <p class="section-label">03 — Priority Guide</p>
+        <h2 class="section-h2">Where to focus<br><em>your energy first.</em></h2>
+      </div>
+      <p class="priority-desc">Not every archetype is equally winnable in Year 1 — and chasing the wrong ones early can leave a difficult impression that spreads. Use this as a filter, not just a guide. Build your record on the right side of this list before expanding left.</p>
+    </div>
+
+    <div class="priority-grid">
+      <div>
+        <div class="priority-col-label go"><span class="priority-dot go"></span>Lead with these in Year 1</div>
+        <div class="priority-items">
+          <div class="priority-item go">
+            <div class="priority-item-name">The Pressure Seller</div>
+            <div class="priority-item-reason">Empathy and reliability close this, not history. Your full attention is your primary credential — and it's genuine.</div>
+          </div>
+          <div class="priority-item go">
+            <div class="priority-item-name">The Anxious Upgrader</div>
+            <div class="priority-item-reason">Process precision fills the proof gap well. Your written, specific plan does the work a track record would otherwise do.</div>
+          </div>
+          <div class="priority-item go">
+            <div class="priority-item-name">The Reluctant Downsizer</div>
+            <div class="priority-item-reason">Patience and genuine curiosity are your edge. The new agent advantage — unhurried, attentive — is exactly what this seller responds to.</div>
+          </div>
+          <div class="priority-item go">
+            <div class="priority-item-name">The Status Seller</div>
+            <div class="priority-item-reason">Preparation and polish carry significant weight. Agency brand and campaign quality can substitute for personal track record if your presentation is exceptional.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="priority-col-label caution"><span class="priority-dot caution"></span>Build proof before pursuing actively</div>
+        <div class="priority-items">
+          <div class="priority-item caution">
+            <div class="priority-item-name">The Analytical Controller</div>
+            <div class="priority-item-reason">Manageable with thorough preparation and principal support — but they will research you. Have an honest, confident answer to the track record question prepared.</div>
+          </div>
+          <div class="priority-item hard">
+            <div class="priority-item-name">The Cynical Veteran</div>
+            <div class="priority-item-reason">Your hardest archetype in Year 1. They've been burned before and their trained scepticism is hard to overcome without verifiable proof. Target after your first 4–6 settled results.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 90-DAY MAP -->
+  <section class="map-section">
+    <div class="map-header">
+      <div>
+        <p class="section-label">04 — The 90-Day Transition</p>
+        <h2 class="section-h2">From borrowed<br><em>to owned.</em></h2>
+      </div>
+      <p class="map-desc">Every agent's claim architecture moves through three phases. Most never think about this deliberately. The agents who do build faster, claim more specifically, and compound their reputation instead of starting fresh with every new listing.</p>
+    </div>
+
+    <div class="map-phases">
+      <div class="map-phase">
+        <div class="map-phase-num">Phase 01</div>
+        <div class="map-phase-title">Borrowed Authority</div>
+        <div class="map-phase-period">Months 1 — 3</div>
+        <p class="map-phase-desc">Your proof is your agency's, your mentor's, and your preparation. Your claim is about process, attention, and access to experience.</p>
+        <ul class="map-actions">
+          <li>Extract and memorise agency suburb data</li>
+          <li>Write your process document — specific enough to be different</li>
+          <li>Build your suburb knowledge file: every street, every comparable</li>
+          <li>Attend every open you can as a buyer — take notes</li>
+          <li>Begin weekly suburb content, even with no listings</li>
+          <li>Get character references lined up and briefed</li>
+        </ul>
+      </div>
+      <div class="map-phase">
+        <div class="map-phase-num">Phase 02</div>
+        <div class="map-phase-title">First Proof</div>
+        <div class="map-phase-period">Months 3 — 9</div>
+        <p class="map-phase-desc">Your first results. Your first testimonials. Small individually — but the beginning of a pattern you can reference.</p>
+        <ul class="map-actions">
+          <li>Document every appraisal within 24 hours — win or not</li>
+          <li>Capture campaign details before settlement — don't reconstruct from memory</li>
+          <li>Ask for testimonial 1–2 days after settlement, at peak satisfaction</li>
+          <li>Guide testimonial content toward process, not just outcome</li>
+          <li>Build your first case study using the 5-component framework</li>
+          <li>Start personalising content: street-level data, not suburb-level</li>
+        </ul>
+      </div>
+      <div class="map-phase">
+        <div class="map-phase-num">Phase 03</div>
+        <div class="map-phase-title">Owned Authority</div>
+        <div class="map-phase-period">Month 9+</div>
+        <p class="map-phase-desc">Enough of your own data to form a genuine result claim. Your architecture shifts from process-first to result-supported.</p>
+        <ul class="map-actions">
+          <li>Run the Claim Formation Exercise — answer the four questions</li>
+          <li>Draft your first single-sentence core claim</li>
+          <li>Score your concentration across all channels</li>
+          <li>Rewrite your bio, introduction, and leave-behind to carry the claim</li>
+          <li>Begin the 30-day conditioning sprint with real proof to reference</li>
+          <li>Start pursuing Cynical Veterans — you have something to show</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDY FRAMEWORK -->
+  <section class="case-section">
+    <div class="case-header">
+      <div>
+        <p class="section-label">05 — First Case Study</p>
+        <h2 class="section-h2">One well-documented sale<br><em>outperforms twenty vague references.</em></h2>
+      </div>
+      <p class="case-desc">You don't need a long track record to have a powerful case study — you need one sale captured properly. This five-component format works for any property type, any price range, and any archetype. Your first sale, documented this way, is the beginning of the proof library you'll draw from for years.</p>
+    </div>
+
+    <div class="case-steps">
+      <div class="case-step">
+        <div class="case-step-num">01</div>
+        <div class="case-step-content">
+          <div class="case-step-title">Seller Situation</div>
+          <p class="case-step-desc">Who was this seller? What were they facing? Keep it brief and anonymised if needed — but specific enough to be real.</p>
+          <div class="case-step-example">"A couple in their early 60s selling a family home they'd owned for 28 years. Emotionally attached, not in a hurry, but the husband more motivated than the wife."</div>
+        </div>
+      </div>
+      <div class="case-step">
+        <div class="case-step-num">02</div>
+        <div class="case-step-content">
+          <div class="case-step-title">The Challenge</div>
+          <p class="case-step-desc">What made this sale complex, sensitive, or non-standard? Every sale has something. Name it specifically.</p>
+          <div class="case-step-example">"Timing was critical — they were purchasing simultaneously. The market had softened slightly from the previous quarter and their price expectation was above recent comparables."</div>
+        </div>
+      </div>
+      <div class="case-step">
+        <div class="case-step-num">03</div>
+        <div class="case-step-content">
+          <div class="case-step-title">The Approach</div>
+          <p class="case-step-desc">What did you do specifically? Process, communication, strategy. Concrete actions, not generalities.</p>
+          <div class="case-step-example">"We met three times before signing. I provided a written timeline covering both the sale and their purchase coordination. Buyer feedback was sent within 4 hours of every open."</div>
+        </div>
+      </div>
+      <div class="case-step">
+        <div class="case-step-num">04</div>
+        <div class="case-step-content">
+          <div class="case-step-title">The Outcome</div>
+          <p class="case-step-desc">The result — as precisely as you can state it. Days on market. Sale price relative to reserve or asking. Settlement timing.</p>
+          <div class="case-step-example">"Sold in 18 days at auction — 4.2% above reserve. Settled 6 days before their purchase, giving them certainty on both sides without a bridging loan."</div>
+        </div>
+      </div>
+      <div class="case-step">
+        <div class="case-step-num">05</div>
+        <div class="case-step-content">
+          <div class="case-step-title">Seller Voice <span style="font-size:12px;font-weight:400;color:var(--gray-2);margin-left:6px;">optional but powerful</span></div>
+          <p class="case-step-desc">One sentence from the seller — with their permission. Not a generic compliment. A specific observation about the experience.</p>
+          <div class="case-step-example">"I always knew exactly where we were — and not once did I feel pressured toward a decision I wasn't ready to make."</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOADS -->
+  <div class="na-downloads">
+    <div class="na-dl-inner">
+      <div class="na-dl-text">
+        <div class="na-dl-eyebrow">Prompt Packs — New Agent Edition</div>
+        <div class="na-dl-heading">Take the full framework into your AI assistant.</div>
+        <p class="na-dl-sub">Two prompt packs built specifically for new agents — fill in your situation and get specific, honest guidance for the seller in front of you, and a month-by-month plan for building your own proof.</p>
+      </div>
+      <div class="na-dl-btns">
+        <a href="./prompts/signal-prompt-new-agent-foundation.txt" download="signal-prompt-new-agent-foundation.txt" class="na-dl-btn primary">
+          New Agent Foundation <span>↓</span>
+        </a>
+        <a href="./prompts/signal-prompt-new-agent-90days.txt" download="signal-prompt-new-agent-90days.txt" class="na-dl-btn secondary">
+          First 90 Days Proof Builder <span>↓</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">SIGNAL</div>
+    <div class="footer-note">New Agent Edition — Seller Psychology System for Listing Agents</div>
+  </footer>
+
+  <script>
+    function showArch(idx) {
+      document.querySelectorAll('.arch-tab').forEach((t, i) => {
+        t.classList.toggle('active', i === idx);
+      });
+      document.querySelectorAll('.arch-panel').forEach((p, i) => {
+        p.classList.toggle('active', i === idx);
+      });
+    }
+  </script>
+
+</body>
+</html>

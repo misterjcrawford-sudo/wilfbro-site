@@ -1,0 +1,83 @@
+{
+  "_meta": {
+    "framework": "SIGNAL",
+    "file_type": "session",
+    "description": "Fill in the fields marked with [YOUR INPUT] before pasting into your AI assistant. The more specific you are, the more useful the output.",
+    "how_to_use": [
+      "1. Complete every [YOUR INPUT] field below with real details about your seller and situation.",
+      "2. Paste the entire completed JSON into Claude, ChatGPT, or your preferred AI tool.",
+      "3. Then ask your question — see suggested_prompts below for proven starting points.",
+      "4. The AI will use the SIGNAL framework embedded in this file to give you tailored, specific guidance."
+    ],
+    "suggested_prompts": [
+      "Based on my seller profile, write me an opening script for the appraisal — first 2 minutes only.",
+      "What are the three things most likely to lose me this listing, and how do I avoid them?",
+      "Write a post-appraisal follow-up message for this seller that doesn't feel like a close.",
+      "My seller is comparing me with two other agents. What's the specific thing I should say that the others won't?",
+      "Write a 30-day conditioning plan tailored to this seller archetype and my agent archetype.",
+      "What cognitive biases should I watch for in my next meeting with this seller, and how do I work with them rather than against them?",
+      "Draft a suburb report introduction paragraph written specifically for this seller's dominant fear.",
+      "What questions should I ask in the appraisal to understand which archetype I'm dealing with before I reveal my price?"
+    ]
+  },
+
+  "agent_profile": {
+    "agent_archetype": "[YOUR INPUT: market_authority | calm_executor | fierce_advocate | trusted_advisor]",
+    "archetype_confidence": "[YOUR INPUT: How naturally does this archetype come to you? Strong / Moderate / Developing]",
+    "years_in_suburb": "[YOUR INPUT: e.g. 7]",
+    "recent_results": "[YOUR INPUT: Brief — e.g. '3 sales in last 60 days, all within 2% of asking']",
+    "primary_claim": "[YOUR INPUT: What is the one consistent idea you want every seller to associate with you? e.g. 'I own the data on this suburb' or 'I make selling predictable']",
+    "current_claim_concentration_score": "[YOUR INPUT: 0–10. Count how many of your last 10 touchpoints reinforced your primary claim]",
+    "strongest_proof_mechanism": "[YOUR INPUT: What single piece of evidence is most compelling in your current toolkit?]",
+    "known_weaknesses": "[YOUR INPUT: Where do you lose listings most often? e.g. 'Price conversations' or 'Status sellers who want premium presentation']"
+  },
+
+  "seller_profile": {
+    "archetype": "[YOUR INPUT: anxious_upgrader | reluctant_downsizer | cynical_veteran | status_seller | pressure_seller | analytical_controller]",
+    "archetype_confidence": "[YOUR INPUT: How sure are you about this read? High / Medium / Low — note any signals that made you uncertain]",
+    "property_address_or_suburb": "[YOUR INPUT: Suburb or street — enough for context]",
+    "estimated_value_range": "[YOUR INPUT: e.g. '$1.8M–$2.1M']",
+    "seller_situation": "[YOUR INPUT: Key facts — e.g. 'Couple in their 60s, selling family home of 28 years, downsizing to the coast. No financial pressure. Both emotionally attached.']",
+    "known_fears": "[YOUR INPUT: What specific fears have they mentioned or signalled? e.g. 'Worried about getting the price right, mentioned a neighbour who 'undersold'']",
+    "known_desires": "[YOUR INPUT: What outcome do they most want? e.g. 'A dignified process and a result they can be proud to tell friends about']",
+    "active_biases_observed": "[YOUR INPUT: Which biases are clearly visible in how they speak or behave? Refer to the SIGNAL framework bias list]",
+    "how_they_found_you": "[YOUR INPUT: Referral / Letterbox drop / Social media / Open home / Existing relationship / Cold call / Other]",
+    "competing_agents": "[YOUR INPUT: How many agents are they speaking with, and do you know who they are or how they're positioned?]",
+    "decision_timeline": "[YOUR INPUT: e.g. 'Wants to be on market in 6 weeks' or 'No rush, gathering information']",
+    "previous_agent_experience": "[YOUR INPUT: Good / Bad / None — any relevant details that might prime their expectations or scepticism]"
+  },
+
+  "market_context": {
+    "current_mode": "[YOUR INPUT: rising | cooling | stable | volatile]",
+    "suburb_median_trend": "[YOUR INPUT: e.g. 'Up 4.2% in last 12 months' or 'Flat to slightly down over 6 months']",
+    "recent_comparable_sales": [
+      "[YOUR INPUT: Address or description, price, days on market — add as many as relevant]"
+    ],
+    "buyer_demand_level": "[YOUR INPUT: Strong / Moderate / Soft]",
+    "days_on_market_benchmark": "[YOUR INPUT: Current suburb average, e.g. '28 days']"
+  },
+
+  "decision_window_assessment": {
+    "current_stage": "[YOUR INPUT: 1_private_consideration | 2_market_curiosity | 3_agent_awareness | 4_appraisal_mode | 5_decision_crystallisation]",
+    "stage_signals_observed": "[YOUR INPUT: What did you notice that told you they're at this stage? e.g. 'Attended three of my opens in the last month before calling']",
+    "subconscious_shortlist_position": "[YOUR INPUT: Are you already on their mental shortlist, or are you starting cold? Likely on / Uncertain / Starting cold]",
+    "conditioning_touchpoints_with_this_seller": "[YOUR INPUT: What signals of yours has this seller already received? e.g. 'Saw my letterbox drop in March, follows me on Instagram']"
+  },
+
+  "appraisal_preparation": {
+    "opening_move": "[YOUR INPUT: Based on your read of the archetype, what is the first thing you should do or say when you walk in? Leave blank to let the AI recommend one.]",
+    "first_question": "[YOUR INPUT: What is the most important question you could ask in the first 5 minutes? Leave blank to let the AI recommend one.]",
+    "price_presentation_approach": "[YOUR INPUT: How do you plan to present the price recommendation? Lead with it / Build to it / Let them guess first / Leave blank for AI recommendation]",
+    "main_objection_anticipated": "[YOUR INPUT: What objection are you most likely to face? e.g. 'They'll say my fee is too high' or 'They'll quote a price I can't justify']",
+    "competitor_differentiation": "[YOUR INPUT: What do you know or suspect about the competing agents, and how will you position against them?]"
+  },
+
+  "conditioning_history": {
+    "channels_currently_active": "[YOUR INPUT: List which of the 5 channels you're currently running — Physical / Digital / Social / Referral / Direct]",
+    "last_touchpoint_with_seller": "[YOUR INPUT: What was the most recent signal this seller received from you, and when?]",
+    "gaps_in_conditioning": "[YOUR INPUT: Which channels have you been absent from recently? Where is your presence weakest?]",
+    "sprint_week": "[YOUR INPUT: If you're running the 30-Day Sprint, which week are you in? 1 / 2 / 3 / 4 / Not started]"
+  },
+
+  "session_goal": "[YOUR INPUT: What do you most want help with today? Be specific — the more precise your goal, the more useful the AI's response. e.g. 'I have the appraisal tomorrow and I want a rehearsed script for handling the price conversation with a seller who has already been quoted $200k more by another agent.']"
+}

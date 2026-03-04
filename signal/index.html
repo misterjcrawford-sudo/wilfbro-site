@@ -1205,129 +1205,7 @@
       .window-section, .outputs-section { padding: 48px 24px; }
     }
 
-    /* ── DOWNLOADS SECTION ─────────────────────────────────────── */
-    .downloads-section {
-      padding: 80px 48px;
-      border-bottom: var(--border);
-    }
-    .downloads-intro {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: start;
-      margin-bottom: 48px;
-    }
-    .downloads-intro h2 { font-size: clamp(28px,4vw,40px); }
-    .downloads-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-    .dl-card {
-      border: var(--border);
-      border-radius: 16px;
-      padding: 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      transition: border-color 0.2s;
-    }
-    .dl-card:hover { border-color: var(--gray-2); }
-    .dl-card-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    .dl-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      background: var(--off-white);
-      border: var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 18px;
-    }
-    .dl-badge {
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gray-2);
-      background: var(--off-white);
-      border: var(--border);
-      border-radius: 999px;
-      padding: 4px 10px;
-    }
-    .dl-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--black);
-      margin-bottom: 8px;
-    }
-    .dl-desc {
-      font-size: 13px;
-      color: var(--gray-3);
-      line-height: 1.65;
-    }
-    .dl-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 4px;
-    }
-    .dl-meta-item {
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gray-2);
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .dl-meta-item::before {
-      content: '';
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--gray-1);
-    }
-    .dl-btn {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      background: var(--black);
-      color: var(--white);
-      text-decoration: none;
-      border-radius: 10px;
-      padding: 14px 18px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 13px;
-      font-weight: 500;
-      transition: background 0.2s;
-      margin-top: auto;
-    }
-    .dl-btn:hover { background: #1a1a1a; }
-    .dl-btn-arrow {
-      font-size: 16px;
-      line-height: 1;
-      opacity: 0.5;
-    }
-    .dl-card.featured { border-color: var(--signal); }
-    .dl-card.featured .dl-icon { background: var(--signal-bg); border-color: rgba(232,58,12,0.2); }
-    .dl-card.featured .dl-btn { background: var(--signal); }
-    .dl-card.featured .dl-btn:hover { background: #c42f08; }
-    @media (max-width: 768px) {
-      .downloads-intro { grid-template-columns: 1fr; gap: 24px; }
-      .downloads-grid { grid-template-columns: 1fr; }
-      .downloads-section { padding: 56px 24px; }
-    }
+
   </style>
 </head>
 <body>
@@ -1340,6 +1218,7 @@
       <a href="#archetypes" class="nav-pill">Seller Types</a>
       <a href="#window" class="nav-pill">Decision Window</a>
       <a href="#outputs" class="nav-pill">What You Get</a>
+      <a href="./signal-new-agents.html" class="nav-pill">New Agents</a>
       <a href="./signal-downloads.html" class="nav-pill">Prompt Packs</a>
     </div>
     <div class="nav-right">
@@ -1791,59 +1670,7 @@
     </div>
   </div>
 
-  <!-- ═══ DOWNLOADS ═══ -->
-  <section class="downloads-section" id="downloads">
-    <div class="downloads-intro">
-      <div>
-        <p class="section-label">/ AI Prompt Files</p>
-        <h2>Take SIGNAL into your <em>workflow</em>.</h2>
-      </div>
-      <p style="padding-top:8px;font-size:14px;color:var(--gray-3);line-height:1.7;">These JSON files are designed to be pasted directly into Claude, ChatGPT, or any LLM as context. The AI reads the SIGNAL framework and uses it to give you tailored scripts, strategies, and preparation — specific to your seller, your archetype, and your market right now.</p>
-    </div>
-
-    <div class="downloads-grid">
-
-      <div class="dl-card featured">
-        <div class="dl-card-top">
-          <div class="dl-icon">⚙</div>
-          <span class="dl-badge">Master Reference</span>
-        </div>
-        <div>
-          <div class="dl-title">SIGNAL Framework — Full Reference</div>
-          <div class="dl-desc">The complete SIGNAL system in one file. All six seller archetypes, four agent archetypes, the decision window, 23 cognitive biases, the match matrix, claim architecture, 30-day sprint, and signal stack. Use this as persistent AI context for any SIGNAL-based conversation.</div>
-          <div class="dl-meta">
-            <span class="dl-meta-item">All 3 layers</span>
-            <span class="dl-meta-item">~46k tokens</span>
-            <span class="dl-meta-item">JSON</span>
-          </div>
-        </div>
-        <a href="./signal-master.json" download="signal-master.json" class="dl-btn">
-          Download Master Reference <span class="dl-btn-arrow">↓</span>
-        </a>
-      </div>
-
-      <div class="dl-card">
-        <div class="dl-card-top">
-          <div class="dl-icon">📋</div>
-          <span class="dl-badge">Per-Seller Template</span>
-        </div>
-        <div>
-          <div class="dl-title">SIGNAL Session Template</div>
-          <div class="dl-desc">Fill in your specific seller details, your agent archetype, the current market mode, and your appraisal goal. Paste the completed file into an AI with the suggested prompts inside — and get tailored scripts, objection responses, and conditioning plans built around your exact situation.</div>
-          <div class="dl-meta">
-            <span class="dl-meta-item">Agent + Seller profile</span>
-            <span class="dl-meta-item">Market context</span>
-            <span class="dl-meta-item">JSON</span>
-          </div>
-        </div>
-        <a href="./signal-session-template.json" download="signal-session-template.json" class="dl-btn">
-          Download Session Template <span class="dl-btn-arrow">↓</span>
-        </a>
-      </div>
-
-    </div>
-  </section>
-
+  <!-- ═══ CTA ═══
   <!-- ═══ CTA ═══ -->
   <section class="cta-section" id="cta">
     <p class="section-label">/ Ready to build</p>

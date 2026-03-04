@@ -1,0 +1,744 @@
+{
+  "_meta": {
+    "framework": "SIGNAL",
+    "subtitle": "Seller Psychology System for Listing Agents",
+    "version": "1.0",
+    "market": "Australian Residential Real Estate",
+    "purpose": "Use this file as AI prompt context. Paste it into Claude, ChatGPT, or any LLM and then ask it to help you apply the SIGNAL framework to a specific seller situation, appraisal preparation, or marketing campaign.",
+    "prompt_starter": "I am a listing agent using the SIGNAL framework. The JSON below contains the full system — seller archetypes, agent archetypes, the decision window, cognitive biases, and the conditioning system. Use it as your knowledge base. I will then describe my current situation and ask for tailored advice."
+  },
+
+  "layer_1": {
+    "name": "The Seller Map",
+    "core_insight": "The seller has already decided before the appraisal begins. Understanding their psychology before you walk in is the difference between winning and being compared.",
+
+    "seller_archetypes": [
+      {
+        "id": "anxious_upgrader",
+        "name": "The Anxious Upgrader",
+        "tagline": "Stretched financially. Terrified of mistiming the market. Selling and buying simultaneously — and the stress of that coordination keeps them up at night.",
+        "dominant_fear": "Selling too cheap, buying too high, and ending up worse off than before.",
+        "dominant_desire": "Certainty. A clear plan, a timeline they can trust, and someone who removes the chaos.",
+        "active_biases": ["Loss Aversion", "Recency Bias", "Anchoring", "Worst-Case Thinking"],
+        "what_wins_them": [
+          "Showing you've coordinated buy-sell transitions before",
+          "Giving them a step-by-step process they can see end-to-end",
+          "Specific suburb data that removes market uncertainty",
+          "Testimonials from upgraders you've guided successfully"
+        ],
+        "what_loses_them": [
+          "Vague optimism about the market ('it's a great time to sell')",
+          "Not acknowledging the complexity of buying simultaneously",
+          "Rushing the conversation or skipping logistics",
+          "High price estimates with no basis"
+        ],
+        "never_say": [
+          "Don't worry about the timing — it always works out",
+          "The market's moving fast, you need to act now",
+          "We'll figure out the buy side once this one sells"
+        ],
+        "intensity_by_stage": {
+          "stage_1_private": "low",
+          "stage_2_curious": "medium",
+          "stage_3_aware": "high",
+          "stage_4_appraisal": "high",
+          "stage_5_decision": "medium"
+        }
+      },
+      {
+        "id": "reluctant_downsizer",
+        "name": "The Reluctant Downsizer",
+        "tagline": "Selling the family home. Decades of memory. The decision is made — emotionally it's not. Needs to feel understood, not processed.",
+        "dominant_fear": "Feeling like just another transaction. Being rushed through a sale that represents the end of a chapter.",
+        "dominant_desire": "To be honoured. A sale that respects what the home has meant — and an agent who genuinely sees it.",
+        "active_biases": ["Endowment Effect", "Sunk Cost", "Status Quo Bias", "Emotional Priming"],
+        "what_wins_them": [
+          "Taking time to hear the story of the home before talking business",
+          "Framing the sale as a transition, not a disposal",
+          "Showing care for how the home is presented and photographed",
+          "Patience. Never appearing to rush the decision."
+        ],
+        "what_loses_them": [
+          "Moving too fast to the numbers",
+          "Impersonal or process-heavy first conversations",
+          "Any language that treats the home as a commodity",
+          "Being the third agent and acting like it doesn't matter"
+        ],
+        "never_say": [
+          "The buyers won't care about your renovations — it's about comparable sales",
+          "We just need to price it right and move it quickly",
+          "The market doesn't have much time for sentiment"
+        ],
+        "intensity_by_stage": {
+          "stage_1_private": "high",
+          "stage_2_curious": "high",
+          "stage_3_aware": "low",
+          "stage_4_appraisal": "high",
+          "stage_5_decision": "high"
+        }
+      },
+      {
+        "id": "cynical_veteran",
+        "name": "The Cynical Veteran",
+        "tagline": "Has sold before. Thinks all agents are fundamentally the same. Has been overpromised and underdelivered. Only responds to proof — not charm.",
+        "dominant_fear": "Being manipulated again. Falling for the same high price estimate used as a listing tool, only to be conditioned down later.",
+        "dominant_desire": "An agent who doesn't perform. Who speaks plainly, backs everything with evidence, and does exactly what they said they would.",
+        "active_biases": ["Confirmation Bias", "Social Proof (inverted)", "Authority Scepticism", "Consistency Heuristic"],
+        "what_wins_them": [
+          "Evidence-only price talk — no ranges, no vague optimism",
+          "Acknowledging the way agents often over-quote",
+          "Specific case studies with verifiable outcomes",
+          "Being the agent who talks them out of a high price"
+        ],
+        "what_loses_them": [
+          "Any enthusiasm that isn't backed by data",
+          "Talking about your 'passion' for real estate",
+          "Name-dropping without proof",
+          "Proposing the highest appraisal figure in the room"
+        ],
+        "never_say": [
+          "I think we could achieve significantly more than that",
+          "Trust me — I know this market inside out",
+          "We have a huge database of ready buyers"
+        ],
+        "intensity_by_stage": {
+          "stage_1_private": "low",
+          "stage_2_curious": "medium",
+          "stage_3_aware": "high",
+          "stage_4_appraisal": "high",
+          "stage_5_decision": "high"
+        }
+      },
+      {
+        "id": "status_seller",
+        "name": "The Status Seller",
+        "tagline": "The home is an identity object. The sale is a public performance of taste and success. Wants premium handling — and will judge you on aesthetics as much as outcomes.",
+        "dominant_fear": "Being undersold — not just financially, but symbolically. A sale that doesn't reflect the home's prestige.",
+        "dominant_desire": "A premium experience from first contact to settlement. To be seen as owning something remarkable — by the agent, the buyers, the market.",
+        "active_biases": ["Social Comparison", "Halo Effect", "Prestige Pricing Bias", "Identity Preservation"],
+        "what_wins_them": [
+          "Premium marketing approach and materials from day one",
+          "Demonstrating your own positioning matches the property's",
+          "Comparable prestige sales — what similar calibre homes achieved",
+          "Showing genuine appreciation for the property's standout features"
+        ],
+        "what_loses_them": [
+          "Generic or template marketing proposals",
+          "Being visually or professionally under-presented at the appraisal",
+          "Focusing on volume ('we sell a lot of homes in this area')",
+          "Comparing the property to anything they'd consider inferior"
+        ],
+        "never_say": [
+          "It's a great property but buyers are pretty price-sensitive right now",
+          "We'd market it the same way we do all our listings",
+          "The house down the street only got $X — let's be realistic"
+        ],
+        "intensity_by_stage": {
+          "stage_1_private": "low",
+          "stage_2_curious": "low",
+          "stage_3_aware": "high",
+          "stage_4_appraisal": "high",
+          "stage_5_decision": "high"
+        }
+      },
+      {
+        "id": "pressure_seller",
+        "name": "The Pressure Seller",
+        "tagline": "Divorce, deceased estate, financial stress. Needs speed and discretion above all else. Highly vulnerable — and acutely aware of it.",
+        "dominant_fear": "Being judged, exposed, or taken advantage of. Having their circumstances used as leverage against them.",
+        "dominant_desire": "Discretion, speed, and an agent who treats them with total dignity regardless of the circumstances.",
+        "active_biases": ["Scarcity (time)", "Trust Heuristic", "Vulnerability Sensitivity", "Decision Fatigue"],
+        "what_wins_them": [
+          "Immediately creating a safe, low-pressure environment",
+          "Being clear about timelines without being pushy about them",
+          "Showing specific experience with estate or separation sales",
+          "Promising — and keeping — absolute confidentiality"
+        ],
+        "what_loses_them": [
+          "Any language that implies judgment of their situation",
+          "Trying to extract information before trust is established",
+          "Performing enthusiasm when composure is needed",
+          "Moving to price before acknowledging the human reality"
+        ],
+        "never_say": [
+          "Don't worry, these situations are totally normal — we see them all the time",
+          "What's the story here — divorce or something?",
+          "If you need to move fast, I can get a cash buyer in quickly"
+        ],
+        "intensity_by_stage": {
+          "stage_1_private": "high",
+          "stage_2_curious": "medium",
+          "stage_3_aware": "medium",
+          "stage_4_appraisal": "high",
+          "stage_5_decision": "high"
+        }
+      },
+      {
+        "id": "analytical_controller",
+        "name": "The Analytical Controller",
+        "tagline": "Spreadsheet-driven. Wants data, process, and logic. Has already researched comparable sales. Distrusts charm as a substitute for substance.",
+        "dominant_fear": "Being talked into something that doesn't hold up to scrutiny. Making an emotion-led decision they'll later regret.",
+        "dominant_desire": "An agent who gives them enough information to reach the right conclusion themselves — without pressure.",
+        "active_biases": ["Information Bias", "Overconfidence Effect", "Anchoring", "Analysis Paralysis"],
+        "what_wins_them": [
+          "Coming with more data than they expected",
+          "A clear, written process document they can review",
+          "Welcoming their questions without defensiveness",
+          "Letting them feel like they made the decision, not you"
+        ],
+        "what_loses_them": [
+          "Vague or approximate answers to data questions",
+          "Relying on personality and relationship over substance",
+          "Seeming uncomfortable when challenged on your numbers",
+          "Rushing the decision or creating false urgency"
+        ],
+        "never_say": [
+          "Look, at the end of the day you just have to trust your gut",
+          "I can't give you an exact figure — it depends on the buyer",
+          "You're overthinking it — the market will sort it out"
+        ],
+        "intensity_by_stage": {
+          "stage_1_private": "low",
+          "stage_2_curious": "high",
+          "stage_3_aware": "high",
+          "stage_4_appraisal": "high",
+          "stage_5_decision": "medium"
+        }
+      }
+    ],
+
+    "decision_window": [
+      {
+        "stage": 1,
+        "id": "private_consideration",
+        "name": "Private Consideration",
+        "summary": "The idea of selling exists. Nobody knows yet.",
+        "seller_feeling": "We've talked about this for a while. I think we're actually going to do it.",
+        "what_they_want": [
+          "Validation that the market is favourable",
+          "A sense of what their home is actually worth",
+          "Evidence that other people in their situation successfully sold",
+          "Permission to want this without it feeling reckless"
+        ],
+        "where_agents_fail": [
+          "They're invisible at this stage — no presence, no conditioning",
+          "Social content that's agent-focused, not seller-relevant",
+          "No suburb market reports in letterboxes",
+          "Missing the window where subconscious shortlisting begins"
+        ],
+        "your_signal": "Physical presence dominates here. Sold stickers, signboards, and letterbox drops are the signals that reach a seller before they've told anyone their intention. Your name needs to be in their peripheral awareness before conscious consideration begins. This is conditioning, not marketing."
+      },
+      {
+        "stage": 2,
+        "id": "market_curiosity",
+        "name": "Market Curiosity",
+        "summary": "Casual research begins. Opens attended.",
+        "seller_feeling": "Let's just have a look at what's out there. No commitment yet.",
+        "what_they_want": [
+          "Price data — what things are actually selling for",
+          "Market momentum signals (rising, cooling, stable)",
+          "What agents are like in practice, not in their marketing",
+          "Reassurance that there's no pressure to decide now"
+        ],
+        "where_agents_fail": [
+          "Treating open home attendees as buyers only",
+          "Missing the seller-in-disguise at every open they host",
+          "No follow-up designed for potential sellers attending opens",
+          "Generic suburb reports that tell them nothing useful"
+        ],
+        "your_signal": "Open home behaviour is a signal in itself. How you run an open, how you greet attendees, how you follow up — all of this is visible to the seller observing. Your suburb report and digital presence begin building at this stage. The seller is watching before they've identified themselves."
+      },
+      {
+        "stage": 3,
+        "id": "agent_awareness",
+        "name": "Agent Awareness",
+        "summary": "They're watching who's active and dominant.",
+        "seller_feeling": "I keep seeing the same agent's boards. Are they actually good, or just busy?",
+        "what_they_want": [
+          "Evidence of suburb dominance — you're everywhere for a reason",
+          "Social proof from neighbours and community members",
+          "Signs of how you actually communicate and present",
+          "Whether your brand feels premium or generic"
+        ],
+        "where_agents_fail": [
+          "Inconsistent presence — strong one month, invisible the next",
+          "Visual brand that looks the same as every competitor",
+          "No clear claim of ownership over the suburb",
+          "Social content that signals effort but not authority"
+        ],
+        "your_signal": "Consistency of signal builds the subconscious shortlist. The agent with compounding presence — who has been showing up reliably for months — is already on the list before the seller consciously creates one. This is where conditioning pays off. Digital and physical must reinforce each other."
+      },
+      {
+        "stage": 4,
+        "id": "appraisal_mode",
+        "name": "Appraisal Mode",
+        "summary": "Two or three agents invited. Short-listing begins.",
+        "seller_feeling": "Okay — we're calling three agents. Let's see who we actually want to work with.",
+        "what_they_want": [
+          "Whether you're as good in person as you seem from the outside",
+          "That your price estimate is credible — not just flattering",
+          "A process they can understand and trust",
+          "Chemistry — are you someone they want to work with for 6 weeks?"
+        ],
+        "where_agents_fail": [
+          "Showing up without knowing which archetype they're meeting",
+          "Generic pitch that doesn't adapt to this seller's specific signals",
+          "Over-inflating price to win the listing",
+          "Not asking enough questions before presenting anything"
+        ],
+        "your_signal": "The appraisal is a performance — and it should be rehearsed. Knowing your seller archetype before you walk in lets you calibrate your posture, your opening questions, and your price presentation to that specific psychology."
+      },
+      {
+        "stage": 5,
+        "id": "decision_crystallisation",
+        "name": "Decision Crystallisation",
+        "summary": "The choice is made — usually on feel.",
+        "seller_feeling": "Logically they're similar. But one of them just felt right.",
+        "what_they_want": [
+          "Reassurance that they're making the right choice",
+          "A follow-up that confirms rather than pressures",
+          "Clarity on next steps if they say yes",
+          "Nothing that introduces doubt into a decision they've already made"
+        ],
+        "where_agents_fail": [
+          "Aggressive follow-up that creates discomfort at the finish line",
+          "Introducing new information that confuses rather than confirms",
+          "Not following up at all — assuming silence means no",
+          "Talking too much in the final conversation instead of listening"
+        ],
+        "your_signal": "The final follow-up should feel inevitable, not hungry. A single, calm, value-adding contact after the appraisal that gives them one more piece of relevant information — without asking for the listing — is often the act that converts a lean into a signature. Confidence, not desperation."
+      }
+    ],
+
+    "cognitive_biases": {
+      "Loss Aversion": {
+        "definition": "People feel the pain of a loss roughly twice as intensely as the pleasure of an equivalent gain.",
+        "real_estate_example": "A seller fixates on the risk of 'selling too cheap' far more than the opportunity of the purchase they're moving toward — even when the numbers favour the move.",
+        "archetypes_affected": ["anxious_upgrader"]
+      },
+      "Recency Bias": {
+        "definition": "We give disproportionate weight to recent events when predicting the future, assuming the current trend will continue indefinitely.",
+        "real_estate_example": "A seller who has watched prices rise for six months assumes they'll keep rising and refuses to list.",
+        "archetypes_affected": ["anxious_upgrader"]
+      },
+      "Anchoring": {
+        "definition": "The first number we encounter becomes a reference point against which all subsequent figures are judged.",
+        "real_estate_example": "The first price estimate an agent gives lodges in the seller's mind. Every subsequent figure is measured against that initial anchor.",
+        "archetypes_affected": ["anxious_upgrader", "analytical_controller"]
+      },
+      "Worst-Case Thinking": {
+        "definition": "A cognitive pattern where the mind gravitates to the most negative possible outcome, regardless of probability.",
+        "real_estate_example": "The Anxious Upgrader imagines selling for less than expected and buying for more, ending up financially worse off.",
+        "archetypes_affected": ["anxious_upgrader"]
+      },
+      "Endowment Effect": {
+        "definition": "We place a higher value on things we own than identical things we don't own — simply because they're ours.",
+        "real_estate_example": "Sellers consistently believe their home is worth more than comparable sold properties.",
+        "archetypes_affected": ["reluctant_downsizer"]
+      },
+      "Sunk Cost": {
+        "definition": "The tendency to factor in past investments when making future decisions, even when those past costs are irrelevant to current choices.",
+        "real_estate_example": "A seller insists the $80,000 kitchen renovation must be reflected in the price — even though the market doesn't care.",
+        "archetypes_affected": ["reluctant_downsizer"]
+      },
+      "Status Quo Bias": {
+        "definition": "A strong preference for the current state of affairs. Change feels riskier than staying put, regardless of the actual risk profile.",
+        "real_estate_example": "The Reluctant Downsizer knows moving makes sense. But staying requires no action, no decision, no risk.",
+        "archetypes_affected": ["reluctant_downsizer"]
+      },
+      "Emotional Priming": {
+        "definition": "When an emotional state influences how subsequent information is perceived and processed.",
+        "real_estate_example": "The grief of leaving a family home primes a Reluctant Downsizer to interpret any process-focused conversation as coldness.",
+        "archetypes_affected": ["reluctant_downsizer"]
+      },
+      "Confirmation Bias": {
+        "definition": "The tendency to search for and interpret information in a way that confirms what we already believe.",
+        "real_estate_example": "The Cynical Veteran has decided all agents over-promise. Every interaction confirms the theory — they've immunised themselves against evidence to the contrary.",
+        "archetypes_affected": ["cynical_veteran"]
+      },
+      "Social Proof (inverted)": {
+        "definition": "Where most people follow the crowd as a shortcut, some use an inverted version: if everyone believes it, it's probably wrong.",
+        "real_estate_example": "The agent with the most 'For Sale' boards on the street triggers suspicion, not confidence, in a Cynical Veteran.",
+        "archetypes_affected": ["cynical_veteran"]
+      },
+      "Authority Scepticism": {
+        "definition": "A learned resistance to claims of expertise or authority — common in people who have had negative experiences with those in authority positions.",
+        "real_estate_example": "After being over-quoted by three agents, a Cynical Veteran has trained themselves not to accept market expertise claims at face value.",
+        "archetypes_affected": ["cynical_veteran"]
+      },
+      "Consistency Heuristic": {
+        "definition": "We use observed past behaviour as a reliable shortcut to predict future behaviour.",
+        "real_estate_example": "How an agent behaves in the first interaction — whether they do exactly what they said — is used as a model for how the whole campaign will run.",
+        "archetypes_affected": ["cynical_veteran"]
+      },
+      "Social Comparison": {
+        "definition": "We evaluate our own status and decisions by comparing ourselves to relevant others in our peer group.",
+        "real_estate_example": "A Status Seller's price expectation is shaped not by market data but by what their neighbour's house 'went for'.",
+        "archetypes_affected": ["status_seller"]
+      },
+      "Halo Effect": {
+        "definition": "When a positive impression in one area bleeds into assessments in completely unrelated areas.",
+        "real_estate_example": "An agent who arrives impeccably presented creates an assumption of excellence that extends to their negotiation and results — before a single word.",
+        "archetypes_affected": ["status_seller"]
+      },
+      "Prestige Pricing Bias": {
+        "definition": "The belief that higher price signals higher quality — and that a premium figure reflects a more sophisticated understanding of value.",
+        "real_estate_example": "A Status Seller is more reassured by an agent who quotes $2.1M than one who quotes $1.85M — not because it's more accurate, but because it confirms prestige.",
+        "archetypes_affected": ["status_seller"]
+      },
+      "Identity Preservation": {
+        "definition": "The drive to make decisions consistent with our self-concept — to protect the story we tell ourselves about who we are.",
+        "real_estate_example": "For a Status Seller, accepting a below-expectation result threatens their identity as someone who makes good decisions.",
+        "archetypes_affected": ["status_seller"]
+      },
+      "Scarcity (time)": {
+        "definition": "When a resource is perceived as limited, its value increases and decision-making becomes more urgent.",
+        "real_estate_example": "A Pressure Seller experiencing financial distress feels time as a scarce resource. This urgency affects every decision.",
+        "archetypes_affected": ["pressure_seller"]
+      },
+      "Trust Heuristic": {
+        "definition": "In overwhelming situations, we use feelings of trust as a mental shortcut — replacing detailed evaluation with: do I trust this person?",
+        "real_estate_example": "A Pressure Seller is too exhausted to evaluate agent credentials carefully. They default to one question: does this person feel safe?",
+        "archetypes_affected": ["pressure_seller"]
+      },
+      "Vulnerability Sensitivity": {
+        "definition": "When in a weakened position, we become acutely attuned to signals of potential exploitation.",
+        "real_estate_example": "A Pressure Seller reads every question about their timeline as potential leverage. Even innocent admin questions feel like probing for weakness.",
+        "archetypes_affected": ["pressure_seller"]
+      },
+      "Decision Fatigue": {
+        "definition": "After making many decisions, the quality of our choices deteriorates. We default to the easiest option just to stop deciding.",
+        "real_estate_example": "A Pressure Seller navigating divorce, legal process, and financial stress is making dozens of decisions a day. An agent who adds complexity will lose them.",
+        "archetypes_affected": ["pressure_seller"]
+      },
+      "Information Bias": {
+        "definition": "The tendency to seek more information even when additional information wouldn't improve — or might worsen — the decision.",
+        "real_estate_example": "An Analytical Controller keeps requesting more comparable sales, more data. The information gathering becomes a way to feel in control rather than a genuine input.",
+        "archetypes_affected": ["analytical_controller"]
+      },
+      "Overconfidence Effect": {
+        "definition": "We consistently overestimate the accuracy of our own knowledge and judgments.",
+        "real_estate_example": "An Analytical Controller believes their own price model is more reliable than the agent's — missing the nuance of having sat in 40 appraisals this year.",
+        "archetypes_affected": ["analytical_controller"]
+      },
+      "Analysis Paralysis": {
+        "definition": "A state where overthinking prevents timely action. The search for the optimal decision results in no decision.",
+        "real_estate_example": "An Analytical Controller can spend months comparing agents, waiting for better data. The perfect moment never arrives.",
+        "archetypes_affected": ["analytical_controller"]
+      }
+    }
+  },
+
+  "layer_2": {
+    "name": "The Agent Engine",
+    "core_insight": "Pick the archetype you already are, not the one you think you should be. Then learn to deploy it intentionally — especially when it's not a natural match for the seller you're meeting.",
+
+    "agent_archetypes": [
+      {
+        "id": "market_authority",
+        "name": "The Market Authority",
+        "tag": "Data-led. Suburb-dominant.",
+        "tagline": "You own the numbers. You know this suburb better than anyone in the room, and you make that clear without arrogance — through evidence, not assertion.",
+        "natural_matches": ["cynical_veteran", "analytical_controller", "anxious_upgrader"],
+        "friction_pairings": ["reluctant_downsizer", "pressure_seller"],
+        "proof_mechanisms": [
+          "Specific sale prices with days-on-market for the last 90 days",
+          "Your clearance rate vs suburb average — in writing",
+          "A suburb report you created, not one downloaded from REA",
+          "Median price movement over 3 years, charted"
+        ],
+        "power_phrases": [
+          "The data on this street shows a consistent pattern over the last four sales...",
+          "In the last 90 days I've sold X comparable properties — here's what each achieved.",
+          "Most agents will give you a range. I'll give you a number and show you exactly how I arrived at it.",
+          "Buyers in this suburb are currently responding to [specific factor]. Here's why that matters for your pricing."
+        ],
+        "what_undermines_it": [
+          "Emotional language or anecdote in place of data",
+          "Giving price ranges when pressed for a figure",
+          "Failing to have your suburb stats memorised and precise",
+          "Being warm when the seller needs cold clarity"
+        ]
+      },
+      {
+        "id": "calm_executor",
+        "name": "The Calm Executor",
+        "tag": "Process certainty. Low drama.",
+        "tagline": "You remove uncertainty. In a market that feels chaotic, you are the still point. Process is your product — and you can show it to someone before they even sign.",
+        "natural_matches": ["anxious_upgrader", "pressure_seller", "analytical_controller"],
+        "friction_pairings": ["status_seller", "cynical_veteran"],
+        "proof_mechanisms": [
+          "A written, step-by-step campaign process they can keep",
+          "A communication charter — how often and how you'll update them",
+          "Client testimonials that speak to the experience, not just the result",
+          "Average days-on-market compared to suburb benchmark"
+        ],
+        "power_phrases": [
+          "Here's exactly what happens from the day you sign to settlement — no surprises.",
+          "You'll hear from me every Tuesday and Friday, regardless of whether there's news.",
+          "My job is to take this off your plate completely. You shouldn't have to chase anything.",
+          "I've run this exact process on 40 campaigns. Here's what you can expect at each stage."
+        ],
+        "what_undermines_it": [
+          "Overpromising on price to win the listing",
+          "Being too measured or flat — calm isn't cold",
+          "Not having a literal document to leave behind",
+          "Reactive communication — only calling when there's something to report"
+        ]
+      },
+      {
+        "id": "fierce_advocate",
+        "name": "The Fierce Advocate",
+        "tag": "Negotiation-forward. Competitive.",
+        "tagline": "You fight for every dollar. Sellers feel it immediately — there's an energy in the room that says you will go to war for them. But it must be backed by results, not just heat.",
+        "natural_matches": ["status_seller", "cynical_veteran"],
+        "friction_pairings": ["anxious_upgrader", "pressure_seller", "reluctant_downsizer"],
+        "proof_mechanisms": [
+          "Sale prices achieved above the guide — with context",
+          "Stories of holding firm on price when buyers pushed back",
+          "Auction results that demonstrate control under pressure",
+          "Specific negotiation outcomes that you walked a seller through"
+        ],
+        "power_phrases": [
+          "Buyers know before they walk in that I don't accept under-market offers.",
+          "Here's a sale two months ago where I walked away from a buyer at $40k below — and got $55k more from the next one.",
+          "I don't put your home on the market to take the first offer. I put it on the market to create competition.",
+          "My job is to make buyers feel they might miss out. That pressure is worth more than any marketing spend."
+        ],
+        "what_undermines_it": [
+          "Heat without substance — stories need specific figures and outcomes",
+          "Aggressive energy toward an already-anxious seller",
+          "Using this posture with a Reluctant Downsizer who needs calm",
+          "Fee negotiation that contradicts your 'I fight for every dollar' positioning"
+        ]
+      },
+      {
+        "id": "trusted_advisor",
+        "name": "The Trusted Advisor",
+        "tag": "Relationship depth. Long game.",
+        "tagline": "You're embedded in this community. The relationship extends before the listing and long after settlement. Sellers feel they're choosing a person, not hiring a service.",
+        "natural_matches": ["reluctant_downsizer", "anxious_upgrader", "pressure_seller"],
+        "friction_pairings": ["cynical_veteran", "analytical_controller"],
+        "proof_mechanisms": [
+          "Referral network — names of neighbours and past clients they can call",
+          "Repeat client stories — people who came back for a second or third sale",
+          "Length of time in the suburb — years of presence as a signal",
+          "Post-settlement service examples (introductions to tradespeople, follow-up calls)"
+        ],
+        "power_phrases": [
+          "Three people on this street have asked me to sell for them in the last two years. All of them are happy to talk to you.",
+          "I sold the Nguyens at number 22 eighteen months ago — they introduced me to you. That's how I work.",
+          "My job doesn't end at settlement. I'm still the person you'd call if something came up six months later.",
+          "I've been working in this suburb for eleven years. I know almost every sale, and more importantly, I know most of the buyers."
+        ],
+        "what_undermines_it": [
+          "Relationship-talk without any substance — the Cynical Veteran has heard this before",
+          "Failing to back 'I know this suburb' with actual market data",
+          "Being too conversational when the seller wants a professional structure",
+          "Not being able to produce the referees you claim to have"
+        ]
+      }
+    ],
+
+    "match_matrix": {
+      "description": "How each seller archetype responds to each agent archetype. 'natural' = high alignment, 'friction' = requires deliberate adaptation.",
+      "pairings": [
+        { "seller": "anxious_upgrader", "agent": "market_authority", "alignment": "natural", "key_move": "Lead with the buy-sell coordination data you've managed before. Remove uncertainty through evidence." },
+        { "seller": "anxious_upgrader", "agent": "calm_executor", "alignment": "natural", "key_move": "Show them the full timeline end-to-end. The process document is your listing tool." },
+        { "seller": "anxious_upgrader", "agent": "fierce_advocate", "alignment": "friction", "key_move": "Dial back the competitive energy. This seller needs reassurance, not fight talk." },
+        { "seller": "anxious_upgrader", "agent": "trusted_advisor", "alignment": "natural", "key_move": "Lean into past clients who've done the same move. Referrals from upgraders are gold here." },
+        { "seller": "reluctant_downsizer", "agent": "market_authority", "alignment": "friction", "key_move": "Acknowledge the emotional weight before a single number. Data comes second." },
+        { "seller": "reluctant_downsizer", "agent": "calm_executor", "alignment": "neutral", "key_move": "Patience and process work — but lead with recognition of the home's meaning first." },
+        { "seller": "reluctant_downsizer", "agent": "fierce_advocate", "alignment": "friction", "key_move": "Completely wrong energy. Soften to 90% advisor, 10% advocate." },
+        { "seller": "reluctant_downsizer", "agent": "trusted_advisor", "alignment": "natural", "key_move": "This is your highest-alignment pairing. Community, story, and relationship lead." },
+        { "seller": "cynical_veteran", "agent": "market_authority", "alignment": "natural", "key_move": "Be the agent who talks them out of a high price. Evidence wins where charm fails." },
+        { "seller": "cynical_veteran", "agent": "calm_executor", "alignment": "friction", "key_move": "Too much process can feel like a performance to a Veteran. Anchor everything in outcomes." },
+        { "seller": "cynical_veteran", "agent": "fierce_advocate", "alignment": "natural", "key_move": "Back every claim with a specific story and figure. Cynics respect results, not rhetoric." },
+        { "seller": "cynical_veteran", "agent": "trusted_advisor", "alignment": "friction", "key_move": "The relationship pitch triggers their 'agents say this' filter. Lead with data, follow with relationship." },
+        { "seller": "status_seller", "agent": "market_authority", "alignment": "neutral", "key_move": "Your data must feel curated and premium, not just accurate. Presentation matters here." },
+        { "seller": "status_seller", "agent": "calm_executor", "alignment": "friction", "key_move": "Process doesn't excite a Status Seller. Upgrade your materials and your positioning first." },
+        { "seller": "status_seller", "agent": "fierce_advocate", "alignment": "natural", "key_move": "Match their energy for premium outcome. You fight for top dollar — that's what they want to hear." },
+        { "seller": "status_seller", "agent": "trusted_advisor", "alignment": "neutral", "key_move": "Community matters but prestige matters more. Anchor in comparable premium results." },
+        { "seller": "pressure_seller", "agent": "market_authority", "alignment": "neutral", "key_move": "Don't lead with data. Lead with calm competence and safety. Numbers come after trust." },
+        { "seller": "pressure_seller", "agent": "calm_executor", "alignment": "natural", "key_move": "Perfect pairing. Certainty and process remove the chaos they're drowning in." },
+        { "seller": "pressure_seller", "agent": "fierce_advocate", "alignment": "friction", "key_move": "Your energy will feel unsafe. Move to quiet confidence — let results speak, not intensity." },
+        { "seller": "pressure_seller", "agent": "trusted_advisor", "alignment": "natural", "key_move": "Safety and discretion come naturally to this archetype. This is your best pairing." },
+        { "seller": "analytical_controller", "agent": "market_authority", "alignment": "natural", "key_move": "Come with more data than they expected. Let them challenge it — and hold your ground." },
+        { "seller": "analytical_controller", "agent": "calm_executor", "alignment": "natural", "key_move": "A written process document is exactly what they want. Give them something to analyse." },
+        { "seller": "analytical_controller", "agent": "fierce_advocate", "alignment": "friction", "key_move": "Heat reads as unsubstantiated. Every claim needs a number attached." },
+        { "seller": "analytical_controller", "agent": "trusted_advisor", "alignment": "friction", "key_move": "Relationship without rigour loses them. Back community claims with decade-level data." }
+      ]
+    },
+
+    "market_modes": [
+      {
+        "id": "rising",
+        "name": "Rising Market",
+        "seller_psychology": "Sellers feel validated and confident — but may hold unrealistic ceiling expectations. Risk of overpricing based on trajectory rather than comparable data.",
+        "agent_posture": "Anchor early on realistic comparable data. Celebrate the market but set a defensible price. Manage expectation creep."
+      },
+      {
+        "id": "cooling",
+        "name": "Cooling Market",
+        "seller_psychology": "Anxiety dominates. Sellers who delayed now fear they missed the peak. Recency Bias runs high — yesterday's prices feel like today's floor.",
+        "agent_posture": "Lead with data that shows the realistic current position. Don't catastrophise, but don't flatter. Calm, evidence-based authority is the only credible posture."
+      },
+      {
+        "id": "stable",
+        "name": "Stable Market",
+        "seller_psychology": "Lower urgency. Sellers take longer to decide. Analytical archetypes thrive here — there's time to research. Status sellers may wait for a 'catalyst'.",
+        "agent_posture": "Create a compelling reason to act now that isn't market fear. Personalised to their archetype's motivation."
+      },
+      {
+        "id": "volatile",
+        "name": "Volatile Market",
+        "seller_psychology": "Confusion and decision paralysis. Sellers can't form a price view. Trust becomes the primary selection criterion when data feels unreliable.",
+        "agent_posture": "Become the interpreter of complexity. The agent who can explain what's happening and what to do in 90 seconds wins disproportionately in volatile conditions."
+      }
+    ]
+  },
+
+  "layer_3": {
+    "name": "The Conditioning System",
+    "core_insight": "Sellers don't choose you in the appraisal. They confirm you. The real decision is made in the weeks before, built from accumulated signals across five channels. Conditioning is the system that makes your appraisal win feel inevitable.",
+
+    "five_channels": ["Physical", "Digital", "Social", "Referral", "Direct"],
+
+    "claim_architecture": {
+      "description": "Every agent needs one primary claim — a single, consistent idea that every touchpoint reinforces. Concentration of signal beats volume of activity every time.",
+      "concentration_score": {
+        "description": "Review your last ten touchpoints and count how many clearly reinforce your primary claim.",
+        "0_to_3": "Diffused — You're saying different things each week. Sellers have no clear impression of who you are. You're invisible where it counts.",
+        "4_to_6": "Inconsistent — You have a sense of your claim but haven't committed. The impression is blurred.",
+        "7_to_10": "Concentrated — Every signal points to the same idea. The seller who's been watching you for six weeks knows exactly what you stand for before they call."
+      },
+      "by_agent_archetype": {
+        "market_authority": {
+          "core_claim": "I own the data on this suburb.",
+          "channels": {
+            "digital": "90 days of suburb data that no other agent publishes — because they don't have it.",
+            "physical": "I've sold 14 homes in this suburb this year. Here's what the market actually looks like from inside it.",
+            "direct": "Your neighbours at number 34 asked me to assess this street. The numbers may surprise you.",
+            "social": "Tell every open home attendee one specific data point about the suburb they won't have seen anywhere else.",
+            "referral": "Brief past clients with one new suburb fact each quarter — something worth sharing with neighbours.",
+            "email": "The one thing that changed in this suburb this month — and what it means for anyone thinking about selling."
+          }
+        },
+        "calm_executor": {
+          "core_claim": "I make selling predictable.",
+          "channels": {
+            "digital": "Behind the campaign: what happens between signing with an agent and settlement day — every step.",
+            "physical": "A printed process guide left at the appraisal. 8 steps. Clear. Theirs to keep.",
+            "direct": "Just confirming the timeline we discussed — I've blocked the dates. Here's what happens next week.",
+            "social": "Run the most orderly open home in the suburb. Arrive early. Leave nothing to chance.",
+            "referral": "Ask past clients specifically: 'Did the process feel predictable?' — and use their answer in your pitch.",
+            "email": "Week 2 update: 47 groups through, 6 second inspections, 4 registered bidders so far. Next steps below."
+          }
+        },
+        "fierce_advocate": {
+          "core_claim": "I fight for every dollar.",
+          "channels": {
+            "digital": "Sold $95k above reserve. Not because the market was hot — because we didn't accept less.",
+            "physical": "The sticker is the signal. Add a QR code to the result story — price vs guide, days, context.",
+            "direct": "I've been thinking about your property since we met. I want to tell you why I think we can do better than what the market would suggest.",
+            "social": "Engage every attendee. Know their situation. Build the buyer pool as an act of advocacy.",
+            "referral": "Ask for referrals immediately after the result. 'While it's fresh — who do you know who's thinking about selling?'",
+            "email": "Launching to my private database before the public campaign. If you're interested in [address], you need to be on this list."
+          }
+        },
+        "trusted_advisor": {
+          "core_claim": "I'm embedded in this community.",
+          "channels": {
+            "digital": "Fourteen years in this suburb. Here's what's changed — and what hasn't.",
+            "physical": "From a neighbour, not an agent: a personal note about what's happening on this street right now.",
+            "direct": "Call past clients on the anniversary of their sale. No agenda. Just checking in.",
+            "social": "Greet every person at the door by name if you can. Know who owns what nearby.",
+            "referral": "Partner with two or three local businesses to cross-refer. Café, accountant, tradesperson.",
+            "email": "No call to action. Just something useful about the suburb, sent to people who've lived there five or more years."
+          }
+        }
+      }
+    },
+
+    "thirty_day_sprint": [
+      {
+        "week": 1,
+        "title": "Foundation & Physical Dominance",
+        "targeting": "Stage 1 & 2 sellers",
+        "primary_channels": ["Physical", "Digital"],
+        "actions": [
+          { "channel": "Physical", "action": "Deploy letterbox drop across your core 200 properties", "detail": "One suburb data point + one recent result. Your primary claim in 80 words or fewer. No headshot." },
+          { "channel": "Physical", "action": "Confirm all current signboards are clean, current, and dominant", "detail": "Audit your physical presence on the street. Add a QR code to your most recent result where possible." },
+          { "channel": "Digital", "action": "Publish your monthly suburb report", "detail": "One page. Key metrics only — median price, days on market, clearance rate vs same period last year. Distribute via email and pin to your social profiles." },
+          { "channel": "Digital", "action": "Post one data-led content piece on your primary social platform", "detail": "A specific insight from the suburb report — framed as something sellers need to know, not something agents like to share." },
+          { "channel": "Digital", "action": "Send suburb report to your full database with one personal sentence", "detail": "'The number that surprised me most this month was X — here's why it matters.' Then the report." }
+        ],
+        "psychology_note": "The sellers you're conditioning this week don't know you're conditioning them. They're in Private Consideration. Your physical presence is registering in their peripheral awareness before any conscious consideration begins."
+      },
+      {
+        "week": 2,
+        "title": "Digital Presence & Open Home Activation",
+        "targeting": "Stage 2 & 3 sellers",
+        "primary_channels": ["Digital", "Social", "Physical"],
+        "actions": [
+          { "channel": "Social", "action": "Run Saturday open home with seller-awareness built in", "detail": "Treat every attendee as a potential seller. Have a suburb insight ready to share. The seller-in-disguise is in every open." },
+          { "channel": "Social", "action": "Follow up every open home attendee on Monday — specifically mention the suburb", "detail": "One sentence on the area for each follow-up. Not just the property." },
+          { "channel": "Digital", "action": "Publish a 'what we're seeing at opens' post this week", "detail": "Buyer behaviour, questions being asked, what's generating competition. Sellers watch this closely." },
+          { "channel": "Physical", "action": "Deploy sold sticker on last result with a visible QR code", "detail": "Link to the result story — price vs guide, days on market, number of bidders." },
+          { "channel": "Digital", "action": "Post a result story from the most recent sale", "detail": "One post. What the challenge was. What you did. What the seller said. Specific outcome." }
+        ],
+        "psychology_note": "By Week 2, you're reaching sellers in Market Curiosity — attending opens as camouflaged sellers. They're using the open to see how you work. The Agent Awareness sellers are now monitoring your digital presence."
+      },
+      {
+        "week": 3,
+        "title": "Referral Activation & Direct Outreach",
+        "targeting": "Stage 3 & 4 sellers",
+        "primary_channels": ["Referral", "Direct", "Social"],
+        "actions": [
+          { "channel": "Referral", "action": "Call five past clients — check in, share one market update, ask who they know thinking about selling", "detail": "Not a canvass call. A genuine check-in with one useful piece of information attached." },
+          { "channel": "Referral", "action": "Send three past clients a personalised suburb note — arming them with something to share", "detail": "One paragraph. One data point relevant to their street. They become your referrers because you gave them something to say." },
+          { "channel": "Direct", "action": "Send an unsolicited appraisal letter to your top ten target properties", "detail": "A specific letter. Reference the street by name, the most recent comparable sale, and one reason why now is worth a conversation." },
+          { "channel": "Social", "action": "Attend one community event or local business touchpoint", "detail": "Coffee with a local business owner. A school event. The Trusted Advisor's conditioning happens in real life, not just online." },
+          { "channel": "Direct", "action": "Door knock the immediate neighbours of your current listing", "detail": "Three doors either side. Let them know first. Leave a card with your result summary." }
+        ],
+        "psychology_note": "Stage 3 sellers are now actively asking neighbours who they'd recommend. Your referral activation this week means when that question gets asked, your past clients have something specific to say."
+      },
+      {
+        "week": 4,
+        "title": "Appraisal Conversion & Follow-up Sequence",
+        "targeting": "Stage 4 & 5 sellers",
+        "primary_channels": ["Direct", "Referral", "Digital"],
+        "actions": [
+          { "channel": "Direct", "action": "Follow up every appraisal from the last three weeks — one touch per seller", "detail": "Not a close. One useful piece of information. 'I thought of you when this result came through.' No question. No pressure." },
+          { "channel": "Direct", "action": "Call two sellers who are currently comparing agents — offer to answer any questions", "detail": "Frame as service, not urgency. Ask nothing. Give something." },
+          { "channel": "Referral", "action": "Ask any seller who has signed this month for a specific referral — while the result is fresh", "detail": "Within 48 hours of signing or exchange. 'While you're happy — is there anyone in your network thinking about selling?'" }
+        ],
+        "psychology_note": "The final follow-up should feel inevitable, not hungry. A single, calm, value-adding contact after the appraisal — without asking for the listing — is often the act that converts a lean into a signature."
+      }
+    ],
+
+    "signal_stack": {
+      "description": "Not all signals are equal. The stack defines what you always run, what you run when active, and what you deploy when a specific seller is in sight.",
+      "tiers": [
+        {
+          "tier": "Always On",
+          "commitment": "Every month, regardless of workload",
+          "signals": ["Monthly suburb report (email + social)", "Active signboards on all current listings", "Consistent social presence — minimum one post per week", "Regular letterbox drop — minimum quarterly"],
+          "rationale": "This is your conditioning infrastructure. Sellers forming an impression of you over 6–12 months need consistency, not peaks."
+        },
+        {
+          "tier": "Active Conditioning",
+          "commitment": "When you have listings or active pipeline",
+          "signals": ["Open home seller-awareness protocol", "Result stories within 48 hours of exchange", "Door knocking neighbours of current listings", "Referral activation calls to past clients"],
+          "rationale": "Active listings give you physical proof and social content simultaneously. This is when your conditioning accelerates."
+        },
+        {
+          "tier": "Targeted Pursuit",
+          "commitment": "When a specific seller is identified",
+          "signals": ["Personalised appraisal letter to target property", "Specific follow-up sequence post-appraisal", "Referral request from any shared connection", "One relevant data point sent with no ask attached"],
+          "rationale": "This is precision conditioning for a seller you've identified. Every signal is designed for one person — not the suburb."
+        }
+      ]
+    }
+  }
+}
