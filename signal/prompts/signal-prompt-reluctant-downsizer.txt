@@ -1,0 +1,141 @@
+SIGNAL PROMPT PACK — THE RELUCTANT DOWNSIZER
+============================================
+Seller Psychology Framework for Listing Agents
+signal-layer-1.html | Version 1.0
+
+HOW TO USE
+──────────
+1. Fill in YOUR SITUATION below (takes 2 minutes).
+2. Copy the entire file.
+3. Paste into Claude, ChatGPT, or any AI assistant.
+4. Use one of the SUGGESTED PROMPTS at the bottom — or ask your own question.
+The AI will use the SIGNAL framework in this file to give you specific,
+tailored guidance for this exact seller type.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SELLER ARCHETYPE: THE RELUCTANT DOWNSIZER
+──────────────────────────────────────────
+Selling the family home. Decades of memory. The decision is made —
+emotionally it's not. Needs to feel understood, not processed.
+
+DOMINANT FEAR
+Feeling like just another transaction. Being rushed through a sale
+that represents the end of a chapter.
+
+DOMINANT DESIRE
+To be honoured. A sale that respects what the home has meant — and an
+agent who genuinely sees it.
+
+ACTIVE COGNITIVE BIASES
+Endowment Effect — They value the home far above what the market would
+  pay, simply because it's theirs. Every renovation, every memory adds
+  phantom value that buyers won't pay for — but the seller can't see past.
+
+Sunk Cost — The $80,000 kitchen, the garden they spent a decade on — these
+  feel like they must be reflected in the price. They're not. The market
+  compares to other sales, not to receipts. But logic won't shift this alone.
+
+Status Quo Bias — Staying requires nothing. Moving requires everything.
+  Even when they know the move makes sense, inertia presents as comfort.
+  The risk of change feels greater than the risk of staying.
+
+Emotional Priming — Whatever emotion they're carrying into the conversation
+  colours how they receive your words. Process-talk feels cold. Numbers feel
+  clinical. They need to feel seen before they can hear logic.
+
+WHAT WINS THEM
+• Taking time to hear the story of the home before talking business
+• Framing the sale as a transition, not a disposal
+• Showing genuine care for how the home is presented and photographed
+• Patience — never appearing to rush the decision or the process
+• Connecting them emotionally to the next chapter, not just away from this one
+
+WHAT LOSES THEM
+• Moving too fast to price
+• Impersonal or process-heavy first conversations
+• Any language that treats the home as a commodity
+• Being the third agent and acting like that doesn't matter to them
+
+NEVER SAY
+• "The buyers won't care about your renovations — it's about comparable sales."
+• "We just need to price it right and move it quickly."
+• "The market doesn't have much time for sentiment."
+
+DECISION WINDOW INTENSITY
+This archetype peaks emotionally in Stage 1 (Private Consideration) —
+the internal grief of the decision happens before any agent is called.
+They arrive at the appraisal already emotionally exhausted. Stage 4
+(Appraisal Mode) reactivates the emotion. Stage 5 (Decision) can be
+prolonged — they may delay not because of logic, but because signing
+feels final. Never interpret slow decision-making as disinterest.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+AGENT × SELLER MATCH NOTES
+───────────────────────────
+Market Authority — Friction pairing. Lead with story and acknowledgement.
+  Data is the second conversation, not the first. If you open with numbers,
+  you'll never recover their emotional trust.
+
+Calm Executor — Neutral. Process reassures them, but only after the emotional
+  acknowledgement has been made. Sequence matters: story first, then structure.
+
+Fierce Advocate — High friction. Competitive energy is deeply wrong for this
+  archetype. They don't want a fighter — they want a guardian. Dial to
+  90% Trusted Advisor, 10% advocate if this is your natural style.
+
+Trusted Advisor — Strongest match. Community, relationship, and long-game
+  care is exactly what this seller needs. If you have history in the suburb,
+  use it. If you don't, create the feeling of it.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+YOUR SITUATION
+──────────────
+Fill in these fields before pasting into your AI assistant.
+
+My agent archetype: _______________________________________________
+  (Market Authority / Calm Executor / Fierce Advocate / Trusted Advisor)
+
+Property suburb and type: ________________________________________
+  (e.g. "4-bed family home in Balwyn, circa $2.4M, owned 30+ years")
+
+Their situation in one sentence: _________________________________
+  (e.g. "Widow in her 70s, children have left, moving to a retirement
+  village interstate — decision was the children's idea, not hers")
+
+Where they are in the decision window: ___________________________
+  (Stage 1 Private / Stage 2 Curious / Stage 3 Aware /
+   Stage 4 Appraisal / Stage 5 Decision)
+
+Key emotional signal you've observed: ___________________________
+  (e.g. "She kept talking about the garden and deflecting price questions")
+
+How many agents are they seeing: _________________________________
+
+Any additional context: __________________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SUGGESTED PROMPTS
+─────────────────
+→ "Write me the opening 3 minutes of my appraisal. I want to acknowledge
+   the weight of this decision immediately — without being patronising
+   or making it worse."
+
+→ "The seller keeps deflecting price conversations by talking about the
+   renovations they've done. How do I honour that without setting an
+   unrealistic expectation?"
+
+→ "What's the specific language I should use to frame this sale as a
+   transition rather than a loss — in a way that feels genuine, not scripted?"
+
+→ "Write a follow-up message for after the appraisal that feels warm
+   and unhurried — not a close, just a presence."
+
+→ "They're considering not selling at all. What do I say — and what
+   do I not say — in the next conversation?"
+
+→ "How do I handle the situation where the adult children are pushing
+   for the sale but the seller herself is ambivalent?"

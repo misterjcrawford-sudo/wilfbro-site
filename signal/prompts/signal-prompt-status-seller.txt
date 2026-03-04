@@ -1,0 +1,148 @@
+SIGNAL PROMPT PACK — THE STATUS SELLER
+=======================================
+Seller Psychology Framework for Listing Agents
+signal-layer-1.html | Version 1.0
+
+HOW TO USE
+──────────
+1. Fill in YOUR SITUATION below (takes 2 minutes).
+2. Copy the entire file.
+3. Paste into Claude, ChatGPT, or any AI assistant.
+4. Use one of the SUGGESTED PROMPTS at the bottom — or ask your own question.
+The AI will use the SIGNAL framework in this file to give you specific,
+tailored guidance for this exact seller type.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SELLER ARCHETYPE: THE STATUS SELLER
+────────────────────────────────────
+The home is an identity object. The sale is a public performance of
+taste and success. Wants premium handling — and will judge you on
+aesthetics as much as outcomes.
+
+DOMINANT FEAR
+Being undersold — not just financially, but symbolically. A result
+that doesn't reflect the home's prestige or their judgment in owning it.
+
+DOMINANT DESIRE
+A premium experience from first contact to settlement. To be seen as
+owning something remarkable — by the agent, the buyers, the market.
+
+ACTIVE COGNITIVE BIASES
+Social Comparison — Their price expectation isn't shaped by data. It's
+  shaped by what the neighbour achieved, what a colleague mentioned at
+  dinner, what properties in the same social tier have fetched. The
+  comparable that matters to them is a peer, not a median.
+
+Halo Effect — First impressions extend to every judgement they make
+  about you. How you're dressed, the quality of your materials, the
+  precision of your language — all of this creates an assumption of
+  competence or its absence before you've said a word about the market.
+
+Prestige Pricing Bias — A higher quote signals a more sophisticated
+  understanding of value to this archetype. They're more reassured by
+  $2.1M than $1.85M — not because they've validated the number, but
+  because the higher figure matches their self-image.
+
+Identity Preservation — Accepting a below-expectation result isn't
+  just a financial loss. It's an identity threat. It says: the home
+  wasn't as remarkable as you thought. The agent must protect the
+  story, not just the price.
+
+WHAT WINS THEM
+• Premium marketing approach and materials from day one — before signing
+• Demonstrating your own positioning clearly matches the property's tier
+• Comparable prestige sales, not just suburb medians
+• Showing genuine appreciation for the property's specific standout features
+• Making them feel like the campaign will be a public statement of quality
+
+WHAT LOSES THEM
+• Generic or template marketing proposals
+• Being visually or professionally under-presented at the appraisal
+• Focusing on volume ("we sell a lot of homes in this area")
+• Comparing the property to anything they'd consider beneath it
+• Treating the listing conversation like every other listing conversation
+
+NEVER SAY
+• "It's a great property but buyers are pretty price-sensitive right now."
+• "We'd market it the same way we do all our listings."
+• "The house down the street only got $X — let's be realistic."
+
+DECISION WINDOW INTENSITY
+This archetype is most activated at Stage 3 (Agent Awareness) and
+Stage 4 (Appraisal Mode). They form strong opinions about agents from
+a distance — from the quality of your signage, your social presence,
+and how your materials look. If you haven't made a strong visual
+impression before the appraisal, you're already behind.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+AGENT × SELLER MATCH NOTES
+───────────────────────────
+Market Authority — Neutral. Your data must feel curated and premium,
+  not just accurate. A printout from REA loses you the room. A custom
+  suburb analysis, beautifully formatted, gains it.
+
+Calm Executor — Friction pairing. Process doesn't excite this seller.
+  Before you show them a timeline, show them what a premium campaign
+  looks like. Upgrade your leave-behind materials significantly.
+
+Fierce Advocate — Strongest match. You fight for top dollar and make
+  buyers feel they might miss out. That's exactly what a Status Seller
+  wants to hear — and believe. Back every claim with a specific result.
+
+Trusted Advisor — Neutral. Community embeddedness matters, but prestige
+  results matter more. Anchor in comparable premium sales from your
+  network, not just years in the suburb.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+YOUR SITUATION
+──────────────
+Fill in these fields before pasting into your AI assistant.
+
+My agent archetype: _______________________________________________
+  (Market Authority / Calm Executor / Fierce Advocate / Trusted Advisor)
+
+Property suburb and type: ________________________________________
+  (e.g. "5-bed architect-designed home in Toorak, circa $5.5M")
+
+Their situation in one sentence: _________________________________
+  (e.g. "Successful professional couple, upgrading to a larger property
+  in the same suburb, expect the sale to be a market event")
+
+Where they are in the decision window: ___________________________
+  (Stage 1 Private / Stage 2 Curious / Stage 3 Aware /
+   Stage 4 Appraisal / Stage 5 Decision)
+
+Their price expectation vs your assessment: _____________________
+  (e.g. "They're expecting $5.8M, comparable data supports $5.1–5.3M")
+
+How many agents are they seeing: _________________________________
+
+Any additional context: __________________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SUGGESTED PROMPTS
+─────────────────
+→ "Write me an appraisal opening that immediately signals I operate
+   at the level of this property — through the language I use, the
+   questions I ask, and the way I engage with the home itself."
+
+→ "The seller's price expectation is significantly above the market.
+   How do I manage this down without triggering their identity
+   around the home's prestige?"
+
+→ "Write me a marketing proposal introduction paragraph for this
+   property that treats it as a distinct market event — not a listing."
+
+→ "What should my leave-behind materials look like and contain for
+   this archetype — and what would immediately disqualify me if I
+   brought the wrong thing?"
+
+→ "Another agent has quoted $500k more than me. How do I address this
+   without looking like the lesser option?"
+
+→ "Write a post-appraisal follow-up for this seller that feels premium
+   and considered — not a standard 'just checking in' message."

@@ -1,0 +1,191 @@
+SIGNAL PROMPT PACK — THE CLAIM BUILDER
+========================================
+Conditioning & Campaign Framework for Listing Agents
+signal-layer-3.html | Version 1.0
+
+HOW TO USE
+──────────
+1. Fill in YOUR SITUATION below (takes 2 minutes).
+2. Copy the entire file.
+3. Paste into Claude, ChatGPT, or any AI assistant.
+4. Use one of the SUGGESTED PROMPTS at the bottom — or ask your own question.
+The AI will use the SIGNAL framework in this file to help you build,
+refine, or audit a claim architecture across every channel you use.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+THE CLAIM ARCHITECTURE FRAMEWORK
+──────────────────────────────────
+A claim is not a tagline. It is the single, specific thing you are
+known for in the mind of a potential seller — before they call.
+
+Most agents have no claim. They have a description.
+"Experienced local agent with a passion for results" is not a claim.
+It is category noise. Every agent says a version of it.
+
+A claim is narrower, more specific, and more verifiable. It answers
+one question: why you, rather than anyone else?
+
+THE THREE CLAIM TYPES
+─────────────────────
+Process Claim — You are known for HOW you work.
+  Examples:
+  • "Every seller gets a written 28-day campaign schedule before
+    signing. No surprises."
+  • "I give one price, not a range. I can defend every figure."
+  • "My vendors get a call within 24 hours of every open for inspection —
+    full buyer feedback, not a summary."
+
+  Best for: Calm Executor, Analytical Controller sellers
+  Weakest when: used without case study evidence to back it
+
+Result Claim — You are known for WHAT you achieve.
+  Examples:
+  • "In the last 12 months, 9 of my 11 sales in [suburb] sold above
+    reserve at auction."
+  • "My median days on market in [suburb] is 18 — suburb median is 34."
+  • "Every property I listed in Q4 last year sold within 3% of asking price."
+
+  Best for: Cynical Veteran, Analytical Controller, Status Seller
+  Weakest when: the numbers aren't strong — don't use a result claim
+    to hide a mediocre record. Sellers can verify.
+
+Relationship Claim — You are known for WHO you are in the community.
+  Examples:
+  • "I've introduced more buyers to [suburb] properties than any other
+    agent — I've been here since 2011."
+  • "Three generations of one family have sold with me in this street."
+  • "I wrote the suburb profile that [major publication] used last year."
+
+  Best for: Trusted Advisor, Reluctant Downsizer, Pressure Seller
+  Weakest when: used without specifics — "I know this suburb" without
+    a decade of data behind it reads as every other agent's line.
+
+THE CONCENTRATION SCORE
+───────────────────────
+Your concentration score measures how consistently your claim appears
+across your touchpoints. Rate each channel from 0–2:
+
+  0 = Claim is absent or contradicted
+  1 = Claim appears but inconsistently or vaguely
+  2 = Claim is specific, consistent, and evidenced
+
+Score each channel:
+
+  [ ] Email signature / footer
+  [ ] Social media bio
+  [ ] Social media content (last 10 posts)
+  [ ] Website "About" page
+  [ ] Appraisal leave-behind materials
+  [ ] Letterbox / door-drop pieces
+  [ ] Verbal introduction at appraisal
+  [ ] Post-appraisal follow-up messages
+  [ ] Google Business profile
+  [ ] Referral request language
+
+Maximum score: 20
+Strong claim architecture: 16+
+Fragmented (typical agent): 6–10
+No claim present: below 6
+
+If your score is below 14, the most valuable thing you can do this
+sprint is not more content — it is rebuilding from a single, specific,
+defensible claim and rewriting every channel from there.
+
+CLAIM BY AGENT ARCHETYPE
+─────────────────────────
+Market Authority — Lead with a result claim, supported by process.
+  Your claim should feel like it was written by someone who tracks
+  their own numbers compulsively. Because you do.
+  Avoid: relationship-first language. It dilutes your authority signal.
+
+Calm Executor — Lead with a process claim, supported by result.
+  Your claim should reduce seller anxiety. "Here is exactly what
+  happens" — then the outcome. Predictability is your competitive edge.
+  Avoid: vague assurances. Every process claim needs a specific example.
+
+Fierce Advocate — Lead with a result claim, delivered with conviction.
+  Your claim should feel like a commitment, not a statistic. "I have
+  never accepted an offer I didn't believe was the seller's best
+  outcome" — then the numbers to prove it.
+  Avoid: process language. It flattens your energy without matching it.
+
+Trusted Advisor — Lead with a relationship claim, grounded in data.
+  Your claim should be felt before it is read. Longevity, presence,
+  community. Then the result that proves it wasn't just presence.
+  Avoid: leading with results — it disconnects from your natural register.
+
+THE CLAIM AUDIT
+───────────────
+Before building a new claim, audit the current one — or the absence of one.
+
+Step 1: Find your most recent version of these materials:
+  social bio, website "About", appraisal leave-behind, email footer.
+
+Step 2: Ask: What is the single thing a seller would remember
+  if they read all of these and then set them down?
+
+Step 3: If the answer is "nothing specific" or "probably nothing" —
+  you have a description, not a claim. Start the build from scratch.
+
+Step 4: Write one sentence that answers: why you, rather than anyone?
+  It must contain at least one specific, verifiable element.
+  It must be something a competitor could not honestly copy.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+YOUR SITUATION
+──────────────
+Fill in these fields before pasting into your AI assistant.
+
+My agent archetype: _______________________________________________
+  (Market Authority / Calm Executor / Fierce Advocate / Trusted Advisor)
+
+My suburb(s) and property focus: ________________________________
+  (e.g. "Inner north Brisbane, $900K–1.6M townhouses and character homes")
+
+My current claim (if I have one): _______________________________
+  (e.g. "I'm the most reviewed agent in [suburb] on Rate My Agent"
+   — or: "I don't have one, I just describe what I do")
+
+My strongest verifiable result from the last 12 months: _________
+  (e.g. "8 of 9 properties sold above reserve, median 14 DOM vs suburb 29")
+
+My strongest relationship/community asset: ______________________
+  (e.g. "11 years in the suburb, 4 past-client referrals in the last year")
+
+My current concentration score (0–20): __________________________
+  (Self-assessed — or paste your channel-by-channel scores above)
+
+Channels I want to rewrite first: _______________________________
+  (e.g. "Social bio, appraisal leave-behind, verbal introduction")
+
+Any additional context: __________________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SUGGESTED PROMPTS
+─────────────────
+→ "I'm a [archetype] in [suburb]. Based on the results I've shared,
+   build me a single-sentence core claim — and explain why it works
+   for my archetype and the sellers I'm trying to reach."
+
+→ "Rewrite my social bio, website About section, and email footer
+   so that all three carry the same claim consistently — without
+   sounding copy-pasted."
+
+→ "Score my claim architecture. Here are my current versions of
+   [channels]. Give me a concentration score and identify the
+   three highest-impact rewrites."
+
+→ "Write my verbal introduction for the appraisal — the version I
+   say in the first 90 seconds. It should carry my claim naturally,
+   not as a pitch."
+
+→ "My claim is [current claim]. Is this a true claim or just a
+   description? If it's a description, help me sharpen it into
+   something specific and defensible."
+
+→ "Write five variations of my core claim — each calibrated to
+   a different seller archetype (Analytical Controller, Status Seller,
+   Reluctant Downsizer, Cynical Veteran, Pressure Seller)."

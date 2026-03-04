@@ -6,7 +6,7 @@
   <title>SIGNAL — Layer 2: The Agent Engine</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -136,7 +136,7 @@
       background: rgba(255,255,255,0.2);
     }
     .layer-header h1 {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(36px, 5vw, 68px);
       font-weight: 400;
       line-height: 1.05;
@@ -184,7 +184,7 @@
       align-items: start;
     }
     .serif-h2 {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(26px, 3vw, 40px);
       font-weight: 400;
       line-height: 1.15;
@@ -267,7 +267,7 @@
       margin-bottom: 16px;
     }
     .po-headline {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: 22px;
       font-weight: 400;
       font-style: italic;
@@ -341,7 +341,7 @@
     .agent-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
 
     .ap-name {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(28px, 3.5vw, 46px);
       font-weight: 400;
       line-height: 1.05;
@@ -528,7 +528,7 @@
       padding: 24px;
     }
     .pc-label { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-3); margin-bottom: 12px; }
-    .pc-headline { font-family: 'Instrument Serif', serif; font-size: 18px; font-style: italic; color: var(--black); margin-bottom: 12px; line-height: 1.35; }
+    .pc-headline { font-family: 'Playfair Display', Georgia, serif; font-size: 18px; font-style: italic; color: var(--black); margin-bottom: 12px; line-height: 1.35; }
     .pc-body { font-size: 13px; color: var(--gray-4); line-height: 1.6; }
     .posture-card.highlight { background: var(--black); border-color: var(--black); }
     .posture-card.highlight .pc-label { color: rgba(255,255,255,0.35); }
@@ -646,7 +646,25 @@
 
     @media (max-width: 900px) {
       nav { padding: 18px 24px; }
-      .nav-center { display: none; }
+      .nav-center {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255,255,255,0.98);
+        border-bottom: 1px solid var(--gray-1);
+        padding: 16px 24px 20px;
+        gap: 6px;
+        z-index: 98;
+        backdrop-filter: blur(8px);
+      }
+      .nav-center.is-open { display: flex; }
+      .nav-hamburger { display: flex; }
+      .nav-cta { display: none; }
+      .nav-back { display: none; }
+      .nav-layer-label { display: none; }
       .layer-header { padding: 48px 24px 40px; }
       .suburb-section { padding: 40px 24px; }
       .mode-grid { grid-template-columns: 1fr 1fr; }
@@ -661,7 +679,62 @@
       .rehearsal-section { padding: 40px 24px; }
       .layer-nav { padding: 32px 24px; flex-direction: column; gap: 20px; align-items: flex-start; }
     }
-  </style>
+  
+    .nav-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--gray-1);
+      align-self: center;
+      flex-shrink: 0;
+      margin: 0 4px;
+    }
+
+    .nav-resource {
+      background: var(--gray-0) !important;
+      color: var(--gray-3) !important;
+      border-color: transparent !important;
+    }
+
+    .nav-resource:hover {
+      background: var(--black) !important;
+      color: var(--white) !important;
+      border-color: var(--black) !important;
+    }
+
+    .nav-resource.active {
+      background: var(--black) !important;
+      color: var(--white) !important;
+      border-color: var(--black) !important;
+    }
+
+
+    /* ── MOBILE NAV HAMBURGER ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: 1px solid var(--gray-2);
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin-left: 8px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--gray-4);
+      border-radius: 2px;
+      transition: all 0.25s;
+      transform-origin: center;
+    }
+    .nav-hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+</style>
 </head>
 <body>
 
@@ -672,12 +745,16 @@
       <a href="./signal-layer-1.html" class="nav-layer">L1 — Seller Map</a>
       <a href="#" class="nav-layer active">L2 — Agent Engine</a>
       <a href="./signal-layer-3.html" class="nav-layer">L3 — Conditioning</a>
-      <a href="./signal-new-agents.html" class="nav-layer">New Agents</a>
-      <a href="./signal-downloads.html" class="nav-layer">Prompt Packs</a>
+      <span class="nav-divider"></span><a href="./signal-new-agents.html" class="nav-layer nav-resource">New Agents</a>
+      <a href="./signal-downloads.html" class="nav-layer nav-resource">Prompt Packs</a>
     </div>
     <div class="nav-right">
       <a href="./signal-layer-1.html" class="nav-back">← Layer 1</a>
       <a href="./signal-layer-3.html" class="nav-cta">Continue to L3 →</a>
+    
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
@@ -1483,5 +1560,31 @@
     }
   </script>
 
+
+  <script>
+  (function(){
+    var btn = document.querySelector('.nav-hamburger');
+    var menu = document.querySelector('.nav-center');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var open = menu.classList.toggle('is-open');
+      btn.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', function(){
+      menu.classList.remove('is-open');
+      btn.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        menu.classList.remove('is-open');
+        btn.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+  </script>
 </body>
 </html>

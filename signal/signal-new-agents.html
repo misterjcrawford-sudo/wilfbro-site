@@ -6,7 +6,7 @@
   <title>New Agents — SIGNAL</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -85,7 +85,7 @@
     }
 
     .nav-layer {
-      border: 1px solid var(--gray-1);
+      border: 1px solid var(--gray-2);
       border-radius: 999px;
       padding: 6px 16px;
       font-size: 12px;
@@ -165,7 +165,7 @@
     }
 
     .layer-header h1 {
-      font-family: 'Instrument Serif', Georgia, serif;
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(44px, 6vw, 80px);
       font-weight: 400;
       line-height: 1.05;
@@ -202,7 +202,7 @@
     }
 
     .stat-num {
-      font-family: 'Instrument Serif', Georgia, serif;
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: 32px;
       font-weight: 400;
       color: var(--teal);
@@ -239,7 +239,7 @@
     }
 
     .section-h2 {
-      font-family: 'Instrument Serif', Georgia, serif;
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(28px, 3.5vw, 46px);
       font-weight: 400;
       line-height: 1.1;
@@ -268,7 +268,7 @@
 
     .reframe-callout::before {
       content: '"';
-      font-family: 'Instrument Serif', Georgia, serif;
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: 120px;
       line-height: 1;
       color: rgba(255,255,255,0.08);
@@ -278,7 +278,7 @@
     }
 
     .callout-text {
-      font-family: 'Instrument Serif', Georgia, serif;
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(20px, 2.5vw, 28px);
       font-weight: 400;
       line-height: 1.35;
@@ -448,7 +448,7 @@
     .arch-panel.active { display: grid; }
 
     .arch-panel-name {
-      font-family: 'Instrument Serif', Georgia, serif;
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(26px, 3vw, 38px);
       font-weight: 400;
       line-height: 1.15;
@@ -726,7 +726,7 @@
     }
 
     .map-phase-title {
-      font-family: 'Instrument Serif', Georgia, serif;
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: 22px;
       font-weight: 400;
       line-height: 1.2;
@@ -827,7 +827,7 @@
     .case-step:hover { background: var(--teal-bg); }
 
     .case-step-num {
-      font-family: 'Instrument Serif', Georgia, serif;
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: 36px;
       font-weight: 400;
       color: var(--gray-1);
@@ -887,7 +887,7 @@
     }
 
     .na-dl-heading {
-      font-family: 'Instrument Serif', Georgia, serif;
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(22px, 2.5vw, 32px);
       font-weight: 400;
       color: var(--white);
@@ -969,7 +969,25 @@
 
     @media (max-width: 768px) {
       nav { padding: 18px 24px; }
-      .nav-center { display: none; }
+      .nav-center {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255,255,255,0.98);
+        border-bottom: 1px solid var(--gray-1);
+        padding: 16px 24px 20px;
+        gap: 6px;
+        z-index: 98;
+        backdrop-filter: blur(8px);
+      }
+      .nav-center.is-open { display: flex; }
+      .nav-hamburger { display: flex; }
+      .nav-cta { display: none; }
+      .nav-back { display: none; }
+      .nav-layer-label { display: none; }
       .layer-header,
       .reframe-section,
       .proof-section,
@@ -992,7 +1010,62 @@
       .proof-grid { grid-template-columns: 1fr; }
       .arch-tabs { padding: 0 24px; }
     }
-  </style>
+  
+    .nav-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--gray-1);
+      align-self: center;
+      flex-shrink: 0;
+      margin: 0 4px;
+    }
+
+    .nav-resource {
+      background: var(--gray-0) !important;
+      color: var(--gray-3) !important;
+      border-color: transparent !important;
+    }
+
+    .nav-resource:hover {
+      background: var(--black) !important;
+      color: var(--white) !important;
+      border-color: var(--black) !important;
+    }
+
+    .nav-resource.active {
+      background: var(--black) !important;
+      color: var(--white) !important;
+      border-color: var(--black) !important;
+    }
+
+
+    /* ── MOBILE NAV HAMBURGER ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: 1px solid var(--gray-2);
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin-left: 8px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--gray-4);
+      border-radius: 2px;
+      transition: all 0.25s;
+      transform-origin: center;
+    }
+    .nav-hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+</style>
 </head>
 <body>
 
@@ -1003,12 +1076,16 @@
       <a href="./signal-layer-1.html" class="nav-layer">L1 — Seller Map</a>
       <a href="./signal-layer-2.html" class="nav-layer">L2 — Agent Engine</a>
       <a href="./signal-layer-3.html" class="nav-layer">L3 — Conditioning</a>
-      <a href="./signal-new-agents.html" class="nav-layer active">New Agents</a>
-      <a href="./signal-downloads.html" class="nav-layer">Prompt Packs</a>
+      <span class="nav-divider"></span><a href="./signal-new-agents.html" class="nav-layer nav-resource active">New Agents</a>
+      <a href="./signal-downloads.html" class="nav-layer nav-resource">Prompt Packs</a>
     </div>
     <div class="nav-right">
       <a href="./index.html" class="nav-back">← Overview</a>
       <a href="./signal-downloads.html" class="nav-cta">Prompt Packs</a>
+    
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
@@ -1546,10 +1623,10 @@
         <p class="na-dl-sub">Two prompt packs built specifically for new agents — fill in your situation and get specific, honest guidance for the seller in front of you, and a month-by-month plan for building your own proof.</p>
       </div>
       <div class="na-dl-btns">
-        <a href="./prompts/signal-prompt-new-agent-foundation.txt" download="signal-prompt-new-agent-foundation.txt" class="na-dl-btn primary">
+        <a href="./prompts/signal-prompt-new-agent-foundation.txt" target="_blank" rel="noopener" download="signal-prompt-new-agent-foundation.txt" class="na-dl-btn primary">
           New Agent Foundation <span>↓</span>
         </a>
-        <a href="./prompts/signal-prompt-new-agent-90days.txt" download="signal-prompt-new-agent-90days.txt" class="na-dl-btn secondary">
+        <a href="./prompts/signal-prompt-new-agent-90days.txt" target="_blank" rel="noopener" download="signal-prompt-new-agent-90days.txt" class="na-dl-btn secondary">
           First 90 Days Proof Builder <span>↓</span>
         </a>
       </div>
@@ -1573,5 +1650,31 @@
     }
   </script>
 
+
+  <script>
+  (function(){
+    var btn = document.querySelector('.nav-hamburger');
+    var menu = document.querySelector('.nav-center');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var open = menu.classList.toggle('is-open');
+      btn.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', function(){
+      menu.classList.remove('is-open');
+      btn.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        menu.classList.remove('is-open');
+        btn.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+  </script>
 </body>
 </html>

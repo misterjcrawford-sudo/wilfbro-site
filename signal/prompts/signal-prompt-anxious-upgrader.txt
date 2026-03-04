@@ -1,0 +1,144 @@
+SIGNAL PROMPT PACK — THE ANXIOUS UPGRADER
+=========================================
+Seller Psychology Framework for Listing Agents
+signal-layer-1.html | Version 1.0
+
+HOW TO USE
+──────────
+1. Fill in YOUR SITUATION below (takes 2 minutes).
+2. Copy the entire file.
+3. Paste into Claude, ChatGPT, or any AI assistant.
+4. Use one of the SUGGESTED PROMPTS at the bottom — or ask your own question.
+The AI will use the SIGNAL framework in this file to give you specific,
+tailored guidance for this exact seller type.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SELLER ARCHETYPE: THE ANXIOUS UPGRADER
+───────────────────────────────────────
+Stretched financially. Terrified of mistiming the market. Selling and
+buying simultaneously — and the stress of that coordination keeps them
+up at night.
+
+DOMINANT FEAR
+Selling too cheap, buying too high, and ending up worse off than before.
+
+DOMINANT DESIRE
+Certainty. A clear plan, a timeline they can trust, and someone who
+removes the chaos.
+
+ACTIVE COGNITIVE BIASES
+Loss Aversion — They feel the pain of a potential loss twice as intensely
+  as the pleasure of a gain. The downside scenario dominates their thinking
+  even when the numbers favour the move.
+
+Recency Bias — Recent market movements feel permanent. If prices have
+  risen, they assume they'll keep rising. If prices softened last month,
+  they believe the market is collapsing.
+
+Anchoring — The first price figure they hear lodges in their mind.
+  Every subsequent estimate is measured against that anchor, regardless
+  of whether it was accurate.
+
+Worst-Case Thinking — Their mind gravitates to the worst possible outcome
+  (sell low, buy high, end up worse off) even when probability is low.
+  The fear feels more real than the likely outcome.
+
+WHAT WINS THEM
+• Showing you have coordinated buy-sell transitions before — with outcomes
+• Giving them a step-by-step process they can see end-to-end before signing
+• Specific suburb data that removes uncertainty from both sides of the move
+• Testimonials or referrals from past upgraders you've guided successfully
+• Being the calm, structured presence in a situation that feels chaotic
+
+WHAT LOSES THEM
+• Vague optimism ("it's a great time to sell — the market's strong")
+• Not acknowledging the complexity of buying simultaneously
+• Rushing the conversation or skipping logistics
+• High price estimates with no basis — they'll be conditioned down later
+• Any language that makes the process sound unpredictable
+
+NEVER SAY
+• "Don't worry about the timing — it always works out."
+• "The market's moving fast, you need to act now."
+• "We'll figure out the buy side once this one sells."
+
+DECISION WINDOW INTENSITY
+This archetype stays relatively calm in Stage 1 (Private Consideration)
+but escalates sharply from Stage 2 onward. They're emotionally activated
+during market research and at peak anxiety by the appraisal stage. The
+decision tends to feel overwhelming — they want it made for them, but
+won't admit it. Whoever gives them the clearest plan wins.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+AGENT × SELLER MATCH NOTES
+───────────────────────────
+Market Authority — Strong match. Lead with buy-sell coordination data.
+  Show comparable upgrader scenarios. Evidence over reassurance.
+
+Calm Executor — Strongest match. This seller's primary need is certainty.
+  Your process document is your listing tool — show them the full
+  timeline before you discuss price.
+
+Fierce Advocate — Friction pairing. Dial back the competitive energy.
+  This seller needs composure, not heat. Advocacy language triggers
+  their worst-case thinking.
+
+Trusted Advisor — Strong match. Referrals from past upgraders are the
+  highest-value proof you can offer. Lean into shared experience stories.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+YOUR SITUATION
+──────────────
+Fill in these fields before pasting into your AI assistant.
+
+My agent archetype: _______________________________________________
+  (Market Authority / Calm Executor / Fierce Advocate / Trusted Advisor)
+
+Property suburb and type: ________________________________________
+  (e.g. "3-bed house in Hawthorn East, circa $1.8M")
+
+Their situation in one sentence: _________________________________
+  (e.g. "Couple mid-40s, two kids, want to upsize to a 4-bed before
+  school year starts, have a shortlist of properties they're watching")
+
+Where they are in the decision window: ___________________________
+  (Stage 1 Private / Stage 2 Curious / Stage 3 Aware /
+   Stage 4 Appraisal / Stage 5 Decision)
+
+Their biggest stated concern: ____________________________________
+  (e.g. "Worried they'll sell and then not find anything to buy")
+
+Competing agents you're up against: ______________________________
+  (Names/archetypes if known, or "unknown")
+
+Any additional context: __________________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SUGGESTED PROMPTS
+─────────────────
+Use one of these after pasting — or write your own.
+
+→ "Write me the opening 3 minutes of my appraisal with this seller.
+   Start from the moment I walk in. I want to immediately signal that
+   I understand their situation without them having to explain it."
+
+→ "What are the three things most likely to lose me this listing,
+   and what's the specific move to avoid each one?"
+
+→ "The seller has been quoted $150k more by another agent. Walk me
+   through how to handle that conversation without undermining the
+   other agent or caving on my number."
+
+→ "Write a post-appraisal follow-up message for this seller. It should
+   add value and move them toward a decision without any pressure."
+
+→ "What questions should I ask in the first 10 minutes to understand
+   exactly where their anxiety is sitting — and what they most need
+   to hear from me?"
+
+→ "Create a one-page process overview I can leave with this seller
+   after the appraisal — covering what happens from sign to settlement."

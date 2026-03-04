@@ -1,0 +1,166 @@
+SIGNAL PROMPT PACK — THE 30-DAY SPRINT PLANNER
+===============================================
+Conditioning & Campaign Framework for Listing Agents
+signal-layer-3.html | Version 1.0
+
+HOW TO USE
+──────────
+1. Fill in YOUR SITUATION below (takes 2 minutes).
+2. Copy the entire file.
+3. Paste into Claude, ChatGPT, or any AI assistant.
+4. Use one of the SUGGESTED PROMPTS at the bottom — or ask your own question.
+The AI will use the SIGNAL framework in this file to give you a customised,
+week-by-week conditioning plan for your specific archetype and market.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+THE 30-DAY SPRINT FRAMEWORK
+────────────────────────────
+The 30-Day Sprint is not a marketing calendar. It is a conditioning
+sequence — a structured approach to shifting how potential sellers
+perceive you before they're ready to call.
+
+The goal of each sprint is not leads. It is position.
+Agents who run sprints consistently don't chase listings —
+they receive them from sellers who've already decided.
+
+THE FOUR WEEKS
+──────────────
+Week 1 — PLANT
+  The goal is presence, not persuasion. You are placing evidence
+  of your competence into the spaces where sellers are already paying
+  attention. No asks. No urgency. Just signal.
+
+  Core actions:
+  • One suburb market insight post (data-led, no sales language)
+  • One door-drop or letterbox piece — market update format
+  • One past client testimonial or outcome shared publicly
+  • One community-relevant engagement (local business, event, forum)
+  • Refresh your Google Business profile with a recent result
+
+Week 2 — EDUCATE
+  You are now demonstrating how you think — not just that you exist.
+  Sellers at Stage 2 and 3 are forming opinions about agent quality.
+  Give them the material to form the right one.
+
+  Core actions:
+  • One piece of content explaining a market concept most sellers
+    misunderstand (auction clearance rates, vendor bids, days on market)
+  • One case study from a recent sale — structured as a before/after
+    with specific outcome data (address optional, suburb required)
+  • One personal DM or note to a warm contact — genuine, no agenda
+  • One Q&A post: answer the question you get asked most at appraisals
+  • Follow up on any Week 1 engagement with a value-add response
+
+Week 3 — DEMONSTRATE
+  Move from telling to showing. This week your content is outcome-led.
+  Verifiable results, honest commentary on market conditions, and one
+  direct invitation to engage — not to list, to learn.
+
+  Core actions:
+  • One recent sale result with commentary (why this outcome, not just
+    what the outcome was)
+  • One piece addressing a common fear or objection sellers hold
+    (timing the market, under-quoting, auction vs. private sale)
+  • One short video or audio — 60 to 90 seconds, personal and direct
+  • One active outreach to a Stage 3 contact (someone who's engaged
+    with your content without reaching out)
+  • Invite engagement: "I'm doing three free appraisals this month —
+    no obligation, just an honest look at where the market is."
+
+Week 4 — CONVERT
+  Your pipeline is warmer now. This week you move from positioning to
+  conversation — gently, without pressure. The ask is natural because
+  the groundwork has been laid.
+
+  Core actions:
+  • One direct outreach to your top three warm prospects — personal,
+    referencing something specific to their situation or property
+  • One piece of content that makes inaction feel like a choice with
+    consequences (not fear — clarity)
+  • One follow-up with anyone who engaged meaningfully in Weeks 1–3
+  • One referral request to a past client — specific, not generic
+  • Review your concentration score (see Claim Builder prompt pack)
+    and adjust Week 1 of next sprint accordingly
+
+ARCHETYPE VARIATIONS
+────────────────────
+Market Authority — Weight Week 2 heavily. Your sprint lives and dies
+  on the quality of your educational content. Data must be sourced,
+  specific, and formatted — not conversational.
+
+Calm Executor — Weight Week 1 and Week 3. Process evidence and
+  verifiable outcomes are your sprint signature. Case studies with
+  timelines and results outperform any other content format for you.
+
+Fierce Advocate — Weight Week 3 and Week 4. Your energy converts
+  best when there is specific, recent proof behind it. Make the
+  outreach personal and direct — it matches your natural register.
+
+Trusted Advisor — Weight Week 1 and Week 2. Community presence and
+  genuine connection are your competitive advantage. The sprint should
+  feel like an extension of who you are in the suburb — not a campaign.
+
+WHAT A SPRINT IS NOT
+────────────────────
+• It is not a posting schedule you complete and forget.
+• It is not a numbers game. Five precise actions beat twenty generic ones.
+• It is not separate from your appraisal work. Sellers you meet in Week 4
+  have been reading your content since Week 1 — or they haven't.
+  That difference is measurable.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+YOUR SITUATION
+──────────────
+Fill in these fields before pasting into your AI assistant.
+
+My agent archetype: _______________________________________________
+  (Market Authority / Calm Executor / Fierce Advocate / Trusted Advisor)
+
+My suburb(s) and property focus: ________________________________
+  (e.g. "Eastern suburbs Melbourne, $1.2–2.5M family homes")
+
+Current sprint week: ____________________________________________
+  (Week 1 Plant / Week 2 Educate / Week 3 Demonstrate / Week 4 Convert
+   — or: starting from scratch)
+
+What's working in my current content / outreach: ________________
+  (e.g. "Door drops get responses, social posts get ignored")
+
+What's not working or feels forced: _____________________________
+  (e.g. "I keep writing posts that sound like every other agent")
+
+Active channels I'm currently using: ____________________________
+  (e.g. "Instagram, letterbox drops, email list of 200 past clients")
+
+My pipeline — warm contacts at each stage: ______________________
+  (e.g. "Stage 2: 4 people / Stage 3: 2 people / Stage 4: 1 appraisal booked")
+
+Any additional context: __________________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SUGGESTED PROMPTS
+─────────────────
+→ "I'm a [archetype] working in [suburb]. Write me a full Week [X]
+   action plan with specific content ideas, messaging angles, and
+   outreach scripts tailored to my archetype and market."
+
+→ "Write the Week 2 educational post I should publish this week —
+   one that demonstrates market expertise without reading like an
+   agent ad."
+
+→ "I have [X] warm contacts at Stage 3. Write me the outreach
+   message for each — different enough to feel personal, grounded
+   in what I know about them."
+
+→ "My sprint content keeps sounding generic. Review the Week [X]
+   framework and rewrite my planned actions to feel distinctively
+   like my archetype."
+
+→ "Write me a 60-second video script for Week 3 — honest, direct,
+   and specific to my market. No fluff, no calls to action."
+
+→ "I've completed one full sprint. Help me review what worked,
+   identify the gaps, and redesign Week 1 for the next cycle."

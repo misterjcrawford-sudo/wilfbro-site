@@ -1,0 +1,155 @@
+SIGNAL PROMPT PACK — THE PRESSURE SELLER
+=========================================
+Seller Psychology Framework for Listing Agents
+signal-layer-1.html | Version 1.0
+
+HOW TO USE
+──────────
+1. Fill in YOUR SITUATION below (takes 2 minutes).
+2. Copy the entire file.
+3. Paste into Claude, ChatGPT, or any AI assistant.
+4. Use one of the SUGGESTED PROMPTS at the bottom — or ask your own question.
+The AI will use the SIGNAL framework in this file to give you specific,
+tailored guidance for this exact seller type.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SELLER ARCHETYPE: THE PRESSURE SELLER
+──────────────────────────────────────
+Divorce, deceased estate, financial stress. Needs speed and discretion
+above all else. Highly vulnerable — and acutely aware of it.
+
+DOMINANT FEAR
+Being judged, exposed, or taken advantage of. Having their circumstances
+used as leverage against them.
+
+DOMINANT DESIRE
+Discretion, speed, and an agent who treats them with total dignity
+regardless of the circumstances.
+
+ACTIVE COGNITIVE BIASES
+Scarcity (time) — When a timeline is forced by external pressure
+  (legal, financial, personal), time feels like the scarcest resource.
+  This urgency distorts every decision — they'll accept worse terms
+  just to stop the uncertainty. A skilled agent manages this rather
+  than exploits it.
+
+Trust Heuristic — This seller is too depleted to evaluate agents
+  carefully. They default to a single gut question: does this person
+  feel safe? Whoever creates that feeling first wins — not on merit,
+  but on emotional signal.
+
+Vulnerability Sensitivity — In a weakened position, every question
+  feels like probing. Every mention of their timeline feels like
+  leverage being assessed. Even innocent admin questions land as
+  threats. Read the room before you speak.
+
+Decision Fatigue — They're making dozens of decisions a day across
+  multiple crisis fronts. Any agent who adds complexity or creates
+  more to think about will be unconsciously rejected. Simplicity and
+  clarity are your most powerful tools.
+
+WHAT WINS THEM
+• Immediately creating a safe, low-pressure environment from first contact
+• Being clear about timelines without being pushy about them
+• Showing specific experience with estate, separation, or financial sales
+• Promising — and visibly keeping — absolute confidentiality
+• Removing decisions rather than presenting options
+
+WHAT LOSES THEM
+• Any language that implies judgment of their situation
+• Trying to extract information before trust is established
+• Performing enthusiasm when composure is needed
+• Moving to price before acknowledging the human reality
+• Giving them more to think about when they're already overwhelmed
+
+NEVER SAY
+• "Don't worry, these situations are totally normal — we see them all the time."
+• "What's the story here — divorce or something?"
+• "If you need to move fast, I can get a cash buyer in quickly."
+
+DECISION WINDOW INTENSITY
+This archetype often enters at Stage 4 (Appraisal Mode) without
+passing through the earlier stages — the sale is circumstance-driven,
+not aspiration-driven. There's no "maybe" phase. They're already in
+it. Which means you have little conditioning history with them and must
+build trust entirely in the first conversation.
+
+IMPORTANT NOTE ON ETHICS
+This archetype is the most vulnerable seller you'll encounter. The
+SIGNAL framework is built around helping them get the best outcome
+from their situation — not exploiting their urgency. If you find
+yourself thinking about how their timeline benefits you, reframe
+immediately: your job is to make this as good as it can be for them.
+That approach also wins you the listing and the referral.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+AGENT × SELLER MATCH NOTES
+───────────────────────────
+Market Authority — Neutral with care needed. Don't lead with data.
+  Lead with calm competence and a safe presence. Evidence comes after
+  trust, not before.
+
+Calm Executor — Strongest match. Certainty and predictability are
+  exactly what this seller needs. Your process removes chaos. That's
+  your entire pitch.
+
+Fierce Advocate — High friction. Your energy will feel unsafe.
+  Dial to quiet confidence. Let results speak through case studies,
+  not intensity.
+
+Trusted Advisor — Strong match. Safety and discretion come naturally
+  to this archetype. If you have experience with similar situations
+  (estate, separation), mention it plainly and early.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+YOUR SITUATION
+──────────────
+Fill in these fields before pasting into your AI assistant.
+
+My agent archetype: _______________________________________________
+  (Market Authority / Calm Executor / Fierce Advocate / Trusted Advisor)
+
+Property suburb and type: ________________________________________
+  (e.g. "3-bed townhouse in Footscray, circa $780K")
+
+Nature of the pressure (only share what's relevant): ____________
+  (e.g. "Deceased estate, three adult siblings as vendors, one is
+  interstate and unresponsive, legal timeline is pressing")
+
+Where they are in the decision window: ___________________________
+  (Usually Stage 4 Appraisal or Stage 5 Decision for this archetype)
+
+What they've communicated about their main concern: ______________
+  (e.g. "They want it sold quickly but don't want to be seen as
+  desperate — asked me not to disclose the timeline publicly")
+
+How many agents are they seeing: _________________________________
+
+Any additional context: __________________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SUGGESTED PROMPTS
+─────────────────
+→ "Write me an appraisal opening for this seller that immediately
+   creates a feeling of safety and calm — without being so careful
+   that it feels managed or clinical."
+
+→ "How do I ask the questions I need to ask (timeline, other vendors,
+   financial position) without making this seller feel interrogated?"
+
+→ "Write a first contact message (text or email) for a referral
+   introduction to a Pressure Seller — before we've spoken."
+
+→ "The seller needs a fast result but doesn't want a low-ball price.
+   How do I structure the campaign and the conversation around both
+   of those needs without them conflicting?"
+
+→ "There are multiple decision-makers (siblings, executors, lawyers).
+   How do I manage the communication without creating more stress?"
+
+→ "Write a follow-up after the first conversation that confirms I
+   understood everything they told me — and nothing extra."

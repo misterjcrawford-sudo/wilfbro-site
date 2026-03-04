@@ -1,0 +1,152 @@
+SIGNAL PROMPT PACK — THE ANALYTICAL CONTROLLER
+===============================================
+Seller Psychology Framework for Listing Agents
+signal-layer-1.html | Version 1.0
+
+HOW TO USE
+──────────
+1. Fill in YOUR SITUATION below (takes 2 minutes).
+2. Copy the entire file.
+3. Paste into Claude, ChatGPT, or any AI assistant.
+4. Use one of the SUGGESTED PROMPTS at the bottom — or ask your own question.
+The AI will use the SIGNAL framework in this file to give you specific,
+tailored guidance for this exact seller type.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SELLER ARCHETYPE: THE ANALYTICAL CONTROLLER
+────────────────────────────────────────────
+Spreadsheet-driven. Wants data, process, and logic. Has already
+researched comparable sales. Distrusts charm as a substitute
+for substance.
+
+DOMINANT FEAR
+Being talked into something that doesn't hold up to scrutiny. Making
+an emotion-led decision they'll later regret.
+
+DOMINANT DESIRE
+An agent who gives them enough information to reach the right
+conclusion themselves — without pressure.
+
+ACTIVE COGNITIVE BIASES
+Information Bias — They seek more information even when additional
+  data wouldn't improve the decision. The research loop becomes a
+  way to feel in control rather than a genuine input to a better
+  outcome. You need to help them recognise when they have enough.
+
+Overconfidence Effect — They've spent three weeks researching the
+  market and believe their model is more reliable than yours. They're
+  not entirely wrong — but they're missing the nuance of 40 appraisals
+  this year. Never dismiss their research. Work alongside it.
+
+Anchoring — The first price they encountered (from their own research
+  or another agent) is their anchor. Everything since is measured
+  against it. Be aware of what anchor they arrived with before you
+  present your number.
+
+Analysis Paralysis — The perfect moment never arrives. Every variable
+  considered reveals another variable. They can delay for months while
+  appearing to be progressing. A patient but structured approach keeps
+  them moving.
+
+WHAT WINS THEM
+• Coming with more data than they expected — but better organised
+• A clear, written process document they can review and annotate
+• Welcoming their questions without defensiveness or frustration
+• Letting them feel like they reached the decision, not you
+• Answering every data question with a specific number, not a range
+
+WHAT LOSES THEM
+• Vague or approximate answers to specific data questions
+• Relying on personality or rapport in place of substance
+• Seeming uncomfortable or defensive when challenged on your numbers
+• Rushing the decision or creating artificial urgency
+• Enthusiasm without evidence
+
+NEVER SAY
+• "Look, at the end of the day you just have to trust your gut."
+• "I can't give you an exact figure — it depends on the buyer."
+• "You're overthinking it — the market will sort it out."
+
+DECISION WINDOW INTENSITY
+This archetype is highly active from Stage 2 (Market Curiosity) onward —
+they'll have built their own price model before calling you. By Stage 4
+(Appraisal Mode) they're stress-testing your knowledge against their
+own research. They respect agents who can withstand scrutiny and engage
+their data on equal terms. Stage 5 (Decision) can stall — not from
+emotion, but from continuing to seek more information.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+AGENT × SELLER MATCH NOTES
+───────────────────────────
+Market Authority — Strongest match. Come with more data than they
+  have. Engage their research seriously. When you know more than them,
+  they respect it — and stop looking for a reason to doubt you.
+
+Calm Executor — Strong match. A written process document is exactly
+  what this archetype wants. Give them something to read, review,
+  and return questions on.
+
+Fierce Advocate — High friction. Every claim needs a figure. Every
+  statement needs a source. "I fight for every dollar" without the
+  receipts to prove it reads as exactly the kind of empty confidence
+  they're guarding against.
+
+Trusted Advisor — Friction pairing. Relationship language without
+  rigour loses them. Back community claims with decade-level data.
+  "I know this suburb well" must be immediately followed by proof.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+YOUR SITUATION
+──────────────
+Fill in these fields before pasting into your AI assistant.
+
+My agent archetype: _______________________________________________
+  (Market Authority / Calm Executor / Fierce Advocate / Trusted Advisor)
+
+Property suburb and type: ________________________________________
+  (e.g. "4-bed house in Glen Waverley, circa $1.6M")
+
+Their situation in one sentence: _________________________________
+  (e.g. "Engineer, 50s, has built his own comparable sales model,
+  believes the property is worth $1.75M based on his analysis")
+
+Where they are in the decision window: ___________________________
+  (Stage 1 Private / Stage 2 Curious / Stage 3 Aware /
+   Stage 4 Appraisal / Stage 5 Decision)
+
+Their price expectation vs your assessment: _____________________
+  (e.g. "Their model says $1.75M, comparable sales support $1.55–1.65M")
+
+Specific challenge or objection you're expecting: _______________
+  (e.g. "They'll challenge my comparable selection methodology")
+
+Any additional context: __________________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SUGGESTED PROMPTS
+─────────────────
+→ "The seller has built their own comparable sales model and believes
+   the property is worth significantly more than I do. How do I engage
+   their analysis seriously while guiding them to a defensible number?"
+
+→ "Write me an appraisal opening for this seller — one that immediately
+   signals I've done serious preparation and am ready to engage on
+   a data level."
+
+→ "This seller is stalling — they keep asking for more information
+   before committing. How do I help them recognise they already have
+   enough to make a good decision?"
+
+→ "What data should I bring to the appraisal that they're unlikely
+   to have already found themselves — and how do I present it without
+   being patronising?"
+
+→ "Write a post-appraisal follow-up that adds one new relevant data
+   point and gently moves the conversation forward without pressure."
+
+→ "How do I handle it when they challenge a specific comparable I've
+   used in my price justification?"

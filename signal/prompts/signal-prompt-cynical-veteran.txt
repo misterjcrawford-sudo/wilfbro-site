@@ -1,0 +1,145 @@
+SIGNAL PROMPT PACK — THE CYNICAL VETERAN
+=========================================
+Seller Psychology Framework for Listing Agents
+signal-layer-1.html | Version 1.0
+
+HOW TO USE
+──────────
+1. Fill in YOUR SITUATION below (takes 2 minutes).
+2. Copy the entire file.
+3. Paste into Claude, ChatGPT, or any AI assistant.
+4. Use one of the SUGGESTED PROMPTS at the bottom — or ask your own question.
+The AI will use the SIGNAL framework in this file to give you specific,
+tailored guidance for this exact seller type.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SELLER ARCHETYPE: THE CYNICAL VETERAN
+──────────────────────────────────────
+Has sold before. Thinks all agents are fundamentally the same. Has been
+overpromised and underdelivered. Only responds to proof — not charm.
+
+DOMINANT FEAR
+Being manipulated again. Falling for the same high price estimate used
+as a listing tool, only to be conditioned down weeks later.
+
+DOMINANT DESIRE
+An agent who doesn't perform. Who speaks plainly, backs everything with
+evidence, and does exactly what they said they would.
+
+ACTIVE COGNITIVE BIASES
+Confirmation Bias — They've decided agents over-promise. Every interaction
+  confirms the theory. A high quote proves you're chasing the listing.
+  A reasonable quote proves you're incompetent. The belief is self-sealing —
+  which means the only way in is evidence that disrupts the pattern entirely.
+
+Social Proof (inverted) — The agent with the most boards triggers suspicion,
+  not confidence. Volume reads as marketing, not results. The conventional
+  proof mechanisms work against you with this archetype.
+
+Authority Scepticism — Credentials, years of experience, brand name —
+  these are exactly the claims that have been used to manipulate them before.
+  They've learned to filter these out. Only verifiable results count.
+
+Consistency Heuristic — They watch what you do, not what you say. The first
+  small commitment — returning a call when you said you would, sending the
+  data you promised — is used as a prediction model for the entire campaign.
+  Micro-reliability is the entire audition.
+
+WHAT WINS THEM
+• Evidence-only price talk — a specific number you can defend, not a range
+• Acknowledging out loud that agents often over-quote to win listings
+• Specific case studies with verifiable outcomes (address, price, days)
+• Being the agent who gives them a lower, defensible number and explains why
+• Doing exactly what you say you'll do before they've even agreed to anything
+
+WHAT LOSES THEM
+• Any enthusiasm that isn't backed by specific data
+• Talking about your "passion" for real estate
+• Name-dropping agencies, awards, or volume without verified outcomes
+• Proposing the highest appraisal figure in the room
+
+NEVER SAY
+• "I think we could achieve significantly more than that."
+• "Trust me — I know this market inside out."
+• "We have a huge database of ready buyers."
+
+DECISION WINDOW INTENSITY
+This archetype is most activated at Stage 3 (Agent Awareness) — they're
+watching you before they call. What you do in the suburb, how you handle
+other sellers' campaigns, the quality of your signage and materials — all
+of this is being evaluated. By the appraisal they have strong priors.
+Your job in Stage 4 is to disrupt their expectation of being disappointed.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+AGENT × SELLER MATCH NOTES
+───────────────────────────
+Market Authority — Strongest match. Data-led, evidence-based, no
+  performance. This is exactly what the Veteran is looking for. Come
+  with more proof than they expected and you'll stand out immediately.
+
+Calm Executor — Friction pairing. Process-talk reads as a script to this
+  seller. Anchor every process claim in a specific outcome. "Here's
+  exactly what I do — and here's a campaign where you can verify it."
+
+Fierce Advocate — Strong match IF backed with specifics. Stories of
+  holding firm on price will resonate — but only with exact figures
+  and verifiable outcomes. Heat without substance confirms their fears.
+
+Trusted Advisor — High friction. Relationship language triggers the
+  "agents say this" filter instantly. Lead with suburb data, follow
+  with relationship. Never lead with the relationship.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+YOUR SITUATION
+──────────────
+Fill in these fields before pasting into your AI assistant.
+
+My agent archetype: _______________________________________________
+  (Market Authority / Calm Executor / Fierce Advocate / Trusted Advisor)
+
+Property suburb and type: ________________________________________
+  (e.g. "4-bed house in Preston, circa $1.1M, sold twice before")
+
+Their situation in one sentence: _________________________________
+  (e.g. "Previous sale went badly — agent over-quoted by $200k and
+  they accepted an offer $180k below the original estimate")
+
+Where they are in the decision window: ___________________________
+  (Stage 1 Private / Stage 2 Curious / Stage 3 Aware /
+   Stage 4 Appraisal / Stage 5 Decision)
+
+Specific objection or challenge you're anticipating: ____________
+  (e.g. "They're going to quote me a higher figure from a competitor")
+
+How many agents are they seeing: _________________________________
+
+Any additional context: __________________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SUGGESTED PROMPTS
+─────────────────
+→ "Write me an appraisal opening that immediately signals I'm different
+   from every agent they've seen before — without saying 'I'm different
+   from every agent they've seen before.'"
+
+→ "Another agent has quoted $200k more than me. How do I handle this
+   conversation in a way that builds my credibility rather than
+   undermining theirs?"
+
+→ "Write me a pre-appraisal letter to send 48 hours before I arrive —
+   something that sets a tone of evidence and plain-speaking before
+   I'm even in the room."
+
+→ "What are the exact first 3 questions I should ask to let this seller
+   tell me about their bad experience — and how do I respond in a way
+   that builds trust without performing empathy?"
+
+→ "Write a post-appraisal follow-up for a Cynical Veteran that adds
+   one piece of new data — and nothing else."
+
+→ "How do I present my fee to this archetype without triggering their
+   'all agents are the same' filter?"
