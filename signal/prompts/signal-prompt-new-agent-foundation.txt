@@ -6,14 +6,16 @@ signal-layer-1.html | Version 1.0
 HOW TO USE
 ──────────
 1. Fill in YOUR SITUATION below (takes 2 minutes).
-2. Copy the entire file.
-3. Paste into Claude, ChatGPT, or any AI assistant.
-4. Use one of the SUGGESTED PROMPTS at the bottom — or ask your own.
+2. Copy the entire file — framework, your situation, and suggested prompts included.
+3. Paste the whole thing into Claude, ChatGPT, or any AI assistant as one message.
+4. At the end of your paste, type out ONE of the SUGGESTED PROMPTS as your question.
 
-This pack is built specifically for agents who don't yet have personal
-sales data, verifiable results, or an established track record.
-The full SIGNAL psychology framework applies — what changes is how
-you fill the proof gap for each seller type.
+The suggested prompts at the bottom are a menu — pick the one that matches
+what you need right now and type it after pasting the file. The AI will use
+the full SIGNAL framework and your specific situation to give you a tailored response.
+
+Tip: You can also ignore the suggested prompts entirely and ask your own question
+in your own words — the framework context is what matters.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
