@@ -99,6 +99,50 @@
     'Analysis Paralysis': {
       definition: 'A state where overthinking prevents timely action. The search for the optimal decision results in no decision — which is itself a costly choice.',
       example: 'An Analytical Controller can spend months comparing agents, waiting for better data, or reconsidering their timing. Every variable considered reveals another variable. The perfect moment never arrives.'
+    },
+    'Authority Bias': {
+      definition: 'The tendency to attribute greater accuracy and trustworthiness to the opinions of authority figures — and to comply with their recommendations, even without scrutinising the evidence behind them.',
+      example: 'A seller defers to the agent who has the most sold signs in the street, the biggest agency brand, or the most confident manner — because these signals read as authority. The agent\'s actual track record for similar properties may tell a different story.'
+    },
+    'Trust Bias': {
+      definition: 'A cognitive shortcut where we extend trust based on surface signals — warmth, confidence, professional appearance — rather than track record. Once trust is formed, we discount contradictory information.',
+      example: 'A seller who likes an agent in the first meeting will rationalise away early warning signs — missed callbacks, vague timelines — because the initial trust impression is sticky and hard to revise.'
+    },
+    'Emotional Anchoring': {
+      definition: 'When an emotional experience or memory becomes the fixed reference point against which all related decisions are measured — often without conscious awareness.',
+      example: 'A seller who bought during a market peak anchors emotionally to that price. Every subsequent valuation is measured against what they paid, not what the market currently supports. The purchase price is not a market fact — it is an emotional anchor.'
+    },
+    'Identity Bias': {
+      definition: 'The tendency to make decisions that protect or reinforce our sense of who we are, rather than decisions that are purely rational or financially optimal.',
+      example: 'A seller in a prestige suburb refuses a realistic price because accepting it would conflict with their identity as someone who owns a premium property. The price is not just a number — it is a statement about who they are.'
+    },
+    'Social Proof': {
+      definition: 'The tendency to look to the behaviour of others as a signal of what is correct — particularly in uncertain situations. If others are doing it, it must be right.',
+      example: 'A seller chooses the agent with the most listings on their street, the most five-star reviews, or the busiest open days. The crowd\'s choice becomes their proof of quality — regardless of whether it reflects actual outcomes.'
+    },
+    'Contrast Framing': {
+      definition: 'We evaluate options not in isolation but relative to what was presented immediately before. A deliberately high anchor makes a subsequent offer seem reasonable by comparison.',
+      example: 'An agent who presents a high potential price range first makes a slightly lower but realistic figure seem modest and safe. The seller accepts something they might have questioned if it had been presented first.'
+    },
+    'Novelty Bias': {
+      definition: 'A preference for new, fresh, or recently introduced ideas and information — sometimes at the expense of proven approaches. Novelty is perceived as evidence of progress or sophistication.',
+      example: 'A seller is drawn to the agent who presents a new digital marketing platform or a unique campaign strategy — even when traditional methods have better results for their property type. New feels like better.'
+    },
+    'Status Signalling': {
+      definition: 'The use of choices, purchases, and associations to communicate social status and identity to others — and to oneself. The decision is partly functional, partly performative.',
+      example: 'A Status Seller chooses the agent they would be comfortable naming at a dinner party. The agent\'s brand, presentation, and language are all part of a signal they intend to send — the sale itself is secondary to the story it tells.'
+    },
+    'Scarcity': {
+      definition: 'Perceived scarcity increases the perceived value of an item or opportunity. The possibility of missing out activates a fear response disproportionate to the actual risk.',
+      example: 'A seller who believes there are multiple interested buyers — even without confirmation — becomes more decisive and more flexible on terms. The fear of losing the opportunity overrides the instinct to negotiate.'
+    },
+    'Cognitive Ease': {
+      definition: 'We prefer things that are easy to think about and process. Simple, familiar, and clearly presented information feels more trustworthy than complex or dense information — regardless of actual accuracy.',
+      example: 'A Pressure Seller will choose the agent whose process is easiest to understand, whose documents are clearest, and whose language is simplest. Complexity reads as risk. Clarity reads as competence.'
+    },
+    'Anchoring Bias': {
+      definition: 'The first number we encounter becomes a reference point — an anchor — against which all subsequent figures are judged, regardless of whether the first number was accurate or relevant.',
+      example: 'The first price estimate an agent gives lodges in the seller\'s mind. Every subsequent figure — from other agents, from the market — is measured against that initial anchor. A realistic number offered second always feels like a discount.'
     }
   };
 
