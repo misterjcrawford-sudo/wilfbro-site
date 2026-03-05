@@ -50,12 +50,12 @@
     /* ── LAYER HEADER ── */
     .layer-header { padding: 64px 48px 56px; border-bottom: var(--border); position: relative; overflow: hidden; background: var(--gold-dk); }
     .layer-header::before { content: ''; position: absolute; top: -80px; right: -60px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(42,74,122,0.2) 0%, transparent 70%); pointer-events: none; }
-    .layer-badge { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .layer-badge { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
     .layer-badge::before { content: ''; display: inline-block; width: 24px; height: 1px; background: rgba(255,255,255,0.2); }
     .layer-header h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(36px, 5vw, 68px); font-weight: 400; line-height: 1.05; letter-spacing: -0.02em; color: var(--white); margin-bottom: 20px; max-width: 700px; }
     .layer-header h1 em { font-style: italic; color: var(--gold-mid); }
-    .layer-header p { font-size: clamp(15px, 1.5vw, 18px); color: rgba(255,255,255,0.65); max-width: 560px; line-height: 1.65; margin-bottom: 36px; }
-    .layer-prereq { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; padding: 10px 18px; font-size: 13px; color: rgba(255,255,255,0.5); }
+    .layer-header p { font-size: clamp(15px, 1.5vw, 18px); color: rgba(255,255,255,0.88); max-width: 560px; line-height: 1.65; margin-bottom: 36px; }
+    .layer-prereq { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; padding: 10px 18px; font-size: 13px; color: rgba(255,255,255,0.75); }
     .layer-prereq strong { color: rgba(255,255,255,0.85); font-weight: 600; }
     .prereq-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold-mid); flex-shrink: 0; }
 
@@ -78,7 +78,7 @@
     /* Channel × Stage Matrix */
     .channel-matrix { border: var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 40px; }
     .cm-head { display: grid; grid-template-columns: 160px repeat(5, 1fr); background: var(--black); }
-    .cm-head-cell { padding: 14px 16px; font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); border-right: 1px solid rgba(255,255,255,0.07); }
+    .cm-head-cell { padding: 14px 16px; font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.75); border-right: 1px solid rgba(255,255,255,0.12); }
     .cm-head-cell:last-child { border-right: none; }
     .cm-row { display: grid; grid-template-columns: 160px repeat(5, 1fr); border-bottom: var(--border); }
     .cm-row:last-child { border-bottom: none; }
@@ -104,9 +104,9 @@
     .channel-drawer { display: none; grid-column: 1 / -1; border-top: var(--border); }
     .channel-drawer.open { display: grid; grid-template-columns: 160px 1fr; }
     .cd-sidebar { padding: 28px 20px; background: var(--black); display: flex; flex-direction: column; justify-content: flex-start; gap: 16px; }
-    .cd-stage-btn { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.4); padding: 8px 12px; border-radius: 8px; cursor: pointer; transition: all 0.15s; text-align: left; border: 1px solid transparent; }
-    .cd-stage-btn.active { background: rgba(255,255,255,0.08); color: var(--white); border-color: rgba(255,255,255,0.12); }
-    .cd-stage-btn:hover { color: rgba(255,255,255,0.7); }
+    .cd-stage-btn { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.75); padding: 8px 12px; border-radius: 8px; cursor: pointer; transition: all 0.15s; text-align: left; border: 1px solid transparent; }
+    .cd-stage-btn.active { background: rgba(255,255,255,0.14); color: var(--white); border-color: rgba(255,255,255,0.12); }
+    .cd-stage-btn:hover { color: rgba(255,255,255,0.85); }
     .cd-content { padding: 28px 32px; }
     .cd-stage-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-3); margin-bottom: 16px; }
     .cd-tactics-list { list-style: none; margin-bottom: 20px; }
@@ -149,15 +149,15 @@
 
     /* Concentration Score */
     .score-section { background: var(--black); border-radius: 16px; padding: 36px; }
-    .ss-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
+    .ss-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 16px; }
     .ss-title { font-family: 'Playfair Display', Georgia, serif; font-size: 24px; color: var(--white); font-weight: 400; margin-bottom: 12px; }
     .ss-title em { font-style: italic; color: var(--gold-mid); }
-    .ss-body { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.65; margin-bottom: 28px; max-width: 600px; }
+    .ss-body { font-size: 14px; color: rgba(255,255,255,0.82); line-height: 1.65; margin-bottom: 28px; max-width: 600px; }
     .score-levels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .sl-card { border-radius: 10px; padding: 20px; border: 1px solid rgba(255,255,255,0.08); }
+    .sl-card { border-radius: 10px; padding: 20px; border: 1px solid rgba(255,255,255,0.14); }
     .sl-score { font-family: 'Space Mono', monospace; font-size: 28px; font-weight: 700; margin-bottom: 6px; }
     .sl-label { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
-    .sl-desc { font-size: 12px; line-height: 1.5; color: rgba(255,255,255,0.5); }
+    .sl-desc { font-size: 12px; line-height: 1.5; color: rgba(255,255,255,0.75); }
     .sl-card.bad { background: rgba(180,30,30,0.1); }
     .sl-card.bad .sl-score { color: #cc4444; }
     .sl-card.bad .sl-label { color: #cc7777; }
@@ -218,11 +218,11 @@
     .ai-detail { font-size: 12px; color: var(--gray-3); line-height: 1.45; }
 
     .wp-psychology { background: var(--black); border-radius: 12px; padding: 24px; }
-    .wpp-label { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 12px; }
-    .wpp-body { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.65; }
-    .wpp-stage { display: flex; align-items: center; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .wpp-label { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 12px; }
+    .wpp-body { font-size: 14px; color: rgba(255,255,255,0.88); line-height: 1.65; }
+    .wpp-stage { display: flex; align-items: center; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); }
     .wpp-stage-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold-mid); flex-shrink: 0; }
-    .wpp-stage-text { font-size: 13px; color: rgba(255,255,255,0.55); }
+    .wpp-stage-text { font-size: 13px; color: rgba(255,255,255,0.78); }
     .wpp-stage-text strong { color: rgba(255,255,255,0.85); }
 
     /* ── 04 THE SIGNAL STACK ── */
@@ -241,7 +241,7 @@
     .sc-foot { padding: 16px 22px; background: var(--off-white); border-top: var(--border); }
     .sc-freq { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-3); }
     .stack-card.tier-1 .sc-head { background: var(--black); border-color: var(--black); }
-    .stack-card.tier-1 .sc-tier { color: rgba(255,255,255,0.35); }
+    .stack-card.tier-1 .sc-tier { color: rgba(255,255,255,0.75); }
     .stack-card.tier-1 .sc-name { color: var(--white); }
 
     /* ── COMPLETION ── */
@@ -268,11 +268,11 @@
 
     /* ── LAYER NAV ── */
     .layer-nav { padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; background: var(--black); }
-    .layer-nav-back { display: flex; align-items: center; gap: 8px; font-size: 14px; color: rgba(255,255,255,0.5); transition: color 0.2s; }
+    .layer-nav-back { display: flex; align-items: center; gap: 8px; font-size: 14px; color: rgba(255,255,255,0.75); transition: color 0.2s; }
     .layer-nav-back:hover { color: var(--white); }
     .layer-nav-complete { background: var(--gold); color: var(--white); padding: 14px 32px; border-radius: 999px; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: background 0.2s, transform 0.15s; }
     .layer-nav-complete:hover { background: var(--gold-mid); transform: translateY(-1px); }
-    .lnav-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 6px; }
+    .lnav-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 6px; }
 
     /* ── MOBILE NAV HAMBURGER ── */
     .nav-hamburger {
@@ -366,6 +366,86 @@
 
 
 
+
+    /* ── PDF DOWNLOAD STRIP ── */
+    .pdf-strip {
+      padding: 28px 48px;
+      border-top: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      background: var(--white);
+    }
+    .pdf-strip-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .pdf-strip-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--off-white);
+      border: var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .pdf-strip-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--gray-3);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .pdf-strip-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .pdf-strip-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+    }
+    .pdf-strip-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--black);
+    }
+    .pdf-dl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--black);
+      color: var(--white);
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: background 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .pdf-dl-btn:hover { background: var(--signal); }
+    .pdf-dl-btn svg {
+      width: 13px;
+      height: 13px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    @media (max-width: 640px) {
+      .pdf-strip { flex-direction: column; align-items: flex-start; padding: 24px; }
+    }
 </style>
 </head>
 <body>
@@ -942,13 +1022,29 @@
   </section>
 
   <!-- ═══ LAYER NAV ═══ -->
+  
+  <!-- ═══ PDF DOWNLOAD STRIP ═══ -->
+  <div class="pdf-strip">
+    <div class="pdf-strip-left">
+      <div class="pdf-strip-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+      <div class="pdf-strip-text">
+        <div class="pdf-strip-label">Download PDF</div>
+        <div class="pdf-strip-title">Layer 3 — The Conditioning System</div>
+      </div>
+    </div>
+    <a href="./SIGNAL-Layer-3-Conditioning-System.pdf" target="_blank" rel="noopener" class="pdf-dl-btn">
+      <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download PDF
+    </a>
+  </div>
+
   <div class="layer-nav">
     <div>
       <div class="lnav-label">Previous layer</div>
       <a href="./signal-layer-2.html" class="layer-nav-back">← Layer 2 — The Agent Engine</a>
     </div>
     <div style="text-align:right;">
-      <div class="lnav-label" style="text-align:right; color:rgba(255,255,255,0.3);">System complete</div>
+      <div class="lnav-label" style="text-align:right; color:rgba(255,255,255,0.75);">System complete</div>
       <a href="./index.html" class="layer-nav-complete">Back to system overview →</a>
     </div>
   </div>

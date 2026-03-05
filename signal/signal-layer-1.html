@@ -139,7 +139,7 @@
       position: absolute;
       top: -100px; right: -60px;
       width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -148,7 +148,7 @@
       font-size: 10px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
+      color: rgba(255,255,255,0.78);
       margin-bottom: 20px;
       display: flex;
       align-items: center;
@@ -159,7 +159,7 @@
       content: '';
       display: inline-block;
       width: 24px; height: 1px;
-      background: rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.75);
     }
 
     .layer-header h1 {
@@ -175,12 +175,12 @@
 
     .layer-header h1 em {
       font-style: italic;
-      color: rgba(255,255,255,0.65);
+      color: rgba(255,255,255,0.88);
     }
 
     .layer-header p {
       font-size: clamp(15px, 1.5vw, 18px);
-      color: rgba(255,255,255,0.7);
+      color: rgba(255,255,255,0.85);
       max-width: 540px;
       line-height: 1.65;
       margin-bottom: 36px;
@@ -200,7 +200,7 @@
       font-size: 10px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
+      color: rgba(255,255,255,0.75);
     }
 
     .progress-step.active { color: rgba(255,255,255,0.9); }
@@ -338,7 +338,7 @@
       transition: color 0.2s;
     }
 
-    .archetype-tab.active .tab-number { color: rgba(255,255,255,0.4); }
+    .archetype-tab.active .tab-number { color: rgba(255,255,255,0.75); }
 
     .tab-name {
       font-size: 13px;
@@ -358,7 +358,7 @@
       transition: color 0.2s;
     }
 
-    .archetype-tab.active .tab-state { color: rgba(255,255,255,0.55); }
+    .archetype-tab.active .tab-state { color: rgba(255,255,255,0.78); }
 
     /* ── ARCHETYPE DETAIL PANEL ── */
     .archetype-panel {
@@ -556,7 +556,7 @@
       font-size: 9px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.75);
       margin-bottom: 12px;
     }
 
@@ -566,9 +566,9 @@
 
     .never-say ul li {
       font-size: 13px;
-      color: rgba(255,255,255,0.65);
+      color: rgba(255,255,255,0.88);
       padding: 7px 0;
-      border-top: 1px solid rgba(255,255,255,0.07);
+      border-top: 1px solid rgba(255,255,255,0.12);
       display: flex;
       align-items: flex-start;
       gap: 8px;
@@ -817,12 +817,12 @@
       font-size: 9px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      border-right: 1px solid rgba(255,255,255,0.07);
+      color: rgba(255,255,255,0.75);
+      border-right: 1px solid rgba(255,255,255,0.12);
     }
 
     .mh-cell:last-child { border-right: none; }
-    .mh-cell.row-header { color: rgba(255,255,255,0.3); }
+    .mh-cell.row-header { color: rgba(255,255,255,0.75); }
 
     .matrix-row {
       display: grid;
@@ -1012,6 +1012,86 @@
 
 
 
+
+    /* ── PDF DOWNLOAD STRIP ── */
+    .pdf-strip {
+      padding: 28px 48px;
+      border-top: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      background: var(--white);
+    }
+    .pdf-strip-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .pdf-strip-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--off-white);
+      border: var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .pdf-strip-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--gray-3);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .pdf-strip-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .pdf-strip-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+    }
+    .pdf-strip-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--black);
+    }
+    .pdf-dl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--black);
+      color: var(--white);
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: background 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .pdf-dl-btn:hover { background: var(--signal); }
+    .pdf-dl-btn svg {
+      width: 13px;
+      height: 13px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    @media (max-width: 640px) {
+      .pdf-strip { flex-direction: column; align-items: flex-start; padding: 24px; }
+    }
 </style>
 </head>
 <body>
@@ -1808,6 +1888,22 @@
   </section>
 
   <!-- ═══ LAYER NAVIGATION ═══ -->
+  
+  <!-- ═══ PDF DOWNLOAD STRIP ═══ -->
+  <div class="pdf-strip">
+    <div class="pdf-strip-left">
+      <div class="pdf-strip-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+      <div class="pdf-strip-text">
+        <div class="pdf-strip-label">Download PDF</div>
+        <div class="pdf-strip-title">Layer 1 — The Seller Map</div>
+      </div>
+    </div>
+    <a href="./SIGNAL-Layer-1-Seller-Map.pdf" target="_blank" rel="noopener" class="pdf-dl-btn">
+      <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download PDF
+    </a>
+  </div>
+
   <div class="layer-nav">
     <div>
       <div class="layer-nav-label">Completed</div>

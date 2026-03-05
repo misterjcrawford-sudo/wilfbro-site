@@ -1,0 +1,106 @@
+SIGNAL — PRODUCT & OPPORTUNITY ROADMAP
+=======================================
+
+
+THE CORE ASSET
+──────────────
+SIGNAL's value is not templates or scripts — it's a coherent intellectual
+framework. Everything below is a delivery mechanism for that framework.
+The question worth asking for each: what's the highest-value delivery
+mechanism for the person you're building for?
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+IMMEDIATE EXTENSIONS — Low lift, high value
+────────────────────────────────────────────
+
+Appraisal Prep Brief Generator
+  Agent fills in 5–6 fields about an upcoming seller (situation,
+  how they found the agent, property details) and the tool outputs
+  a one-page brief: likely archetype, dominant fear, what to lead
+  with, what to avoid, three suggested questions to ask. Replaces
+  the prompt pack workflow with something faster and more guided.
+
+Claim Builder Tool
+  Agent inputs their raw data (sales count, days on market, referral
+  rate, suburb tenure) and the tool writes their four claim types in
+  polished, verifiable language. The draft work for the claim
+  architecture prompt pack — but without needing to open an AI
+  separately. Interactive, instant, exportable.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+MEDIUM-TERM TOOLS — More build, high value
+───────────────────────────────────────────
+
+Pipeline Tracker
+  A simple spreadsheet or lightweight app where agents tag each warm
+  contact with their decision stage (1–5) and suspected archetype.
+  Surfaces: who to contact this week, which conditioning actions are
+  overdue, concentration gaps. The 30-Day Sprint as a living dashboard
+  rather than a static document.
+
+Seller Archetype Quiz
+  A short diagnostic agents send to sellers before the appraisal, or
+  work through with them at the start of a meeting. "Tell me about
+  your situation" framed as a questionnaire. Outputs the archetype
+  profile as a shared document — a surprisingly powerful trust move
+  that differentiates the agent before a word is spoken.
+
+Agent Archetype Self-Assessment
+  The same quiz logic turned inward. Agents answer ~15 questions about
+  how they naturally behave in meetings and get their archetype result
+  with a breakdown of their natural match sellers and friction zones.
+  Entry point into the full system for new users.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BIGGER PLAYS — Larger opportunity
+───────────────────────────────────
+
+Team / Agency Version
+  A principal buys access for their whole team. Each agent has their
+  archetype profile. The tool maps the team's collective coverage:
+  which seller types are well-covered, where gaps exist, who should
+  take which listing. SIGNAL as an agency management and team
+  development tool, not just an individual one.
+
+The SIGNAL Card Set
+  The 6 seller archetypes as a physical pocket-sized reference deck
+  agents carry to appraisals. High perceived value, giftable,
+  memorable. A physical product with strong gifting potential for
+  principals and coaches.
+
+Training Program / Workshop
+  The three layers as a structured workshop. Sold to agencies as a
+  half-day or full-day session. Content is already structured for
+  delivery — each layer is essentially a module. Scalable via
+  accredited trainers or agency partnerships.
+
+Market Expansion
+  The framework is currently Australian-specific but the psychology
+  is universal. A UK or US adaptation requires mostly surface-level
+  changes — terminology, market references, currency. Different
+  distribution but the same core IP.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+THE QUESTION TO KEEP ASKING
+────────────────────────────
+Which delivery mechanism creates the most value for the person using it?
+
+  → Solo agent, 10 minutes before an appraisal
+     = Appraisal Prep Brief / Archetype Quiz
+
+  → Agent building their market presence over 30 days
+     = Pipeline Tracker / Sprint Dashboard
+
+  → Agency principal investing in team performance
+     = Team Version / Workshop
+
+  → Someone discovering SIGNAL for the first time
+     = Agent Archetype Self-Assessment (entry point)
