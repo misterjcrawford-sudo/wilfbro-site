@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGNAL — Quick Brief</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --signal:   #E8440A;
+      --black:    #0D0B08;
+      --white:    #ffffff;
+      --off-white:#FAF8F5;
+      --gray-0:   #F5F2EE;
+      --gray-1:   #E8E4DE;
+      --gray-2:   #C8C4BE;
+      --gray-3:   #8C8680;
+      --gray-4:   #6B6560;
+      --teal:     #1a5c55;
+      --border:   1px solid #E8E4DE;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--off-white);
+      color: var(--black);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      background: var(--white);
+      border-bottom: var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-dot {
+      width: 7px; height: 7px;
+      background: var(--signal);
+      border-radius: 50%;
+    }
+    .nav-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+      border: var(--border);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .nav-back {
+      font-size: 13px;
+      color: var(--gray-4);
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--black); }
+
+    /* ── HEADER ── */
+    .header {
+      padding: 48px 24px 36px;
+      text-align: center;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+    .header-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--signal);
+      margin-bottom: 12px;
+    }
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      line-height: 1.15;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .header h1 em {
+      font-style: italic;
+      color: var(--signal);
+    }
+    .header p {
+      font-size: 15px;
+      color: var(--gray-4);
+      line-height: 1.6;
+    }
+
+    /* ── SELLER GRID ── */
+    .seller-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      padding: 0 16px 32px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .seller-card {
+      background: var(--white);
+      border: 2px solid var(--gray-1);
+      border-radius: 14px;
+      padding: 20px 18px;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .seller-card:hover {
+      border-color: var(--gray-3);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .seller-card.selected {
+      border-color: var(--signal);
+      background: var(--white);
+    }
+    .seller-card.dimmed {
+      opacity: 0.38;
+      transform: none;
+      box-shadow: none;
+    }
+    .card-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      color: var(--gray-2);
+      margin-bottom: 8px;
+    }
+    .card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 5px;
+    }
+    .card-state {
+      font-size: 11px;
+      color: var(--gray-3);
+      line-height: 1.4;
+    }
+    .card-arrow {
+      display: none;
+      width: 18px;
+      height: 18px;
+      background: var(--signal);
+      border-radius: 50%;
+      margin-top: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-arrow svg {
+      width: 9px; height: 9px;
+      stroke: white; fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .seller-card.selected .card-arrow { display: flex; }
+
+    /* ── BRIEF PANEL ── */
+    .brief-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 16px 48px;
+    }
+
+    .brief-panel {
+      display: none;
+      background: var(--white);
+      border: 2px solid var(--signal);
+      border-radius: 16px;
+      overflow: hidden;
+      animation: slideUp 0.25s ease;
+    }
+    .brief-panel.visible { display: block; }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .brief-header {
+      background: var(--black);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brief-header-left {}
+    .brief-archetype-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 4px;
+    }
+    .brief-archetype-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+    }
+    .brief-archetype-name em {
+      color: var(--signal);
+      font-style: italic;
+    }
+    .brief-badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 5px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .brief-body { padding: 0; }
+
+    .brief-section {
+      padding: 20px 24px;
+      border-bottom: var(--border);
+    }
+    .brief-section:last-child { border-bottom: none; }
+
+    .brief-section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+      margin-bottom: 12px;
+    }
+
+    /* Fear / Desire row */
+    .fd-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .fd-pill {
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .fd-pill.fear   { background: #fff0ed; }
+    .fd-pill.desire { background: #f0f7f6; }
+    .fd-pill-label {
+      font-size: 9px;
+      font-family: 'Space Mono', monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+      margin-bottom: 5px;
+    }
+    .fd-pill.fear .fd-pill-label   { color: #c0402a; }
+    .fd-pill.desire .fd-pill-label { color: var(--teal); }
+    .fd-pill-text {
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--black);
+    }
+
+    /* Lead-with list */
+    .lead-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .lead-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--black);
+    }
+    .lead-list li::before {
+      content: '';
+      display: block;
+      width: 18px;
+      height: 18px;
+      background: var(--signal);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 1px;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 5l2.5 2.5L8 3' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 10px;
+    }
+
+    /* Questions */
+    .questions-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      counter-reset: q;
+    }
+    .questions-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--black);
+      counter-increment: q;
+    }
+    .q-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--signal);
+      min-width: 18px;
+      margin-top: 1px;
+    }
+    .q-text { font-size: 14px; line-height: 1.5; }
+    .q-why {
+      font-size: 12px;
+      color: var(--gray-4);
+      margin-top: 3px;
+      font-style: italic;
+    }
+
+    /* Avoid list */
+    .avoid-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .avoid-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--gray-4);
+    }
+    .avoid-list li::before {
+      content: '✕';
+      color: #d04030;
+      font-size: 11px;
+      font-weight: 700;
+      min-width: 14px;
+      margin-top: 2px;
+    }
+
+    /* Never say */
+    .never-say-section {
+      background: var(--black);
+      padding: 18px 24px;
+    }
+    .never-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 10px;
+    }
+    .never-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .never-list li {
+      font-size: 13px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.45;
+      padding-left: 16px;
+      position: relative;
+    }
+    .never-list li::before {
+      content: '✕';
+      position: absolute;
+      left: 0;
+      color: #e86060;
+      font-size: 10px;
+      top: 2px;
+    }
+
+    /* Reset */
+    .reset-row {
+      padding: 16px 24px;
+      display: flex;
+      justify-content: center;
+      border-top: var(--border);
+    }
+    .reset-btn {
+      font-size: 12px;
+      color: var(--gray-3);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: var(--border);
+      background: none;
+      transition: all 0.2s;
+    }
+    .reset-btn:hover { color: var(--black); border-color: var(--gray-3); }
+
+    /* ── FOOTER ── */
+    .page-footer {
+      text-align: center;
+      padding: 24px;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--gray-2);
+      border-top: var(--border);
+      background: var(--white);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 420px) {
+      .header h1 { font-size: 28px; }
+      .seller-grid { grid-template-columns: 1fr; gap: 8px; }
+      .fd-row { grid-template-columns: 1fr; }
+      .brief-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">SIGNAL <div class="nav-dot"></div></div>
+    <div class="nav-tag">Quick Brief</div>
+    <a href="./index.html" class="nav-back">← Back</a>
+  </nav>
+
+  <div class="header">
+    <div class="header-eyebrow">Pre-Appraisal Tool</div>
+    <h1>Who is your <em>seller?</em></h1>
+    <p>Pick the type that fits. Get a one-page brief with exactly what to lead with, what to ask, and what to avoid.</p>
+  </div>
+
+  <div class="seller-grid" id="sellerGrid">
+
+    <div class="seller-card" onclick="showBrief(0, this)">
+      <div class="card-num">01</div>
+      <div class="card-name">The Anxious Upgrader</div>
+      <div class="card-state">Selling and buying simultaneously. Terrified of mistiming.</div>
+      <div class="card-arrow"><svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></div>
+    </div>
+
+    <div class="seller-card" onclick="showBrief(1, this)">
+      <div class="card-num">02</div>
+      <div class="card-name">The Reluctant Downsizer</div>
+      <div class="card-state">Selling the family home. Emotionally it's not over.</div>
+      <div class="card-arrow"><svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></div>
+    </div>
+
+    <div class="seller-card" onclick="showBrief(2, this)">
+      <div class="card-num">03</div>
+      <div class="card-name">The Cynical Veteran</div>
+      <div class="card-state">Sold before. Has opinions. Will test you early.</div>
+      <div class="card-arrow"><svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></div>
+    </div>
+
+    <div class="seller-card" onclick="showBrief(3, this)">
+      <div class="card-num">04</div>
+      <div class="card-name">The Status Seller</div>
+      <div class="card-state">The sale is a statement. Identity is on the line.</div>
+      <div class="card-arrow"><svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></div>
+    </div>
+
+    <div class="seller-card" onclick="showBrief(4, this)">
+      <div class="card-num">05</div>
+      <div class="card-name">The Pressure Seller</div>
+      <div class="card-state">Divorce, estate, or debt. Needs speed and dignity.</div>
+      <div class="card-arrow"><svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></div>
+    </div>
+
+    <div class="seller-card" onclick="showBrief(5, this)">
+      <div class="card-num">06</div>
+      <div class="card-name">The Analytical Controller</div>
+      <div class="card-state">Has done more research than you. Wants the data.</div>
+      <div class="card-arrow"><svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></div>
+    </div>
+
+  </div>
+
+  <div class="brief-wrap">
+    <div class="brief-panel" id="briefPanel"></div>
+  </div>
+
+  <footer class="page-footer">
+    SIGNAL — Seller Psychology System &nbsp;·&nbsp; signalagent.com.au
+  </footer>
+
+  <script>
+  const briefs = [
+
+    // 0 — Anxious Upgrader
+    {
+      name: 'The Anxious', em: 'Upgrader',
+      badge: 'Fear: Mistiming',
+      fear: 'Selling too cheap, buying too high, and ending up worse off than before.',
+      desire: 'A clear plan, a timeline they can trust, and someone who removes the chaos.',
+      lead: [
+        'Lead with your process — show them a written step-by-step timeline end-to-end',
+        'Acknowledge the complexity of buying and selling simultaneously before anything else',
+        'Share a story about an upgrader you\'ve helped coordinate successfully',
+      ],
+      questions: [
+        { q: 'What\'s your ideal timeline for being in the new place?', why: 'Gives you the constraint — and shows you\'re thinking about both ends.' },
+        { q: 'Have you found somewhere to go, or are you selling first?', why: 'Surfaces the real anxiety. Don\'t assume.' },
+        { q: 'What\'s worrying you most about the process right now?', why: 'Opens the fear. Once named, you can address it directly.' },
+        { q: 'Have you spoken to a mortgage broker or finance person yet about the upgrade?', why: 'Flags whether they understand their buying capacity — critical to managing their anxiety around the numbers.' },
+        { q: 'If this sold for [price range], would that give you enough to move confidently?', why: 'Connects the sale price to the outcome they actually care about: the next home.' },
+        { q: 'On a scale of one to ten, how ready are you to move if the right offer came in this week?', why: 'Tells you exactly where their head is — and whether they\'re emotionally ready to transact.' },
+      ],
+      avoid: [
+        'Vague optimism — "it always works out" is the worst thing you can say',
+        'Not acknowledging the buy side — they\'re juggling two transactions',
+        'Rushing or pushing urgency — it compounds their anxiety',
+        'Price guessing with no basis',
+      ],
+      never: [
+        '"Don\'t worry about the timing — it always works out"',
+        '"The market\'s moving fast, you need to act now"',
+        '"We\'ll figure out the buy side once this one sells"',
+      ]
+    },
+
+    // 1 — Reluctant Downsizer
+    {
+      name: 'The Reluctant', em: 'Downsizer',
+      badge: 'Fear: Being processed',
+      fear: 'Feeling like just another transaction. Being rushed through the end of a chapter.',
+      desire: 'To be honoured. An agent who genuinely sees what this home has meant.',
+      lead: [
+        'Ask about the home\'s story before you say a single word about price or campaign',
+        'Slow right down — this seller cannot be rushed and will feel it if you try',
+        'Talk about where they\'re going, not just what they\'re leaving behind',
+      ],
+      questions: [
+        { q: 'How long have you been here?', why: 'An invitation to talk about the home. The most important question you can ask.' },
+        { q: 'What matters most to you about how this sale happens?', why: 'Surfaces their values before you make any assumptions.' },
+        { q: 'Have you thought about where you\'d like to go next?', why: 'Shifts focus toward the future — makes the sale feel like a beginning, not an ending.' },
+        { q: 'Is there a time of year that would feel right for you to move?', why: 'Respects that timing may carry emotional weight, not just practical weight.' },
+        { q: 'Is there anyone else involved in this decision — family or otherwise?', why: 'Adult children often have strong opinions. Better to surface this early than have it derail you mid-campaign.' },
+        { q: 'What would make you look back on this sale and feel it was handled the right way?', why: 'Gets them to define success in their own words, before you define it for them.' },
+      ],
+      avoid: [
+        'Moving straight to price or marketing strategy',
+        'Using the word "campaign" before trust is established',
+        'Any implication that this is just a numbers exercise',
+        'Artificial urgency of any kind',
+      ],
+      never: [
+        '"The market\'s hot right now — you should move quickly"',
+        '"It\'s just a house — you\'ll love the next one"',
+        '"Let\'s get the campaign live as soon as possible"',
+      ]
+    },
+
+    // 2 — Cynical Veteran
+    {
+      name: 'The Cynical', em: 'Veteran',
+      badge: 'Fear: Being burned again',
+      fear: 'Being oversold and underdelivered. A low price after a long, painful campaign.',
+      desire: 'An agent who doesn\'t pretend. Proof over promises. Respect for their experience.',
+      lead: [
+        'Lead with verifiable results — specific addresses, prices, actual days on market',
+        'Calm, confident specifics — no over-enthusiasm, no generics',
+        'Acknowledge their past experience without dismissing it',
+      ],
+      questions: [
+        { q: 'What happened last time that you\'d want to do differently?', why: 'The most important question. Listen carefully — they\'re telling you what they need.' },
+        { q: 'What would you need to see from an agent to feel confident this time?', why: 'Lets them set the bar. Now you know exactly what to prove.' },
+        { q: 'What\'s your realistic price expectation based on what you\'ve seen?', why: 'Shows you respect their research. Don\'t guess a number first.' },
+        { q: 'How many agents are you speaking with for this?', why: 'Shows you\'re not afraid of competition — and tells you who you\'re up against.' },
+        { q: 'What\'s the one thing agents tend to promise that never actually gets delivered?', why: 'Uncovers the specific broken promise from last time. Now you can address it head-on.' },
+        { q: 'What\'s your preferred way to receive updates during a campaign?', why: 'Poor communication is the number one complaint from experienced sellers. Ask before they have to tell you.' },
+      ],
+      avoid: [
+        'Generic claims — "I\'m the number one agent in this suburb" without data',
+        'Over-enthusiasm that reads as desperation',
+        'Not having answers to the hard questions they\'ll ask',
+        'Anything unverifiable',
+      ],
+      never: [
+        '"I can guarantee you\'ll get above the reserve"',
+        '"Trust me — I\'ve been doing this for twenty years"',
+        '"Other agents don\'t tell you this, but..."',
+      ]
+    },
+
+    // 3 — Status Seller
+    {
+      name: 'The Status', em: 'Seller',
+      badge: 'Fear: A result below their image',
+      fear: 'A result that doesn\'t reflect the home\'s prestige — or an agent who embarrasses them.',
+      desire: 'A premium result, presented in a way that confirms both the home\'s status and their own.',
+      lead: [
+        'Show the quality of your marketing — photography, copy, media placement',
+        'Name-drop the right buyer profiles: who specifically buys properties like this',
+        'Reference your strongest results at the top of their price bracket',
+      ],
+      questions: [
+        { q: 'How do you want this property to be positioned in the market?', why: 'Lets them articulate the image. Your job is to match and exceed it.' },
+        { q: 'What does the result need to look like for you to feel it was a success?', why: 'Uncovers whether they\'re price-driven, prestige-driven, or both.' },
+        { q: 'Have you seen marketing for similar properties that impressed you?', why: 'Valuable intel — and shows you take presentation as seriously as they do.' },
+        { q: 'Who do you see as the ideal buyer for this property?', why: 'They\'ve thought about this. Hearing their vision helps you align your buyer targeting in a way they\'ll respect.' },
+        { q: 'Are there comparable sales you feel represent this home well — or ones that don\'t?', why: 'Surfaces their price anchors and lets you have the calibration conversation on their terms.' },
+        { q: 'Is there a specific price point that would feel like a landmark result to you?', why: 'Gets the number on the table without making it transactional. They\'ll tell you if they have a prestige threshold.' },
+      ],
+      avoid: [
+        'Any suggestion that the home might be overpriced',
+        'Generic or template marketing materials',
+        'Comparing their home unfavourably to other sales',
+        'Underestimating how much the perception of the sale matters',
+      ],
+      never: [
+        '"The market has cooled — we should price conservatively"',
+        '"I\'ll use our standard marketing package for this one"',
+        '"This is similar to the one down the road that sold for..."',
+      ]
+    },
+
+    // 4 — Pressure Seller
+    {
+      name: 'The Pressure', em: 'Seller',
+      badge: 'Fear: Being exploited',
+      fear: 'Being taken advantage of because their situation is visible. A drawn-out process.',
+      desire: 'A clean, fast, dignified sale — with an agent who treats their situation with discretion.',
+      lead: [
+        'Be direct and honest about what\'s achievable and in what timeframe',
+        'Make discretion explicit — say it out loud that their situation stays private',
+        'Show your process clearly — milestones and timeline reduce the feeling of chaos',
+      ],
+      questions: [
+        { q: 'What does your ideal timeline look like?', why: 'Gets the real constraint without making them feel pressured.' },
+        { q: 'Is there anything about your situation you\'d like to keep strictly between us?', why: 'Directly addresses their fear of exposure. Most agents never ask.' },
+        { q: 'What matters most to you — speed, price, or both?', why: 'Many pressure sellers will trade some price for speed. Know which.' },
+        { q: 'Have you had any conversations with other agents, or is this your first?', why: 'Tells you if someone has already tried to exploit their urgency — and positions you as different.' },
+        { q: 'Is the timeline flexible, or is there a hard date you\'re working toward?', why: 'The difference between "I want it fast" and "I need it done by X" changes your strategy entirely.' },
+        { q: 'How are you doing personally through all of this?', why: 'Almost no agent asks. The question alone builds more trust than anything else you can say in this meeting.' },
+      ],
+      avoid: [
+        'Anything that implies their urgency is being used against them',
+        'Unrealistic price promises to win the listing',
+        'Referencing their situation publicly or unnecessarily',
+        'Drawing out the process when speed is what they need',
+      ],
+      never: [
+        '"Given your situation, you might need to accept a lower offer"',
+        '"I\'ve helped a lot of people in your position" — signals you see their situation first',
+        '"The market\'s tough right now — you might want to consider..."',
+      ]
+    },
+
+    // 5 — Analytical Controller
+    {
+      name: 'The Analytical', em: 'Controller',
+      badge: 'Fear: Making an uninformed decision',
+      fear: 'Making a decision without having all the information. Being managed rather than informed.',
+      desire: 'Transparency. Access to the same data you have. A process they can see and interrogate.',
+      lead: [
+        'Bring detailed, referenced comparable sales — not summaries, the actual data',
+        'Have a written proposal with clear rationale for every recommendation',
+        'Invite their questions and answer them directly — don\'t deflect',
+      ],
+      questions: [
+        { q: 'What research have you already done on the market?', why: 'Establishes their baseline. Don\'t start where they already are.' },
+        { q: 'What information would help you feel confident in the pricing strategy?', why: 'They\'ll tell you exactly what they need. Then give it to them.' },
+        { q: 'What questions do you want answered today that other agents haven\'t answered well?', why: 'Cuts straight to their frustrations — and gives you a chance to differentiate.' },
+        { q: 'Would it be useful if I walked you through exactly how I arrive at a price recommendation?', why: 'Invites scrutiny — which is precisely what they want. Showing your methodology builds more confidence than any number alone.' },
+        { q: 'Do you have a preference on method of sale — auction, private treaty, or expression of interest?', why: 'They\'ve likely researched this. Asking shows you see them as an informed participant, not a client to manage.' },
+        { q: 'What would cause you to lose confidence in an agent during a campaign?', why: 'Tells you exactly which behaviours to avoid — and which to demonstrate — without making you guess.' },
+      ],
+      avoid: [
+        'Vague or emotional language — "I have a feeling about this property"',
+        'Resisting their questions or treating them as a challenge to your authority',
+        'Oversimplifying the market to sound more confident',
+        'Anything that suggests you haven\'t done the work',
+      ],
+      never: [
+        '"You can trust me on this — I\'ve seen a lot of markets"',
+        '"The data shows what it shows — the real magic is in the negotiation"',
+        '"Don\'t overthink it — you\'ll know when the right offer comes"',
+      ]
+    },
+
+  ];
+
+  function showBrief(index, card) {
+    const b = briefs[index];
+    const panel = document.getElementById('briefPanel');
+    const grid  = document.getElementById('sellerGrid');
+
+    // Update cards
+    grid.querySelectorAll('.seller-card').forEach((c, i) => {
+      c.classList.toggle('selected', i === index);
+      c.classList.toggle('dimmed', i !== index);
+    });
+
+    // Build brief HTML
+    panel.innerHTML = `
+      <div class="brief-header">
+        <div class="brief-header-left">
+          <div class="brief-archetype-label">Your seller</div>
+          <div class="brief-archetype-name">${b.name} <em>${b.em}</em></div>
+        </div>
+        <div class="brief-badge">${b.badge}</div>
+      </div>
+
+      <div class="brief-body">
+
+        <div class="brief-section">
+          <div class="brief-section-label">What drives them</div>
+          <div class="fd-row">
+            <div class="fd-pill fear">
+              <div class="fd-pill-label">Fear</div>
+              <div class="fd-pill-text">${b.fear}</div>
+            </div>
+            <div class="fd-pill desire">
+              <div class="fd-pill-label">Desire</div>
+              <div class="fd-pill-text">${b.desire}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="brief-section">
+          <div class="brief-section-label">Lead with this</div>
+          <ul class="lead-list">
+            ${b.lead.map(l => `<li>${l}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="brief-section">
+          <div class="brief-section-label">Six questions to ask</div>
+          <ul class="questions-list">
+            ${b.questions.map((q, i) => `
+              <li>
+                <span class="q-num">0${i+1}</span>
+                <div>
+                  <div class="q-text">"${q.q}"</div>
+                  <div class="q-why">${q.why}</div>
+                </div>
+              </li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="brief-section">
+          <div class="brief-section-label">What to avoid</div>
+          <ul class="avoid-list">
+            ${b.avoid.map(a => `<li>${a}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="never-say-section">
+          <div class="never-label">Never say to this seller</div>
+          <ul class="never-list">
+            ${b.never.map(n => `<li>${n}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="reset-row">
+          <button class="reset-btn" onclick="resetBrief()">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 5.5A4.5 4.5 0 1 0 3 2L1 1v3h3"/></svg>
+            Pick a different seller
+          </button>
+        </div>
+
+      </div>`;
+
+    panel.classList.add('visible');
+
+    // Scroll to brief
+    setTimeout(() => {
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+  }
+
+  function resetBrief() {
+    const panel = document.getElementById('briefPanel');
+    const grid  = document.getElementById('sellerGrid');
+    panel.classList.remove('visible');
+    panel.innerHTML = '';
+    grid.querySelectorAll('.seller-card').forEach(c => {
+      c.classList.remove('selected', 'dimmed');
+    });
+    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  </script>
+
+</body>
+</html>
