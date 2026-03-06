@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGNAL — Playbooks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --signal:    #E8440A;
+      --black:     #0D0B08;
+      --white:     #ffffff;
+      --off-white: #FAF8F5;
+      --gray-0:    #F5F2EE;
+      --gray-1:    #E8E4DE;
+      --gray-2:    #C8C4BE;
+      --gray-3:    #8C8680;
+      --gray-4:    #6B6560;
+      --teal:      #1a5c55;
+      --border:    1px solid #E8E4DE;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--off-white);
+      color: var(--black);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      padding: 22px 48px;
+      border-bottom: var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--black);
+      display: flex;
+      align-items: center;
+    }
+    .nav-logo span {
+      display: inline-block;
+      width: 8px; height: 8px;
+      background: var(--signal);
+      border-radius: 50%;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .nav-center {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+    }
+    .nav-pill {
+      border: 1px solid var(--gray-2);
+      border-radius: 999px;
+      padding: 6px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray-4);
+      transition: all 0.2s;
+    }
+    .nav-pill:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+    .nav-pill.active { background: var(--black); color: var(--white); border-color: var(--black); }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-cta {
+      background: var(--signal);
+      color: var(--white);
+      padding: 9px 22px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.88; }
+
+    /* Mobile nav hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--black);
+      border-radius: 2px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .nav-hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 768px) {
+      nav { grid-template-columns: 1fr auto; padding: 18px 24px; }
+      .nav-center {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background: var(--white);
+        border-bottom: var(--border);
+        flex-direction: column;
+        padding: 16px 24px;
+        gap: 8px;
+        z-index: 200;
+      }
+      .nav-center.is-open { display: flex; }
+      .nav-hamburger { display: flex; }
+      .nav-cta { display: none; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 72px 48px 60px;
+      border-bottom: var(--border);
+      background: var(--white);
+    }
+    .hero-inner { max-width: 680px; }
+    .hero-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--signal);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-eyebrow::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--signal); }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero h1 em { font-style: italic; color: var(--signal); }
+    .hero-sub {
+      font-size: 17px;
+      color: var(--gray-4);
+      line-height: 1.65;
+      max-width: 520px;
+    }
+
+    /* ── TOOLS GRID ── */
+    .tools-section { padding: 56px 48px; max-width: 1100px; margin: 0 auto; }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .tool-card {
+      background: var(--white);
+      border: 1px solid var(--gray-1);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: box-shadow 0.2s, border-color 0.2s, transform 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .tool-card:hover {
+      border-color: var(--gray-3);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.07);
+      transform: translateY(-2px);
+    }
+
+    .tool-card-header {
+      padding: 28px 28px 20px;
+      border-bottom: var(--border);
+      flex: 1;
+    }
+    .tool-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--signal);
+      margin-bottom: 12px;
+    }
+    .tool-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .tool-name em { font-style: italic; color: var(--signal); }
+    .tool-desc {
+      font-size: 14px;
+      color: var(--gray-4);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .tool-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tool-chip {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+      border: var(--border);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .tool-card-footer {
+      padding: 16px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .tool-count {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--gray-3);
+    }
+    .tool-btn {
+      background: var(--black);
+      color: var(--white);
+      padding: 9px 20px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tool-btn:hover { background: var(--signal); }
+    .tool-btn svg { width: 10px; height: 10px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ── HOW TO USE ── */
+    .how-section {
+      background: var(--black);
+      padding: 56px 48px;
+    }
+    .how-inner { max-width: 680px; margin: 0 auto; }
+    .how-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 20px;
+    }
+    .how-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 32px;
+      line-height: 1.2;
+    }
+    .how-steps { display: flex; flex-direction: column; gap: 20px; }
+    .how-step { display: flex; gap: 18px; align-items: flex-start; }
+    .how-step-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--signal);
+      min-width: 24px;
+      margin-top: 2px;
+    }
+    .how-step-text {
+      font-size: 15px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.6;
+    }
+    .how-step-text strong { color: var(--white); font-weight: 600; }
+
+    /* ── FOOTER ── */
+    .page-footer {
+      text-align: center;
+      padding: 24px;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--gray-2);
+      border-top: var(--border);
+      background: var(--white);
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding: 48px 24px 40px; }
+      .hero h1 { font-size: 36px; }
+      .tools-section { padding: 40px 16px; }
+      .tools-grid { grid-template-columns: 1fr; gap: 14px; }
+      .how-section { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="./index.html" class="nav-logo">SIGNAL<span></span></a>
+    <div class="nav-center" id="navCenter">
+      <a href="./signal-layer-1.html" class="nav-pill">Layer 1</a>
+      <a href="./signal-layer-2.html" class="nav-pill">Layer 2</a>
+      <a href="./signal-layer-3.html" class="nav-pill">Layer 3</a>
+      <a href="./signal-new-agents.html" class="nav-pill">New Agents</a>
+      <a href="./signal-downloads.html" class="nav-pill">Prompt Packs</a>
+      <a href="./signal-tools.html" class="nav-pill active">Playbooks</a>
+    </div>
+    <div class="nav-right">
+      <a href="./signal-brief.html" class="nav-cta">Quick Brief →</a>
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">In-the-room tools</div>
+      <h1>The <em>Playbooks.</em></h1>
+      <p class="hero-sub">Four tools built for the moments that matter — the appraisal, the objection, the price conversation, the open home follow-up. Pick the situation you're in and get exactly what you need.</p>
+    </div>
+  </section>
+
+  <!-- TOOLS GRID -->
+  <section class="tools-section">
+    <div class="tools-grid">
+
+      <!-- Quick Brief -->
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-tag">Pre-Appraisal</div>
+          <div class="tool-name">Quick <em>Brief</em></div>
+          <p class="tool-desc">Pick your seller type and get a one-page brief with exactly what to lead with, what to ask, and what to avoid. Built for the 10 minutes before you walk in.</p>
+          <div class="tool-chips">
+            <span class="tool-chip">Anxious Upgrader</span>
+            <span class="tool-chip">Reluctant Downsizer</span>
+            <span class="tool-chip">Cynical Veteran</span>
+            <span class="tool-chip">Status Seller</span>
+            <span class="tool-chip">Pressure Seller</span>
+            <span class="tool-chip">Analytical Controller</span>
+          </div>
+        </div>
+        <div class="tool-card-footer">
+          <div class="tool-count">6 seller types · 6 questions each</div>
+          <a href="./signal-brief.html" class="tool-btn">Use now <svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></a>
+        </div>
+      </div>
+
+      <!-- Objection Handler -->
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-tag">Listing Presentation</div>
+          <div class="tool-name">Objection <em>Handler</em></div>
+          <p class="tool-desc">Pick the objection in front of you. Get the real issue behind it, a three-step approach, the key line to use, and what never to say.</p>
+          <div class="tool-chips">
+            <span class="tool-chip">Fee too high</span>
+            <span class="tool-chip">Competitor quoted more</span>
+            <span class="tool-chip">Try privately first</span>
+            <span class="tool-chip">Wait for the market</span>
+            <span class="tool-chip">Still deciding</span>
+            <span class="tool-chip">Price guide too low</span>
+          </div>
+        </div>
+        <div class="tool-card-footer">
+          <div class="tool-count">6 objections · key line each</div>
+          <a href="./signal-objections.html" class="tool-btn">Use now <svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></a>
+        </div>
+      </div>
+
+      <!-- Price Conversation -->
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-tag">Vendor Management</div>
+          <div class="tool-name">Price <em>Conversation</em></div>
+          <p class="tool-desc">Pick where your seller is stuck on price. Get the root cause, how to open the conversation, the line that shifts things, and what never to say.</p>
+          <div class="tool-chips">
+            <span class="tool-chip">Anchored to purchase price</span>
+            <span class="tool-chip">Neighbour's sale</span>
+            <span class="tool-chip">Above market</span>
+            <span class="tool-chip">Won't reduce</span>
+            <span class="tool-chip">Financial need</span>
+            <span class="tool-chip">Two stakeholders</span>
+          </div>
+        </div>
+        <div class="tool-card-footer">
+          <div class="tool-count">6 scenarios · key line each</div>
+          <a href="./signal-price.html" class="tool-btn">Use now <svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></a>
+        </div>
+      </div>
+
+      <!-- Buyer Brief -->
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-tag">Open Home Follow-Up</div>
+          <div class="tool-name">Buyer <em>Brief</em></div>
+          <p class="tool-desc">Pick the buyer type who walked through. Get their fear and desire, how to lead, six qualifying questions, and exactly what kills the deal.</p>
+          <div class="tool-chips">
+            <span class="tool-chip">First-Timer</span>
+            <span class="tool-chip">Upgrader</span>
+            <span class="tool-chip">Investor</span>
+            <span class="tool-chip">Relocator</span>
+            <span class="tool-chip">Downsizer</span>
+            <span class="tool-chip">Bargain Hunter</span>
+          </div>
+        </div>
+        <div class="tool-card-footer">
+          <div class="tool-count">6 buyer types · 6 questions each</div>
+          <a href="./signal-buyer.html" class="tool-btn">Use now <svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOW TO USE -->
+  <section class="how-section">
+    <div class="how-inner">
+      <div class="how-label">How to use these</div>
+      <div class="how-title">Built for the moment, not the office.</div>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="how-step-num">01</div>
+          <div class="how-step-text"><strong>Pick the situation you're in</strong> — pre-appraisal, objection, price conversation, or open home follow-up.</div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">02</div>
+          <div class="how-step-text"><strong>Select the type</strong> that matches the person in front of you. Tap the card.</div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">03</div>
+          <div class="how-step-text"><strong>Read the brief</strong> — fear and desire, what to lead with, questions to ask, what to avoid, and what never to say.</div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">04</div>
+          <div class="how-step-text"><strong>Walk in prepared.</strong> These tools work best read 10 minutes before — not in the room.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    SIGNAL — Seller Psychology System &nbsp;·&nbsp; signalagent.com.au
+  </footer>
+
+  <script>
+  (function(){
+    var btn = document.querySelector('.nav-hamburger');
+    var menu = document.getElementById('navCenter');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var open = menu.classList.toggle('is-open');
+      btn.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', function(){
+      menu.classList.remove('is-open');
+      btn.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  })();
+  </script>
+
+</body>
+</html>

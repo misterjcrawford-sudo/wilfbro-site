@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGNAL — Price Conversation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --signal:   #E8440A;
+      --black:    #0D0B08;
+      --white:    #ffffff;
+      --off-white:#FAF8F5;
+      --gray-0:   #F5F2EE;
+      --gray-1:   #E8E4DE;
+      --gray-2:   #C8C4BE;
+      --gray-3:   #8C8680;
+      --gray-4:   #6B6560;
+      --teal:     #1a5c55;
+      --border:   1px solid #E8E4DE;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--off-white);
+      color: var(--black);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      background: var(--white);
+      border-bottom: var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-dot { width: 7px; height: 7px; background: var(--signal); border-radius: 50%; }
+    .nav-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+      border: var(--border);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .nav-back { font-size: 13px; color: var(--gray-4); transition: color 0.2s; }
+    .nav-back:hover { color: var(--black); }
+
+    .header {
+      padding: 48px 24px 36px;
+      text-align: center;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+    .header-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--signal);
+      margin-bottom: 12px;
+    }
+    .header h1 { font-family: 'Playfair Display', serif; font-size: 36px; line-height: 1.15; font-weight: 700; margin-bottom: 12px; }
+    .header h1 em { font-style: italic; color: var(--signal); }
+    .header p { font-size: 15px; color: var(--gray-4); line-height: 1.6; }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      padding: 0 16px 32px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .scenario-card {
+      background: var(--white);
+      border: 2px solid var(--gray-1);
+      border-radius: 14px;
+      padding: 20px 18px;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .scenario-card:hover { border-color: var(--gray-3); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .scenario-card.selected { border-color: var(--signal); }
+    .scenario-card.dimmed { opacity: 0.38; transform: none; box-shadow: none; }
+    .card-num { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: var(--gray-2); margin-bottom: 8px; }
+    .card-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; line-height: 1.25; margin-bottom: 5px; }
+    .card-state { font-size: 11px; color: var(--gray-3); line-height: 1.4; }
+    .card-arrow { display: none; width: 18px; height: 18px; background: var(--signal); border-radius: 50%; margin-top: 10px; align-items: center; justify-content: center; }
+    .card-arrow svg { width: 9px; height: 9px; stroke: white; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .scenario-card.selected .card-arrow { display: flex; }
+
+    .brief-wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 48px; }
+    .brief-panel { display: none; background: var(--white); border: 2px solid var(--signal); border-radius: 16px; overflow: hidden; animation: slideUp 0.25s ease; }
+    .brief-panel.visible { display: block; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    .brief-header { background: var(--black); padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .brief-archetype-label { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 4px; }
+    .brief-archetype-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--white); line-height: 1.25; }
+    .brief-archetype-name em { color: var(--signal); font-style: italic; }
+    .brief-badge { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.88); border: 1px solid rgba(255,255,255,0.25); padding: 5px 10px; border-radius: 999px; white-space: nowrap; }
+
+    .brief-section { padding: 20px 24px; border-bottom: var(--border); }
+    .brief-section:last-child { border-bottom: none; }
+    .brief-section-label { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray-3); margin-bottom: 12px; }
+
+    .fd-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .fd-pill { border-radius: 10px; padding: 12px 14px; }
+    .fd-pill.fear { background: #fff0ed; }
+    .fd-pill.desire { background: #f0f7f6; }
+    .fd-pill-label { font-size: 9px; font-family: 'Space Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 5px; }
+    .fd-pill.fear .fd-pill-label { color: #c0402a; }
+    .fd-pill.desire .fd-pill-label { color: var(--teal); }
+    .fd-pill-text { font-size: 13px; line-height: 1.45; color: var(--black); }
+
+    .approach-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .approach-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; line-height: 1.45; color: var(--black); }
+    .approach-list li::before {
+      content: '';
+      display: block;
+      width: 18px; height: 18px;
+      background: var(--signal);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 1px;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 5l2.5 2.5L8 3' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 10px;
+    }
+
+    .key-line-box { background: var(--black); border-radius: 10px; padding: 16px 20px; font-family: 'Playfair Display', serif; font-size: 15px; line-height: 1.6; font-style: italic; color: var(--white); }
+
+    .avoid-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .avoid-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; line-height: 1.4; color: var(--gray-4); }
+    .avoid-list li::before { content: '✕'; color: #d04030; font-size: 11px; font-weight: 700; min-width: 14px; margin-top: 2px; }
+
+    .never-say-section { background: var(--black); padding: 18px 24px; }
+    .never-label { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 10px; }
+    .never-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .never-list li { font-size: 13px; color: rgba(255,255,255,0.82); line-height: 1.45; padding-left: 16px; position: relative; }
+    .never-list li::before { content: '✕'; position: absolute; left: 0; color: #e86060; font-size: 10px; top: 2px; }
+
+    .reset-row { padding: 16px 24px; display: flex; justify-content: center; border-top: var(--border); }
+    .reset-btn { font-size: 12px; color: var(--gray-3); cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 999px; border: var(--border); background: none; transition: all 0.2s; }
+    .reset-btn:hover { color: var(--black); border-color: var(--gray-3); }
+
+    .page-footer { text-align: center; padding: 24px; font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: var(--gray-2); border-top: var(--border); background: var(--white); }
+
+    @media (max-width: 420px) {
+      .header h1 { font-size: 28px; }
+      .scenario-grid { grid-template-columns: 1fr; gap: 8px; }
+      .fd-row { grid-template-columns: 1fr; }
+      .brief-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">SIGNAL <div class="nav-dot"></div></div>
+    <div class="nav-tag">Price Conversation</div>
+    <a href="./signal-tools.html" class="nav-back">← Playbooks</a>
+  </nav>
+
+  <div class="header">
+    <div class="header-eyebrow">Vendor Management Tool</div>
+    <h1>Where is your seller <em>on price?</em></h1>
+    <p>Pick the situation. Get the root cause, how to open, and the line that shifts things.</p>
+  </div>
+
+  <div class="scenario-grid" id="scenarioGrid">
+
+    <div class="scenario-card" onclick="showBrief(0, this)">
+      <div class="card-num">01</div>
+      <div class="card-name">Anchored to purchase price</div>
+      <div class="card-state">"We paid $X, so we need at least that."</div>
+      <div class="card-arrow"><svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></div>
+    </div>
+
+    <div class="scenario-card" onclick="showBrief(1, this)">
+      <div class="card-num">02</div>
+      <div class="card-name">Anchored to a neighbour's sale</div>
+      <div class="card-state">"The one down the street got $X, so ours is worth that."</div>
+      <div class="card-arrow"><svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></div>
+    </div>
+
+    <div class="scenario-card" onclick="showBrief(2, this)">
+      <div class="card-num">03</div>
+      <div class="card-name">Expecting above market</div>
+      <div class="card-state">Their number is significantly beyond what the data supports.</div>
+      <div class="card-arrow"><svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></div>
+    </div>
+
+    <div class="scenario-card" onclick="showBrief(3, this)">
+      <div class="card-num">04</div>
+      <div class="card-name">Refusing to reduce mid-campaign</div>
+      <div class="card-state">Weeks on market, feedback says the price is wrong, vendor won't move.</div>
+      <div class="card-arrow"><svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></div>
+    </div>
+
+    <div class="scenario-card" onclick="showBrief(4, this)">
+      <div class="card-num">05</div>
+      <div class="card-name">Price driven by financial need</div>
+      <div class="card-state">"We need $X to make the next purchase work."</div>
+      <div class="card-arrow"><svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></div>
+    </div>
+
+    <div class="scenario-card" onclick="showBrief(5, this)">
+      <div class="card-num">06</div>
+      <div class="card-name">Two stakeholders, different expectations</div>
+      <div class="card-state">Couple, siblings, or estate — and they don't agree on the number.</div>
+      <div class="card-arrow"><svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></div>
+    </div>
+
+  </div>
+
+  <div class="brief-wrap">
+    <div class="brief-panel" id="briefPanel"></div>
+  </div>
+
+  <footer class="page-footer">
+    SIGNAL — Seller Psychology System &nbsp;·&nbsp; signalagent.com.au
+  </footer>
+
+  <script>
+  const scenarios = [
+
+    // 0 — Anchored to purchase price
+    {
+      name: 'Anchored to', em: 'purchase price',
+      badge: 'Sunk cost anchor',
+      root: 'The market doesn\'t know or care what they paid. Their anchor is emotional, not rational — but dismissing it will lose the room.',
+      need: 'To feel that what they\'ve invested is respected, even if the market hasn\'t kept pace.',
+      approach: [
+        'Acknowledge the anchor before presenting data. "I understand you paid $X — let\'s look at what the market has done since then."',
+        'Separate the two questions: what they need financially vs. what the market will bear. You can only solve one of them.',
+        'If there\'s a genuine gap, name it clearly and early. A vendor who discovers a shortfall at auction will never forgive you.',
+      ],
+      keyline: '"What you paid is a fact. What buyers will pay is a different conversation — and the only way to bridge that gap is to look at this together, honestly."',
+      avoid: [
+        'Dismissing the purchase price as irrelevant — it\'s deeply relevant to them',
+        'Pretending the gap doesn\'t exist when it clearly does',
+        'Soft-pedalling the data to avoid a difficult moment',
+      ],
+      never: [
+        '"The market doesn\'t care what you paid"',
+        '"That was then — prices have changed"',
+        '"You\'ll just have to accept what the market gives you"',
+      ]
+    },
+
+    // 1 — Neighbour's sale anchor
+    {
+      name: 'Anchored to', em: 'neighbour\'s sale',
+      badge: 'Comparison anchor',
+      root: 'They\'ve formed their price view from one data point — and it\'s almost always the most flattering one they could find.',
+      need: 'To understand why the comparison may not be apples-to-apples, without feeling like they\'ve been misled.',
+      approach: [
+        'Acknowledge the reference sale first. "That\'s a great result — let\'s look at what drove it."',
+        'Dig into the difference. Position, aspect, finishes, buyer competition on the day — most sales look simple from the outside.',
+        'Widen the evidence base. One sale is an outlier. Show them a pattern of five to ten results to build a credible picture.',
+      ],
+      keyline: '"That sale is worth understanding — let\'s pull it apart together and see exactly what it can tell us about yours."',
+      avoid: [
+        'Dismissing the comparable sale outright — they\'ll feel defensive',
+        'Failing to actually research that sale before the meeting',
+        'Anchoring to a low outlier in response — it becomes a tug-of-war',
+      ],
+      never: [
+        '"That sale was a fluke — you can\'t rely on it"',
+        '"Your property isn\'t really comparable to theirs"',
+        '"I wouldn\'t read too much into what the neighbours got"',
+      ]
+    },
+
+    // 2 — Expecting above market
+    {
+      name: 'Expecting', em: 'above market',
+      badge: 'Price gap',
+      root: 'They have genuine confidence in the property — or they\'ve been told a higher number by someone else. Either way, they\'ve set an expectation you can\'t currently support.',
+      need: 'To hear a credible, specific case for your number — not a vague downgrade.',
+      approach: [
+        'Don\'t open with your number. Open with the evidence, walk them through it, and let them arrive at the same place you are.',
+        'Ask what\'s driving their number. "Help me understand what\'s giving you confidence in that figure." The answer tells you what you\'re working with.',
+        'If there\'s a real gap, say so directly — and offer a strategy that tests the market without burning it.',
+      ],
+      keyline: '"Let me show you what I can currently support with data — and then let\'s talk about how we go to market in a way that gives your expectation a genuine chance to be proven right."',
+      avoid: [
+        'Matching their number to win the listing without evidence — it poisons the campaign',
+        'Being so cautious with your language that the message gets lost',
+        'Making them feel naive for having a high expectation',
+      ],
+      never: [
+        '"I don\'t think we\'ll get anywhere near that"',
+        '"Other agents may have told you that, but..."',
+        '"Buyers are pretty cautious right now — expectations need to be realistic"',
+      ]
+    },
+
+    // 3 — Refusing to reduce mid-campaign
+    {
+      name: 'Won\'t reduce', em: 'mid-campaign',
+      badge: 'Stale campaign',
+      root: 'They\'re holding out for a number that the market has already responded to. Staying is a decision — and a costly one.',
+      need: 'Permission to change their position without feeling like they\'re admitting defeat.',
+      approach: [
+        'Present the feedback as data, not opinion. "Here\'s what we\'ve heard from X groups. The pattern is consistent."',
+        'Calculate the cost of staying. Days on market, carrying costs, market perception — every week at the wrong price has a price.',
+        'Give them a decision, not just information. "Based on this, I\'m recommending we adjust. Here\'s what I think that achieves."',
+      ],
+      keyline: '"The market has responded — not with silence, but with a clear signal. The question now is whether we listen to it, or keep paying to ignore it."',
+      avoid: [
+        'Delivering the feedback without recommending action',
+        'Repeating the same conversation without escalating the directness',
+        'Letting the campaign drift without having the hard conversation',
+      ],
+      never: [
+        '"It\'s a tough market — we just need more time"',
+        '"Buyers are being cautious — it\'s not the price, it\'s the sentiment"',
+        '"Let\'s give it one more week and see"',
+      ]
+    },
+
+    // 4 — Price driven by financial need
+    {
+      name: 'Price driven by', em: 'financial need',
+      badge: 'Need-based anchor',
+      root: 'They\'ve reverse-engineered their sale price from what they need for the next purchase. The market doesn\'t know about their spreadsheet.',
+      need: 'An honest answer about whether the market can meet their need — and what happens if it can\'t.',
+      approach: [
+        'Separate the need from the value conversation. "I hear you on what you need — let\'s make sure the strategy gives that the best possible chance."',
+        'Be honest if the number is achievable. And be equally honest if it isn\'t — with a clear plan for both outcomes.',
+        'Explore the flexibility on the other side. Is the next purchase locked in? Is there a bridging option? You may have more room than they think.',
+      ],
+      keyline: '"I want to help you get to that number. Let me be honest about what the market says, and then let\'s build a strategy that gives you the best shot at it."',
+      avoid: [
+        'Promising to hit a number driven by need rather than evidence',
+        'Ignoring the financial constraint — it\'s real and it matters',
+        'Letting the need-based anchor set the price guide without addressing the gap',
+      ],
+      never: [
+        '"The market doesn\'t care what you need"',
+        '"You might just have to accept less and make the numbers work"',
+        '"If the next purchase depends on this result, that\'s a lot of pressure on one sale"',
+      ]
+    },
+
+    // 5 — Two stakeholders, different expectations
+    {
+      name: 'Two stakeholders,', em: 'different expectations',
+      badge: 'Internal conflict',
+      root: 'You\'re not negotiating with the market yet — you\'re negotiating between the vendors. This needs to be resolved before you go anywhere near a buyer.',
+      need: 'A neutral, respected voice who can help them land on a shared position — without anyone feeling they lost.',
+      approach: [
+        'Get both parties in the same room. A conversation with one and then the other always ends badly.',
+        'Don\'t take sides, even implicitly. Your job is to present what the market says — and let that be the arbiter.',
+        'Name the dynamic directly if needed. "I want to make sure we\'re all aligned before we go to market — a campaign works best when everyone\'s on the same page."',
+      ],
+      keyline: '"My recommendation is based on what the market evidence supports — not on either position. Let me show you both what that looks like."',
+      avoid: [
+        'Agreeing with one party and hoping to bring the other around later',
+        'Starting the campaign before there\'s genuine alignment',
+        'Making anyone feel their view has been dismissed',
+      ],
+      never: [
+        '"Look, between us, I think [one party] has the right read on this"',
+        '"We can sort this out once the offers start coming in"',
+        '"One of you is going to have to come around on this"',
+      ]
+    },
+
+  ];
+
+  function showBrief(index, card) {
+    const b = scenarios[index];
+    const panel = document.getElementById('briefPanel');
+    const grid  = document.getElementById('scenarioGrid');
+
+    grid.querySelectorAll('.scenario-card').forEach((c, i) => {
+      c.classList.toggle('selected', i === index);
+      c.classList.toggle('dimmed', i !== index);
+    });
+
+    panel.innerHTML = `
+      <div class="brief-header">
+        <div class="brief-header-left">
+          <div class="brief-archetype-label">The situation</div>
+          <div class="brief-archetype-name">${b.name} <em>${b.em}</em></div>
+        </div>
+        <div class="brief-badge">${b.badge}</div>
+      </div>
+
+      <div class="brief-body">
+
+        <div class="brief-section">
+          <div class="brief-section-label">What's driving this</div>
+          <div class="fd-row">
+            <div class="fd-pill fear">
+              <div class="fd-pill-label">Root cause</div>
+              <div class="fd-pill-text">${b.root}</div>
+            </div>
+            <div class="fd-pill desire">
+              <div class="fd-pill-label">What they need</div>
+              <div class="fd-pill-text">${b.need}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="brief-section">
+          <div class="brief-section-label">How to open</div>
+          <ul class="approach-list">
+            ${b.approach.map(a => `<li>${a}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="brief-section">
+          <div class="brief-section-label">The key line</div>
+          <div class="key-line-box">${b.keyline}</div>
+        </div>
+
+        <div class="brief-section">
+          <div class="brief-section-label">What to avoid</div>
+          <ul class="avoid-list">
+            ${b.avoid.map(a => `<li>${a}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="never-say-section">
+          <div class="never-label">Never say in this conversation</div>
+          <ul class="never-list">
+            ${b.never.map(n => `<li>${n}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="reset-row">
+          <button class="reset-btn" onclick="resetBrief()">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 5.5A4.5 4.5 0 1 0 3 2L1 1v3h3"/></svg>
+            Pick a different scenario
+          </button>
+        </div>
+
+      </div>`;
+
+    panel.classList.add('visible');
+    setTimeout(() => { panel.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80);
+  }
+
+  function resetBrief() {
+    const panel = document.getElementById('briefPanel');
+    const grid  = document.getElementById('scenarioGrid');
+    panel.classList.remove('visible');
+    panel.innerHTML = '';
+    grid.querySelectorAll('.scenario-card').forEach(c => c.classList.remove('selected', 'dimmed'));
+    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  </script>
+
+</body>
+</html>

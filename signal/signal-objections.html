@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGNAL — Objection Handler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --signal:   #E8440A;
+      --black:    #0D0B08;
+      --white:    #ffffff;
+      --off-white:#FAF8F5;
+      --gray-0:   #F5F2EE;
+      --gray-1:   #E8E4DE;
+      --gray-2:   #C8C4BE;
+      --gray-3:   #8C8680;
+      --gray-4:   #6B6560;
+      --teal:     #1a5c55;
+      --border:   1px solid #E8E4DE;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--off-white);
+      color: var(--black);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      background: var(--white);
+      border-bottom: var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-dot { width: 7px; height: 7px; background: var(--signal); border-radius: 50%; }
+    .nav-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+      border: var(--border);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .nav-back { font-size: 13px; color: var(--gray-4); transition: color 0.2s; }
+    .nav-back:hover { color: var(--black); }
+
+    /* ── HEADER ── */
+    .header {
+      padding: 48px 24px 36px;
+      text-align: center;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+    .header-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--signal);
+      margin-bottom: 12px;
+    }
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      line-height: 1.15;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .header h1 em { font-style: italic; color: var(--signal); }
+    .header p { font-size: 15px; color: var(--gray-4); line-height: 1.6; }
+
+    /* ── OBJECTION GRID ── */
+    .obj-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      padding: 0 16px 32px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .obj-card {
+      background: var(--white);
+      border: 2px solid var(--gray-1);
+      border-radius: 14px;
+      padding: 20px 18px;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .obj-card:hover {
+      border-color: var(--gray-3);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .obj-card.selected { border-color: var(--signal); }
+    .obj-card.dimmed { opacity: 0.38; transform: none; box-shadow: none; }
+    .card-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      color: var(--gray-2);
+      margin-bottom: 8px;
+    }
+    .card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 5px;
+    }
+    .card-state { font-size: 11px; color: var(--gray-3); line-height: 1.4; }
+    .card-arrow {
+      display: none;
+      width: 18px; height: 18px;
+      background: var(--signal);
+      border-radius: 50%;
+      margin-top: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-arrow svg { width: 9px; height: 9px; stroke: white; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .obj-card.selected .card-arrow { display: flex; }
+
+    /* ── BRIEF PANEL ── */
+    .brief-wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 48px; }
+    .brief-panel {
+      display: none;
+      background: var(--white);
+      border: 2px solid var(--signal);
+      border-radius: 16px;
+      overflow: hidden;
+      animation: slideUp 0.25s ease;
+    }
+    .brief-panel.visible { display: block; }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .brief-header {
+      background: var(--black);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brief-archetype-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 4px;
+    }
+    .brief-archetype-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.25;
+    }
+    .brief-archetype-name em { color: var(--signal); font-style: italic; }
+    .brief-badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.88);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 5px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .brief-section { padding: 20px 24px; border-bottom: var(--border); }
+    .brief-section:last-child { border-bottom: none; }
+    .brief-section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+      margin-bottom: 12px;
+    }
+
+    /* Pills */
+    .fd-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .fd-pill { border-radius: 10px; padding: 12px 14px; }
+    .fd-pill.fear   { background: #fff0ed; }
+    .fd-pill.desire { background: #f0f7f6; }
+    .fd-pill-label {
+      font-size: 9px;
+      font-family: 'Space Mono', monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+      margin-bottom: 5px;
+    }
+    .fd-pill.fear .fd-pill-label   { color: #c0402a; }
+    .fd-pill.desire .fd-pill-label { color: var(--teal); }
+    .fd-pill-text { font-size: 13px; line-height: 1.45; color: var(--black); }
+
+    /* Approach list */
+    .approach-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .approach-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--black);
+    }
+    .approach-list li::before {
+      content: '';
+      display: block;
+      width: 18px; height: 18px;
+      background: var(--signal);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 1px;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 5l2.5 2.5L8 3' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 10px;
+    }
+
+    /* Key line */
+    .key-line-box {
+      background: var(--black);
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      line-height: 1.6;
+      font-style: italic;
+      color: var(--white);
+    }
+
+    /* Avoid list */
+    .avoid-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .avoid-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--gray-4);
+    }
+    .avoid-list li::before { content: '✕'; color: #d04030; font-size: 11px; font-weight: 700; min-width: 14px; margin-top: 2px; }
+
+    /* Never say */
+    .never-say-section { background: var(--black); padding: 18px 24px; }
+    .never-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 10px;
+    }
+    .never-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .never-list li {
+      font-size: 13px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.45;
+      padding-left: 16px;
+      position: relative;
+    }
+    .never-list li::before { content: '✕'; position: absolute; left: 0; color: #e86060; font-size: 10px; top: 2px; }
+
+    /* Reset */
+    .reset-row { padding: 16px 24px; display: flex; justify-content: center; border-top: var(--border); }
+    .reset-btn {
+      font-size: 12px;
+      color: var(--gray-3);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: var(--border);
+      background: none;
+      transition: all 0.2s;
+    }
+    .reset-btn:hover { color: var(--black); border-color: var(--gray-3); }
+
+    /* ── FOOTER ── */
+    .page-footer {
+      text-align: center;
+      padding: 24px;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--gray-2);
+      border-top: var(--border);
+      background: var(--white);
+    }
+
+    @media (max-width: 420px) {
+      .header h1 { font-size: 28px; }
+      .obj-grid { grid-template-columns: 1fr; gap: 8px; }
+      .fd-row { grid-template-columns: 1fr; }
+      .brief-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">SIGNAL <div class="nav-dot"></div></div>
+    <div class="nav-tag">Objection Handler</div>
+    <a href="./signal-tools.html" class="nav-back">← Playbooks</a>
+  </nav>
+
+  <div class="header">
+    <div class="header-eyebrow">Listing Presentation Tool</div>
+    <h1>What <em>objection</em> are you facing?</h1>
+    <p>Pick the one in front of you. Get the real issue, your approach, and the exact line to use.</p>
+  </div>
+
+  <div class="obj-grid" id="objGrid">
+
+    <div class="obj-card" onclick="showBrief(0, this)">
+      <div class="card-num">01</div>
+      <div class="card-name">"Your fee is too high"</div>
+      <div class="card-state">They're comparing your number to a cheaper alternative.</div>
+      <div class="card-arrow"><svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></div>
+    </div>
+
+    <div class="obj-card" onclick="showBrief(1, this)">
+      <div class="card-num">02</div>
+      <div class="card-name">"Another agent quoted us more"</div>
+      <div class="card-state">A competitor's price guide is higher than yours.</div>
+      <div class="card-arrow"><svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></div>
+    </div>
+
+    <div class="obj-card" onclick="showBrief(2, this)">
+      <div class="card-num">03</div>
+      <div class="card-name">"We want to try it privately first"</div>
+      <div class="card-state">They want to sell without an agent to save on fees.</div>
+      <div class="card-arrow"><svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></div>
+    </div>
+
+    <div class="obj-card" onclick="showBrief(3, this)">
+      <div class="card-num">04</div>
+      <div class="card-name">"We'll wait for the market"</div>
+      <div class="card-state">They want to time the market before listing.</div>
+      <div class="card-arrow"><svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></div>
+    </div>
+
+    <div class="obj-card" onclick="showBrief(4, this)">
+      <div class="card-num">05</div>
+      <div class="card-name">"We're still deciding between agents"</div>
+      <div class="card-state">You're in the final shortlist but haven't won it yet.</div>
+      <div class="card-arrow"><svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></div>
+    </div>
+
+    <div class="obj-card" onclick="showBrief(5, this)">
+      <div class="card-num">06</div>
+      <div class="card-name">"Your price guide is too low"</div>
+      <div class="card-state">They expect more than you can support with data.</div>
+      <div class="card-arrow"><svg viewBox="0 0 10 10"><polyline points="3,2 7,5 3,8"/></svg></div>
+    </div>
+
+  </div>
+
+  <div class="brief-wrap">
+    <div class="brief-panel" id="briefPanel"></div>
+  </div>
+
+  <footer class="page-footer">
+    SIGNAL — Seller Psychology System &nbsp;·&nbsp; signalagent.com.au
+  </footer>
+
+  <script>
+  const objections = [
+
+    // 0 — Fee too high
+    {
+      name: '"Your fee is', em: 'too high"',
+      badge: 'Value objection',
+      issue: 'They haven\'t yet seen your fee as an investment — they\'re comparing it to a number, not an outcome.',
+      want: 'Reassurance that your fee produces a better net result than the cheaper option.',
+      approach: [
+        'Don\'t defend the fee — shift to net outcome. "The question isn\'t my fee, it\'s what you walk away with."',
+        'Quantify the gap. A 1% better result on a $900k home is $9,000 — more than double most fee differences.',
+        'Invite comparison directly. "I\'d encourage you to compare our track records — not just our numbers."',
+      ],
+      keyline: '"If I achieve even half a percent more than a cheaper agent, my fee pays for itself several times over. Would you like to run that math together?"',
+      avoid: [
+        'Immediately discounting — it signals your fee was never justified',
+        'Getting defensive or listing credentials without connecting them to outcomes',
+        'Letting the conversation stay on the fee number rather than what they net',
+      ],
+      never: [
+        '"Look, I can probably do something on the fee if that helps..."',
+        '"I\'m worth it, trust me"',
+        '"The cheaper agents just aren\'t as experienced"',
+      ]
+    },
+
+    // 1 — Another agent quoted more
+    {
+      name: 'Another agent', em: 'quoted us more',
+      badge: 'Competitor quote',
+      issue: 'They want to believe the higher number. Your job isn\'t to compete on price — it\'s to reframe what a high quote actually means.',
+      want: 'Permission to trust your number. They want to be told you can get there too.',
+      approach: [
+        'Acknowledge it without dismissing it. "That\'s a figure worth exploring — let\'s look at what supports it."',
+        'Ask for the evidence. "Did they show you the comparable sales that justify that figure?" Quietly powerful if they didn\'t.',
+        'Introduce the risk of a high guide: a prolonged, price-damaged campaign costs more than a fee difference.',
+      ],
+      keyline: '"My job isn\'t to quote the highest number — it\'s to achieve it. Let me show you what I can actually support with data."',
+      avoid: [
+        'Directly attacking the other agent — it looks defensive',
+        'Matching their number without evidence to back it',
+        'Making the seller feel foolish for being drawn to a higher figure',
+      ],
+      never: [
+        '"They\'re just quoting high to win the listing — it\'s a classic trick"',
+        '"I could say that too if I wanted to be dishonest"',
+        '"Don\'t be fooled by a big number"',
+      ]
+    },
+
+    // 2 — Try privately first
+    {
+      name: 'We want to try', em: 'it privately first',
+      badge: 'DIY instinct',
+      issue: 'They\'re trying to save on fees — but usually underestimate the buyer network gap, negotiation exposure, and time cost.',
+      want: 'Validation that their instinct isn\'t crazy, but clarity on what it actually costs them.',
+      approach: [
+        'Don\'t fight it — explore it. "That makes sense. Can I ask what\'s driving that thinking?"',
+        'Surface the real cost. The risk isn\'t just a lower price — it\'s buyer qualification, legal exposure, and negotiating alone against experienced buyers.',
+        'Name the buyer behaviour pattern. Buyers who approach owners directly often do so because they know they have an advantage.',
+      ],
+      keyline: '"You can absolutely try privately — but the buyers who approach directly usually do so because they know the owner is alone at the table. Worth thinking about."',
+      avoid: [
+        'Being dismissive of their logic — saving on fees is a legitimate goal',
+        'Leading with all the ways it will fail',
+        'Not asking what\'s really driving it (almost always fees)',
+      ],
+      never: [
+        '"Private sales never work"',
+        '"You won\'t get a good result without an agent"',
+        '"You\'ll regret it — I\'ve seen this go badly many times"',
+      ]
+    },
+
+    // 3 — Wait for the market
+    {
+      name: 'We\'ll wait for', em: 'the market to improve',
+      badge: 'Timing fear',
+      issue: 'They\'re trying to time the market — usually from fear of leaving money on the table. Most sellers who wait end up waiting too long.',
+      want: 'Certainty that now is the right time. Or genuine, honest permission to wait.',
+      approach: [
+        'Respect the instinct, then present the data. "That makes sense — let me show you what the last 12 months of timing decisions have actually produced."',
+        'Flip the question. "If the market moves 5% either way in the next 6 months, what does that actually mean for your next purchase?"',
+        'Separate the market from their specific property. Some properties and suburbs are counter-cyclical.',
+      ],
+      keyline: '"The best time to sell is when you\'re motivated to sell — because that\'s when you do the work properly. Waiting for the perfect moment usually just means waiting."',
+      avoid: [
+        'Creating false urgency — "the market is peaking right now" without data',
+        'Dismissing their concern as irrational',
+        'Overpromising what a better market will deliver',
+      ],
+      never: [
+        '"You need to move now before it gets worse"',
+        '"Everyone says that — nobody ever times it right"',
+        '"The market will always go up eventually"',
+      ]
+    },
+
+    // 4 — Still deciding
+    {
+      name: 'We\'re still', em: 'deciding between agents',
+      badge: 'Comparison shopping',
+      issue: 'They haven\'t been given a clear reason to choose you yet. Or they have, and they\'re checking by shopping further.',
+      want: 'A clear differentiator — not another pitch. Something specific that makes the choice feel obvious.',
+      approach: [
+        'Find out where you stand. "Of the agents you\'ve spoken with, what\'s standing out to you so far?"',
+        'Make the comparison easy for them. Offer an honest breakdown of what makes your approach different — without needing to attack anyone else.',
+        'Suggest a simple proof point. "Ask each agent for their last five results with addresses and days on market. Let the data do the talking."',
+      ],
+      keyline: '"I\'d rather you choose the right agent than choose me for the wrong reasons. Let me make the comparison easier for you."',
+      avoid: [
+        'Pressuring them to decide in the meeting',
+        'Claiming to be the best without proof',
+        'Badmouthing other agents — it always backfires',
+      ],
+      never: [
+        '"Just go with your gut — I think you already know"',
+        '"What would it take to lock you in today?"',
+        '"The other agents in this area just don\'t have my level of experience"',
+      ]
+    },
+
+    // 5 — Price guide too low
+    {
+      name: 'Your price guide', em: 'is too low',
+      badge: 'Price expectation gap',
+      issue: 'They\'ve formed a different view of value — from renovations, emotional attachment, a neighbour\'s result, or a higher quote elsewhere.',
+      want: 'To be taken seriously. And ideally, to be proven right.',
+      approach: [
+        'Start with curiosity, not defence. "That\'s important — help me understand what\'s driving that figure for you."',
+        'Lay out your evidence clearly and walk through it together. Don\'t just state your number — show your working.',
+        'Acknowledge what makes their property strong before discussing where the market sits.',
+      ],
+      keyline: '"Let\'s look at this together. I want to understand your thinking — and I want you to understand mine. The data should be driving this, not either of us."',
+      avoid: [
+        'Defending your number before you\'ve understood theirs',
+        'Dismissing renovations or improvements without acknowledgment',
+        'Quoting up to win the listing — it damages the campaign and the relationship',
+      ],
+      never: [
+        '"The market doesn\'t care what you paid for the renovation"',
+        '"I can adjust the guide — what number would make you comfortable?"',
+        '"Buyers today are pretty savvy — they won\'t pay that"',
+      ]
+    },
+
+  ];
+
+  function showBrief(index, card) {
+    const b = briefs[index];
+    const panel = document.getElementById('briefPanel');
+    const grid  = document.getElementById('objGrid');
+
+    grid.querySelectorAll('.obj-card').forEach((c, i) => {
+      c.classList.toggle('selected', i === index);
+      c.classList.toggle('dimmed', i !== index);
+    });
+
+    panel.innerHTML = `
+      <div class="brief-header">
+        <div class="brief-header-left">
+          <div class="brief-archetype-label">The objection</div>
+          <div class="brief-archetype-name">${b.name} <em>${b.em}</em></div>
+        </div>
+        <div class="brief-badge">${b.badge}</div>
+      </div>
+
+      <div class="brief-body">
+
+        <div class="brief-section">
+          <div class="brief-section-label">What's behind this</div>
+          <div class="fd-row">
+            <div class="fd-pill fear">
+              <div class="fd-pill-label">Real issue</div>
+              <div class="fd-pill-text">${b.issue}</div>
+            </div>
+            <div class="fd-pill desire">
+              <div class="fd-pill-label">What they want</div>
+              <div class="fd-pill-text">${b.want}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="brief-section">
+          <div class="brief-section-label">Your approach</div>
+          <ul class="approach-list">
+            ${b.approach.map(a => `<li>${a}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="brief-section">
+          <div class="brief-section-label">The key line</div>
+          <div class="key-line-box">${b.keyline}</div>
+        </div>
+
+        <div class="brief-section">
+          <div class="brief-section-label">What to avoid</div>
+          <ul class="avoid-list">
+            ${b.avoid.map(a => `<li>${a}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="never-say-section">
+          <div class="never-label">Never say to this seller</div>
+          <ul class="never-list">
+            ${b.never.map(n => `<li>${n}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="reset-row">
+          <button class="reset-btn" onclick="resetBrief()">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 5.5A4.5 4.5 0 1 0 3 2L1 1v3h3"/></svg>
+            Pick a different objection
+          </button>
+        </div>
+
+      </div>`;
+
+    panel.classList.add('visible');
+    setTimeout(() => { panel.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80);
+  }
+
+  // alias so the existing showBrief call works
+  const briefs = objections;
+
+  function resetBrief() {
+    const panel = document.getElementById('briefPanel');
+    const grid  = document.getElementById('objGrid');
+    panel.classList.remove('visible');
+    panel.innerHTML = '';
+    grid.querySelectorAll('.obj-card').forEach(c => c.classList.remove('selected', 'dimmed'));
+    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  </script>
+
+</body>
+</html>
