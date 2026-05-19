@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASCII Illustrator</title>
+  <style>
+    :root {
+      --bg: #111;
+      --panel: #171717;
+      --line: #2a2a2a;
+      --text: #f2f2f2;
+      --muted: #9aa0a6;
+      --accent: #00ffcc;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(1200px 400px at 50% -100px, rgba(0, 255, 204, 0.14), transparent 70%),
+        linear-gradient(#0f0f0f, #111 40%, #0d0d0d);
+      color: var(--text);
+      font-family: "Courier New", Consolas, Menlo, monospace;
+      display: flex;
+      justify-content: center;
+      padding: 28px 16px 40px;
+    }
+
+    .app {
+      width: min(1100px, 100%);
+      display: grid;
+      gap: 16px;
+      justify-items: center;
+    }
+
+    h1 {
+      margin: 0;
+      letter-spacing: 2px;
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      color: var(--accent);
+      text-shadow: 0 0 8px rgba(0, 255, 204, 0.55);
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    button, input[type="text"], input[type="color"] {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      font: inherit;
+      border-radius: 8px;
+      padding: 8px 12px;
+      transition: 120ms ease;
+    }
+
+    button {
+      cursor: pointer;
+      box-shadow: inset 0 0 0 0 rgba(0, 255, 204, 0.2), 0 0 0 rgba(0, 255, 204, 0);
+    }
+
+    button:hover {
+      border-color: #3c3c3c;
+      transform: translateY(-1px);
+    }
+
+    button.active, button:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: inset 0 0 0 1px rgba(0, 255, 204, 0.3), 0 0 12px rgba(0, 255, 204, 0.25);
+      outline: none;
+    }
+
+    #generateBtn {
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 14px rgba(0, 255, 204, 0.22);
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      min-height: 1.2em;
+      text-align: center;
+    }
+
+    .canvas-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .canvas {
+      background: #0b0b0b;
+      border: 1px solid #2f2f2f;
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow:
+        0 0 0 1px rgba(0, 255, 204, 0.12),
+        0 12px 28px rgba(0, 0, 0, 0.45),
+        inset 0 0 20px rgba(0, 255, 204, 0.06);
+      display: grid;
+      grid-template-columns: repeat(40, 1ch);
+      grid-template-rows: repeat(20, 1.2em);
+      gap: 0;
+      user-select: none;
+      white-space: pre;
+      font-size: clamp(12px, 1.5vw, 19px);
+      line-height: 1.2em;
+      overflow: auto;
+      max-width: 100%;
+    }
+
+    .cell {
+      width: 1ch;
+      height: 1.2em;
+      color: #fff;
+      text-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: crosshair;
+    }
+
+    .tools {
+      width: min(980px, 100%);
+      border: 1px solid #2a2a2a;
+      background: rgba(23, 23, 23, 0.85);
+      border-radius: 12px;
+      padding: 12px;
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+    }
+
+    .tools .row {
+      width: 100%;
+    }
+
+    #charInput {
+      width: 56px;
+      text-align: center;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    input[type="color"] {
+      height: 40px;
+      width: 56px;
+      padding: 3px;
+      cursor: pointer;
+    }
+
+    .small {
+      font-size: 0.86rem;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <h1>ASCII Illustrator</h1>
+
+    <div class="row" id="categoryRow"></div>
+
+    <button id="generateBtn" type="button">Generate</button>
+    <div class="meta" id="meta">Choose a category and generate an ASCII subject.</div>
+
+    <section class="canvas-wrap">
+      <div class="canvas" id="canvas" aria-label="ASCII Canvas"></div>
+    </section>
+
+    <section class="tools">
+      <div class="row">
+        <label for="charInput">Character</label>
+        <input id="charInput" type="text" maxlength="1" value="#" />
+        <button id="randomCharBtn" type="button">Randomize Character</button>
+        <label for="colorInput">Color</label>
+        <input id="colorInput" type="color" value="#00ffcc" />
+        <button id="eraserBtn" type="button">Eraser</button>
+      </div>
+      <div class="row">
+        <button id="resetBtn" type="button">Reset to Original</button>
+        <button id="clearBtn" type="button">Clear Canvas</button>
+        <button id="exportBtn" type="button">Export ASCII</button>
+        <button id="downloadBtn" type="button">Download as .txt</button>
+      </div>
+      <div class="small">40 × 20 editable grid. Original template characters stay white; your edits use the selected color.</div>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const W = 40;
+      const H = 20;
+      const BLANK = " ";
+
+      const categories = ["Animal", "Vehicle", "Monster", "Space", "Pirate"];
+
+      function toGrid(lines) {
+        const safe = lines.slice(0, H);
+        while (safe.length < H) safe.push("");
+        return safe.map(line => line.padEnd(W, " ").slice(0, W).split(""));
+      }
+
+      const templates = {
+        Animal: [
+          { name: "Dragon", grid: toGrid([
+            "",
+            "               /\\                 /\\    ",
+            "              /  \\___     __ ___ /  \\   ",
+            "      /\\_____/   /   \\___/  \\   /   /   ",
+            "     /  ____    /  @   _   @ \\_/   /    ",
+            "    /  / __ \\  /\\     / \\     /   /     ",
+            "   /  / /  \\ \\/  \\   /___\\   /   /      ",
+            "  /__/ /____\\____/\\___| |___/___/       ",
+            "     /  _   _   _   _   _   _  \\        ",
+            "    /  / \\ / \\ / \\ / \\ / \\ / \\  \\       ",
+            "   /__/__/__/__/__/__/__/__/__/\\_\\      ",
+            "         \\      ____      /             ",
+            "          \\____/ __ \\____/              ",
+            "             /  /  \\  \\                 ",
+            "            /__/    \\__\\                ",
+            "              / /\\  /\\                  ",
+            "             /_/  \\/  \\                 ",
+            "                flame~~                 ",
+            "",
+            ""
+          ]) },
+          { name: "Shark", grid: toGrid([
+            "",
+            "",
+            "              ________________          ",
+            "        ____/                \\___       ",
+            "  _____/   _   _   _   _   _    \\__     ",
+            " /       _/ \\_/ \\_/ \\_/ \\_/ \\_     \\    ",
+            "<______/                        \\_____> ",
+            "       \\__      _______      __/        ",
+            "          \\____/  O   O\\____/           ",
+            "             /      ^     \\             ",
+            "            /______---_____\\            ",
+            "                 /  |  \\                ",
+            "                /   |   \\               ",
+            "               /____|____\\              ",
+            "                   / \\                  ",
+            "                  /   \\                 ",
+            "                 ~~~~~~~                ",
+            "",
+            "",
+            ""
+          ]) },
+          { name: "Cat", grid: toGrid([
+            "",
+            "",
+            "              /\\_/\\                     ",
+            "             / o o \\                    ",
+            "            (   \"   )                   ",
+            "             \\~(*)~/                    ",
+            "              // \\\\                     ",
+            "        /\\____//   \\\\____/\\             ",
+            "       /  ___           ___  \\          ",
+            "      /  /   \\  ___ ___/   \\  \\         ",
+            "     (  (  @  )(  o o  ) @  )  )        ",
+            "      \\  \\___/  \\  ^  / \\___/  /        ",
+            "       \\        /\\_-_/\\        /         ",
+            "        \\______/  ___  \\______/          ",
+            "              /  /   \\  \\               ",
+            "             /__/     \\__\\              ",
+            "               tail~~~                  ",
+            "",
+            "",
+            ""
+          ]) }
+        ],
+        Vehicle: [
+          { name: "Car", grid: toGrid([
+            "",
+            "",
+            "            __________________          ",
+            "       ____/|_||_||_||_||_|\\___        ",
+            "      /___     _________      ___\\      ",
+            "          |   /  _   _  \\    |          ",
+            "          |__/__/|_|\\__\\_____|          ",
+            "         /   _            _   \\         ",
+            "        /___/ \\__________/ \\___\\        ",
+            "       (___)   (___)(___)   (___)       ",
+            "          O       O  O       O          ",
+            "                                        ",
+            "         ________________               ",
+            "        /________________\\              ",
+            "                                        ",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]) },
+          { name: "Rocket", grid: toGrid([
+            "",
+            "                   /\\                   ",
+            "                  /  \\                  ",
+            "                 /++++\\                 ",
+            "                /  ++  \\                ",
+            "               /   ++   \\               ",
+            "              /____++____\\              ",
+            "                  /||\\                  ",
+            "                 /_||_\\                 ",
+            "                |  ||  |                ",
+            "                |  ||  |                ",
+            "                |  ||  |                ",
+            "                |  ||  |                ",
+            "               /|__||__|\\               ",
+            "              /_/_/  \\_\\_\\              ",
+            "                / /\\ \\                  ",
+            "               /_/  \\_\\                 ",
+            "                *    *                  ",
+            "               ***  ***                 ",
+            "              **********                "
+          ]) },
+          { name: "Submarine", grid: toGrid([
+            "",
+            "",
+            "               _________                ",
+            "          ____/         \\____           ",
+            "     ____/   __  ___  __    \\___        ",
+            " ___/      _/  \\/   \\/  \\_      \\__     ",
+            "|         |   O   O   O   |        |    ",
+            "|_________|_______________|________|    ",
+            "   \\                              /      ",
+            "    \\____________________________/       ",
+            "       |   |                |   |       ",
+            "       |___|                |___|       ",
+            "         /\\                  /\\         ",
+            "        /  \\                /  \\        ",
+            "   ~~~~~    ~~~~~~    ~~~~~~    ~~~~~   ",
+            " ~~~~~~~~  ~~~~~~~~  ~~~~~~~~  ~~~~~~~  ",
+            "",
+            "",
+            "",
+            ""
+          ]) }
+        ],
+        Monster: [
+          { name: "Blob", grid: toGrid([
+            "",
+            "",
+            "               .-~~~~~~~~-.             ",
+            "           .-~~            ~-.          ",
+            "         .~   O   O   O      ~.         ",
+            "        /   O   .----.   O     \\        ",
+            "       /   O   (  oo  )   O     \\       ",
+            "      |   O     \\ -- /      O    |      ",
+            "      |     .-~~~~~~~~~~-.        |     ",
+            "      |    /   .------.   \\       |     ",
+            "       \\  |   (  ____  )   |     /      ",
+            "        \\  \\   \\______/   /     /       ",
+            "         ~. ~-._      _.-~   .~         ",
+            "           ~-.__~~~~~~__. -~             ",
+            "                /  /\\  \\                ",
+            "               /__/  \\__\\               ",
+            "             goo... goo...              ",
+            "",
+            "",
+            ""
+          ]) },
+          { name: "Cyclops", grid: toGrid([
+            "",
+            "                 ________               ",
+            "              .-'  ____  '-.            ",
+            "            .'   .'    '.   '.          ",
+            "           /    /  .--.  \\    \\         ",
+            "          /    |  ( O  )  |    \\        ",
+            "         |     |   '--'   |     |       ",
+            "         |      \\  ____  /      |       ",
+            "         |    .-~~~~~~~~~~-.    |       ",
+            "          \\  /  .--.  .--.  \\  /        ",
+            "           \\|  /    \\/    \\  |/         ",
+            "            | |  /\\    /\\  | |          ",
+            "            | |  \\/    \\/  | |          ",
+            "            |  \\   .--.   /  |          ",
+            "            |   '-.____.-'   |          ",
+            "            |____    ||   ____|         ",
+            "                /____||____\\            ",
+            "                 /  /  \\  \\             ",
+            "",
+            ""
+          ]) },
+          { name: "Tentacle Beast", grid: toGrid([
+            "",
+            "                 .-^^^^-.               ",
+            "              .-'  @  @  '-.            ",
+            "             /   .------.   \\           ",
+            "            |   /  /\\ /\\ \\   |          ",
+            "            |  |  (  V  ) |  |          ",
+            "            |   \\  \\__/  /   |          ",
+            "             \\   '------'   /           ",
+            "              '-._______.-'             ",
+            "           __/\\___/||\\___/\\__          ",
+            "         _/  /   / || \\   \\  \\_        ",
+            "       _/  _/   /  ||  \\   \\_  \\_      ",
+            "      /___/____/___||___\\____\\___\\     ",
+            "          \\   \\    ||    /   /         ",
+            "           \\   \\   ||   /   /          ",
+            "            \\___\\__||__/___/           ",
+            "              ~~~  ~~  ~~~             ",
+            "",
+            "",
+            ""
+          ]) }
+        ],
+        Space: [
+          { name: "Planet", grid: toGrid([
+            "",
+            "",
+            "               .-~~~~~~~~-.             ",
+            "            .-~   .-~~-.   ~-.          ",
+            "          .~    .'  __  '.    ~.        ",
+            "         /    .'  .'  '.  '.    \\       ",
+            "        /    /   / .--. \\   \\    \\      ",
+            "       |    |   | (    ) |   |    |     ",
+            "       |    |   |  '--'  |   |    |     ",
+            "       |    |    \\      /    |    |     ",
+            "        \\    \\    '.__.'    /    /      ",
+            "         \\    '.          .'    /       ",
+            "          ~.    '-.____.-'    .~        ",
+            "            '-.            .-'          ",
+            "               '-.______.-'             ",
+            "          ____====____====____          ",
+            "        _/____====____====____\\_        ",
+            "",
+            "",
+            ""
+          ]) },
+          { name: "UFO", grid: toGrid([
+            "",
+            "",
+            "                .-\"\"\"\"\"-.               ",
+            "             .-'  .--.   '-.            ",
+            "           .'   .'    '.    '.          ",
+            "          /   _/  O  O  \\_    \\         ",
+            "         |   /    .--.    \\    |        ",
+            "         |  |    (____)    |   |        ",
+            "          \\  \\            /   /         ",
+            "           '._'-._____.-'_.'           ",
+            "        ____/______________\\____       ",
+            "      _/_____/__/_/__\\_\\_____\\__\\_     ",
+            "         *    *   *  *   *    *         ",
+            "      .      .   .    .   .      .      ",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]) },
+          { name: "Satellite", grid: toGrid([
+            "",
+            "        [\\\\\\\\\\]      .--.      [//////] ",
+            "        [\\\\\\\\\\]-----(____)-----[//////] ",
+            "        [\\\\\\\\\\]      '--'      [//////] ",
+            "             \\         ||         /      ",
+            "              \\        ||        /       ",
+            "               \\    .-====-.    /        ",
+            "                \\  /  /\\  \\  /         ",
+            "                 \\/__/  \\__\\/          ",
+            "                 |  _    _  |           ",
+            "                 | | |  | | |           ",
+            "                 | |_|  |_| |           ",
+            "                 |   ____   |           ",
+            "                 |  /____\\  |           ",
+            "                 |__________|           ",
+            "                     /\\                 ",
+            "                    /  \\                ",
+            "                   /____\\               ",
+            "",
+            ""
+          ]) }
+        ],
+        Pirate: [
+          { name: "Pirate Ship", grid: toGrid([
+            "",
+            "                    |                    ",
+            "                   /|\\                   ",
+            "                  /_|_\\                  ",
+            "                    |                    ",
+            "              ______|______              ",
+            "             /      |      \\             ",
+            "            /   /\\  |  /\\   \\            ",
+            "           /___/  \\_|_/  \\___\\           ",
+            "               \\  / | \\  /               ",
+            "                \\/__|__\\/                ",
+            "            ____/_______\\____            ",
+            "      _____/_____/___\\_____\\_____        ",
+            "  ___/_____/____/___\\____\\_____\\___      ",
+            "  \\________________________________/     ",
+            "    \\    \\   \\  |||  /   /    /         ",
+            " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    ",
+            "   ~~~  ~~~~   ~~~~   ~~~~  ~~~         ",
+            "",
+            ""
+          ]) },
+          { name: "Skull", grid: toGrid([
+            "",
+            "",
+            "               .-\"\"\"\"\"\"-.               ",
+            "             .'  .--.    '.              ",
+            "            /   /    \\     \\             ",
+            "           |   |  O O |     |            ",
+            "           |   |   ^  |     |            ",
+            "           |   |  ___ |     |            ",
+            "            \\   \\____/     /             ",
+            "             '.          .'              ",
+            "               '-.____.-'                ",
+            "             ___/  ||  \\___             ",
+            "            /   \\  ||  /   \\            ",
+            "           /____/  ||  \\____\\           ",
+            "              /    ||    \\              ",
+            "             /____/  \\____\\             ",
+            "            /_/  /\\  /\\  \\_\\            ",
+            "                /  \\/  \\                ",
+            "",
+            ""
+          ]) },
+          { name: "Treasure Chest", grid: toGrid([
+            "",
+            "",
+            "            ____________________        ",
+            "          .'____________________'.      ",
+            "         /  .------------------.  \\     ",
+            "        /  /   *   *   *   *   \\  \\    ",
+            "       |  |----------------------|  |   ",
+            "       |  |   ________________   |  |   ",
+            "       |  |  |      ____      |  |  |   ",
+            "       |  |  |     |____|     |  |  |   ",
+            "       |  |  |   .--------.   |  |  |   ",
+            "       |  |  |   |  GOLD  |   |  |  |   ",
+            "       |  |  |   '--------'   |  |  |   ",
+            "       |  |  |________________|  |  |   ",
+            "       |  |______________________|  |   ",
+            "        \\__________________________/    ",
+            "          \\______________________/      ",
+            "             sparkle *   *              ",
+            "",
+            ""
+          ]) }
+        ]
+      };
+
+      const state = {
+        selectedCategory: "Animal",
+        currentTemplate: null,
+        char: "#",
+        color: "#00ffcc",
+        eraser: false,
+        chars: Array.from({ length: H }, () => Array(W).fill(BLANK)),
+        colors: Array.from({ length: H }, () => Array(W).fill("#ffffff")),
+        original: Array.from({ length: H }, () => Array(W).fill(BLANK))
+      };
+
+      const el = {
+        categoryRow: document.getElementById("categoryRow"),
+        generateBtn: document.getElementById("generateBtn"),
+        meta: document.getElementById("meta"),
+        canvas: document.getElementById("canvas"),
+        charInput: document.getElementById("charInput"),
+        colorInput: document.getElementById("colorInput"),
+        eraserBtn: document.getElementById("eraserBtn"),
+        resetBtn: document.getElementById("resetBtn"),
+        clearBtn: document.getElementById("clearBtn"),
+        randomCharBtn: document.getElementById("randomCharBtn"),
+        exportBtn: document.getElementById("exportBtn"),
+        downloadBtn: document.getElementById("downloadBtn")
+      };
+
+      function cloneGrid(grid) {
+        return grid.map(row => row.slice());
+      }
+
+      function createCellDOM() {
+        const frag = document.createDocumentFragment();
+        for (let y = 0; y < H; y++) {
+          for (let x = 0; x < W; x++) {
+            const span = document.createElement("span");
+            span.className = "cell";
+            span.dataset.x = String(x);
+            span.dataset.y = String(y);
+            span.textContent = BLANK;
+            frag.appendChild(span);
+          }
+        }
+        el.canvas.appendChild(frag);
+      }
+
+      function cellAt(x, y) {
+        return el.canvas.children[y * W + x];
+      }
+
+      function paintCell(x, y) {
+        const node = cellAt(x, y);
+        node.textContent = state.chars[y][x] || BLANK;
+        node.style.color = state.colors[y][x];
+        node.style.textShadow = `0 0 7px ${state.colors[y][x]}55`;
+      }
+
+      function renderAll() {
+        for (let y = 0; y < H; y++) {
+          for (let x = 0; x < W; x++) {
+            paintCell(x, y);
+          }
+        }
+      }
+
+      function randomFrom(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+      }
+
+      function setCategory(cat) {
+        state.selectedCategory = cat;
+        [...el.categoryRow.querySelectorAll("button")].forEach(btn => {
+          btn.classList.toggle("active", btn.dataset.category === cat);
+        });
+      }
+
+      function loadTemplate(template) {
+        state.currentTemplate = template;
+        state.original = cloneGrid(template.grid);
+        state.chars = cloneGrid(template.grid);
+        state.colors = Array.from({ length: H }, () => Array(W).fill("#ffffff"));
+        renderAll();
+        el.meta.textContent = `${state.selectedCategory} • ${template.name}`;
+      }
+
+      function generate() {
+        const pool = templates[state.selectedCategory];
+        loadTemplate(randomFrom(pool));
+      }
+
+      function resetToOriginal() {
+        if (!state.currentTemplate) return;
+        state.chars = cloneGrid(state.original);
+        state.colors = Array.from({ length: H }, () => Array(W).fill("#ffffff"));
+        renderAll();
+      }
+
+      function clearCanvas() {
+        for (let y = 0; y < H; y++) {
+          for (let x = 0; x < W; x++) {
+            state.chars[y][x] = BLANK;
+            state.colors[y][x] = "#ffffff";
+          }
+        }
+        renderAll();
+      }
+
+      function editCell(x, y) {
+        if (state.eraser) {
+          state.chars[y][x] = BLANK;
+          state.colors[y][x] = "#ffffff";
+        } else {
+          state.chars[y][x] = state.char || "#";
+          state.colors[y][x] = state.color;
+        }
+        paintCell(x, y);
+      }
+
+      function getAsciiText() {
+        return state.chars.map(r => r.join("")).join("\n");
+      }
+
+      async function exportAscii() {
+        const text = getAsciiText();
+        try {
+          await navigator.clipboard.writeText(text);
+          el.meta.textContent = "ASCII copied to clipboard.";
+        } catch {
+          el.meta.textContent = "Clipboard blocked. Use Download as .txt.";
+        }
+      }
+
+      function downloadTxt() {
+        const blob = new Blob([getAsciiText()], { type: "text/plain" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        const stamp = new Date().toISOString().replace(/[:.]/g, "-");
+        a.download = `ascii-illustrator-${stamp}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(a.href);
+      }
+
+      function randomizeChar() {
+        const chars = "#@*./\\|_O+=~$%&";
+        state.char = randomFrom(chars.split(""));
+        el.charInput.value = state.char;
+        state.eraser = false;
+        el.eraserBtn.classList.remove("active");
+      }
+
+      function initCategoryButtons() {
+        const frag = document.createDocumentFragment();
+        categories.forEach(cat => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.textContent = cat;
+          btn.dataset.category = cat;
+          btn.addEventListener("click", () => setCategory(cat));
+          frag.appendChild(btn);
+        });
+        el.categoryRow.appendChild(frag);
+      }
+
+      function bindEvents() {
+        el.generateBtn.addEventListener("click", generate);
+
+        el.canvas.addEventListener("click", (e) => {
+          const target = e.target.closest(".cell");
+          if (!target) return;
+          const x = Number(target.dataset.x);
+          const y = Number(target.dataset.y);
+          editCell(x, y);
+        });
+
+        el.charInput.addEventListener("input", () => {
+          let v = el.charInput.value;
+          if (!v) v = "#";
+          state.char = v[0];
+          el.charInput.value = state.char;
+          if (state.eraser) {
+            state.eraser = false;
+            el.eraserBtn.classList.remove("active");
+          }
+        });
+
+        el.colorInput.addEventListener("input", () => {
+          state.color = el.colorInput.value;
+        });
+
+        el.eraserBtn.addEventListener("click", () => {
+          state.eraser = !state.eraser;
+          el.eraserBtn.classList.toggle("active", state.eraser);
+        });
+
+        el.resetBtn.addEventListener("click", resetToOriginal);
+        el.clearBtn.addEventListener("click", clearCanvas);
+        el.randomCharBtn.addEventListener("click", randomizeChar);
+        el.exportBtn.addEventListener("click", exportAscii);
+        el.downloadBtn.addEventListener("click", downloadTxt);
+      }
+
+      function init() {
+        initCategoryButtons();
+        createCellDOM();
+        bindEvents();
+        setCategory("Animal");
+        generate();
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>
